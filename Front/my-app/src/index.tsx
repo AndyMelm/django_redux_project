@@ -10,8 +10,7 @@ import Login from './features/login/Login';
 import Register from './features/register/Register';
 import HomePage from './features/homepage/HomePage';
 import Journal from './features/journal/Journal';
-import Crud from './features/CRUD/Crud'
-import Crud3 from './features/Crud3/Crud3';
+
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
@@ -25,8 +24,6 @@ root.render(
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/journal" element={<Journal />} />
-            <Route path="/journal2" element={<Crud />} />
-            <Route path="/journal3" element={<Crud3 />} />
           </Route>
         </Routes>
       </BrowserRouter>

@@ -1,16 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
-import { loginAsync, selectLogged, logout } from './loginSlice';
+import { loginAsync, selectLogged, logout, getUserIdAsync, selectUserId } from './loginSlice';
 import ResetPassword from '../reset_password/Resetpassword';
 
 const Login = () => {
   const dispatch = useAppDispatch();
   const logged = useAppSelector(selectLogged);
+  const userId = useAppSelector(selectUserId);
   const [username, setusername] = useState('');
   const [password, setpassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const [isPopupVisible, setIsPopupVisible] = useState(false);
+
+  useEffect(() => {
+    if (logged) {
+      dispatch(getUserIdAsync(sessionStorage.getItem('token') || ''));
+    }
+  }, [logged, dispatch]);
 
   const handleLogin = () => {
     dispatch(loginAsync({ username, password }))
@@ -49,6 +56,7 @@ const Login = () => {
               <button onClick={closePopup}>Close</button>
             </div>
           )}
+          {userId && <p>User ID: {userId}</p>}
         </>
       ) : (
         <>

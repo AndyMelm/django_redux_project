@@ -3,8 +3,7 @@ import counterReducer from '../features/counter/counterSlice';
 import loginReducer from '../features/login/loginSlice';
 import registerReducer from '../features/register/RegisterSlice';
 import journalReducer from '../features/journal/journalSlice';
-import crudSlice from '../features/CRUD/crudSlice';
-import Crud3Slice from '../features/Crud3/Crud3Slice';
+
 
 
 export const store = configureStore({
@@ -12,12 +11,7 @@ export const store = configureStore({
     counter: counterReducer,
     login: loginReducer,
     register: registerReducer,
-    journal: journalReducer,
-    CRUD:crudSlice,
-    crud:Crud3Slice
-   
-    
- 
+    journal: journalReducer, 
   },
 });
 

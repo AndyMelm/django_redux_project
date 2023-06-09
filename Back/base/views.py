@@ -51,17 +51,15 @@ def register(request):
 
 # @permission_classes([IsAuthenticated])
 class JournalView(APIView):
-    def get(self, request):
-        my_model = Journal.objects.all()
-        serializer = JournalSerializer(my_model, many=True)
+    def get(self, request, pk=None):
+        if pk is not None:
+            my_model = Journal.objects.filter(user_id=pk)
+            serializer = JournalSerializer(my_model, many=True)
+        else:
+            my_model = Journal.objects.all()
+            serializer = JournalSerializer(my_model, many=True)
         return Response(serializer.data)
 
-    # def get(self, request):
-    #     my_model = Journal.objects.filter(user_id=request.user.id)  # Filter journals by the current user's ID
-    #     print(request.user)
-    #     print(request.user.id)
-    #     serializer = JournalSerializer(my_model, many=True)
-    #     return Response(serializer.data)
 
     def post(self, request):
         serializer = JournalSerializer(data=request.data)
@@ -92,3 +90,8 @@ class JournalView(APIView):
     #     else:
     #         return Response({'message': 'No image file provided.'}, status=status.HTTP_400_BAD_REQUEST)
 
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_user_id(request):
+    user_id = request.user.id
+    return Response({'user_id': user_id})

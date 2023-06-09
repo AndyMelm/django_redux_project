@@ -6,5 +6,5 @@ export interface Journal {
   position: string;
   description: string;
   image?: File | null;
-  user_id?: number;
+  user?: number;
 }

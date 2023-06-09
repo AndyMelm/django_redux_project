@@ -22,14 +22,6 @@ const HomePage = () => {
         <Link to="/journal">Journal</Link>
       </div>
 
-      <div className="btn btn-info" role="alert">
-        <Link to="/journal2">Journal2</Link>
-      </div>
-
-      <div className="btn btn-info" role="alert">
-        <Link to="/journal3">Journal3</Link>
-      </div>
-
     </div>
   )
 }

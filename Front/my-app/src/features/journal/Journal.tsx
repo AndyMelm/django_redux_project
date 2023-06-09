@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { getAllJournals, createJournalEntry, updateJournalEntry, deleteJournalEntry, selectJournals } from './journalSlice';
 import { Journal } from '../../Models/Journal';
+import {selectUserId} from '../login/loginSlice'
 
 const JournalPage = () => {
   const dispatch = useAppDispatch();
   const journals = useAppSelector(selectJournals);
+  const userid = useAppSelector(selectUserId)
   const [journalData, setJournalData] = useState<Partial<Journal>>({});
-  const { id, strategy, description, buyprice, sellprice, position, image, user_id } = journalData;
+  const { strategy, description, buyprice, sellprice, position, image, user } = journalData;
 
   useEffect(() => {
     dispatch(getAllJournals());
@@ -15,20 +17,19 @@ const JournalPage = () => {
 
   const handleAdd = () => {
     const newJournal: Journal = {
-      id: id || 0,
       strategy: strategy || '',
       buyprice: buyprice || 0,
       sellprice: sellprice || 0,
       position: position || '',
       description: description || '',
       image: image || null,
-      user_id: user_id || 0,
+      user: userid || 0
     };
 
-    // if (image instanceof File) {
-    //   // If `image` is a `File` object, assign it to `newJournal.image`
-    //   newJournal.image = image;
-    // }
+    if (image instanceof File) {
+      // If `image` is a `File` object, assign it to `newJournal.image`
+      newJournal.image = image;
+    }
 
     dispatch(createJournalEntry(newJournal));
     setJournalData({});
@@ -43,7 +44,7 @@ const JournalPage = () => {
       position: position || journal.position,
       description: description || journal.description,
       image: image || journal.image,
-      user_id: user_id || journal.user_id,
+      user: userid|| journal.user,
     };
 
     dispatch(updateJournalEntry(updatedJournal));

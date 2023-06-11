@@ -6,6 +6,7 @@ export const fetchStockData = async (symbol: string) => {
   try {
     const response = await fetch(API_Call);
     const data = await response.json();
+    console.log('Stock data:', data); // Added console log
     return data;
   } catch (error) {
     throw new Error('Failed to fetch stock data');

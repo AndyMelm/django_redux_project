@@ -1,11 +1,10 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState, AppThunk } from '../../app/store';
-import { Journal } from '../../Models/Journal';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { RootState } from '../../app/store';
 import { getAll, createEntry, updateEntry, deleteEntry } from './journalAPI';
 
 export interface JournalState {
   logged: boolean;
-  journals: Journal[];
+  journals: any[];
 }
 
 const initialState: JournalState = {
@@ -18,31 +17,20 @@ export const getAllJournals = createAsyncThunk('journal/getAll', async () => {
   return journals;
 });
 
-export const createJournalEntry = createAsyncThunk(
-  'journal/createEntry',
-  async (entry: Journal) => {
-    const newEntry = await createEntry(entry);
-    console.log(newEntry)
-    return newEntry;
-  }
-);
+export const createJournalEntry = createAsyncThunk('journal/createEntry', async (formData: any) => {
+  const newEntry = await createEntry(formData);
+  return newEntry;
+});
 
+export const updateJournalEntry = createAsyncThunk('journal/updateEntry', async (entry: any) => {
+  const updatedEntry = await updateEntry(entry);
+  return updatedEntry;
+});
 
-export const updateJournalEntry = createAsyncThunk(
-  'journal/updateEntry',
-  async (entry: Journal) => {
-    const updatedEntry = await updateEntry(entry);
-    return updatedEntry;
-  }
-);
-
-export const deleteJournalEntry = createAsyncThunk(
-  'journal/deleteEntry',
-  async (entryId: number) => {
-    await deleteEntry(entryId);
-    return entryId;
-  }
-);
+export const deleteJournalEntry = createAsyncThunk('journal/deleteEntry', async (entryId: number) => {
+  await deleteEntry(entryId);
+  return entryId;
+});
 
 export const journalSlice = createSlice({
   name: 'journal',
@@ -60,7 +48,6 @@ export const journalSlice = createSlice({
       })
       .addCase(createJournalEntry.fulfilled, (state, action) => {
         state.journals.push(action.payload);
-        console.log(action.payload)
       })
       .addCase(updateJournalEntry.fulfilled, (state, action) => {
         const updatedIndex = state.journals.findIndex((entry) => entry.id === action.payload.id);

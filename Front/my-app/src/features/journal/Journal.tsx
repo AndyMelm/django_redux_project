@@ -1,64 +1,103 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, ChangeEvent } from 'react';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { getAllJournals, createJournalEntry, updateJournalEntry, deleteJournalEntry, selectJournals } from './journalSlice';
-import { Journal } from '../../Models/Journal';
-import { selectUserId } from '../login/loginSlice'
+import { selectUserId } from '../login/loginSlice';
 
 const JournalPage = () => {
   const dispatch = useAppDispatch();
   const journals = useAppSelector(selectJournals);
-  const userid = useAppSelector(selectUserId)
-  const [journalData, setJournalData] = useState<Partial<Journal>>({});
-  const { strategy, description, buyprice, sellprice, position, image, user, quantity, winorlose } = journalData;
+  const userid = useAppSelector(selectUserId);
+  const [journalData, setJournalData] = useState({
+    strategy: '',
+    description: '',
+    buyprice: '',
+    sellprice: '',
+    position: '',
+    image: null as File | null,
+    user: 0,
+    quantity: '',
+    winorlose: '',
+  });
 
   useEffect(() => {
     dispatch(getAllJournals());
   }, [dispatch]);
 
   const handleAdd = () => {
-    const newJournal: Journal = {
-      strategy: strategy || '',
-      buyprice: buyprice || 0,
-      sellprice: sellprice || 0,
-      position: position || '',
-      description: description || '',
-      image: image || null,
-      user: userid || 0,
-      quantity: quantity || 0,
-      winorlose: winorlose || ''
-
-    };
-
-    if (image instanceof File) {
-      // If `image` is a `File` object, assign it to `newJournal.image`
-      newJournal.image = image;
+    const formData = new FormData();
+    formData.append('strategy', journalData.strategy);
+    formData.append('description', journalData.description);
+    formData.append('buyprice', String(journalData.buyprice));
+    formData.append('sellprice', String(journalData.sellprice));
+    formData.append('position', journalData.position);
+    if (journalData.image !== null) {
+      formData.append('image', journalData.image);
     }
+    formData.append('user', String(userid));
+    formData.append('quantity', String(journalData.quantity));
+    formData.append('winorlose', journalData.winorlose);
 
-    dispatch(createJournalEntry(newJournal));
-    setJournalData({});
+    dispatch(createJournalEntry(formData));
+    setJournalData({
+      strategy: '',
+      description: '',
+      buyprice: '',
+      sellprice: '',
+      position: '',
+      image: null,
+      user: 0,
+      quantity: '',
+      winorlose: '',
+    });
   };
 
-  const handleUpdate = (journal: Journal) => {
-    const updatedJournal: Journal = {
+  const handleUpdate = (journal: {
+    id: any;
+    strategy: any;
+    buyprice: any;
+    sellprice: any;
+    position: any;
+    description: any;
+    image: any;
+    user: any;
+    quantity: any;
+    winorlose: any;
+  }) => {
+    const updatedJournal = {
       id: journal.id,
-      strategy: strategy || journal.strategy,
-      buyprice: buyprice || journal.buyprice,
-      sellprice: sellprice || journal.sellprice,
-      position: position || journal.position,
-      description: description || journal.description,
-      image: image || journal.image,
+      strategy: journalData.strategy || journal.strategy,
+      buyprice: journalData.buyprice || journal.buyprice,
+      sellprice: journalData.sellprice || journal.sellprice,
+      position: journalData.position || journal.position,
+      description: journalData.description || journal.description,
+      image: journalData.image || journal.image,
       user: userid || journal.user,
-      quantity: quantity || journal.quantity,
-      winorlose: winorlose || journal.winorlose
+      quantity: journalData.quantity || journal.quantity,
+      winorlose: journalData.winorlose || journal.winorlose,
     };
 
     dispatch(updateJournalEntry(updatedJournal));
-    setJournalData({});
+    setJournalData({
+      strategy: '',
+      description: '',
+      buyprice: '',
+      sellprice: '',
+      position: '',
+      image: null,
+      user: 0,
+      quantity: '',
+      winorlose: '',
+    });
   };
 
   const handleDelete = (id: number) => {
     dispatch(deleteJournalEntry(id));
-    console.log(id)
+    console.log(id);
+  };
+
+  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] || null;
+    setJournalData({ ...journalData, image: file });
   };
 
   return (
@@ -68,12 +107,16 @@ const JournalPage = () => {
       <input
         type="text"
         id="strategy"
-        value={strategy || ''}
+        value={journalData.strategy}
         onChange={(e) => setJournalData({ ...journalData, strategy: e.target.value })}
       />
 
       <label htmlFor="position">Position:</label>
-      <select id="position" value={position || ''} onChange={(e) => setJournalData({ ...journalData, position: e.target.value })}>
+      <select
+        id="position"
+        value={journalData.position}
+        onChange={(e) => setJournalData({ ...journalData, position: e.target.value })}
+      >
         <option value="">Select Position</option>
         <option value="Long">Long</option>
         <option value="Short">Short</option>
@@ -83,48 +126,47 @@ const JournalPage = () => {
       <input
         type="number"
         id="buyprice"
-        value={buyprice || ''}
-        onChange={(e) => setJournalData({ ...journalData, buyprice: +e.target.value })}
+        value={journalData.buyprice}
+        onChange={(e) => setJournalData({ ...journalData, buyprice: e.target.value.replace(/^0+/, '') })}
       />
 
       <label htmlFor="sellprice">Sell Price:</label>
       <input
         type="number"
         id="sellprice"
-        value={sellprice || ''}
-        onChange={(e) => setJournalData({ ...journalData, sellprice: +e.target.value })}
+        value={journalData.sellprice}
+        onChange={(e) => setJournalData({ ...journalData, sellprice: e.target.value.replace(/^0+/, '') })}
       />
 
       <label htmlFor="quantity">Quantity:</label>
       <input
         type="number"
         id="quantity"
-        value={quantity || ''}
-        onChange={(e) => setJournalData({ ...journalData, quantity: +e.target.value })}
+        value={journalData.quantity}
+        onChange={(e) => setJournalData({ ...journalData, quantity: e.target.value.replace(/^0+/, '') })}
       />
 
       <label htmlFor="winorlose">Win or Lose:</label>
-      <select id="winorlose" value={winorlose || ''} onChange={(e) => setJournalData({ ...journalData, winorlose: e.target.value })}>
+      <select
+        id="winorlose"
+        value={journalData.winorlose}
+        onChange={(e) => setJournalData({ ...journalData, winorlose: e.target.value })}
+      >
         <option value="">Select Win or Lose</option>
         <option value="Win">Win</option>
         <option value="Lose">Lose</option>
       </select>
 
-
       <label htmlFor="description">Description:</label>
       <input
         type="text"
         id="description"
-        value={description || ''}
+        value={journalData.description}
         onChange={(e) => setJournalData({ ...journalData, description: e.target.value })}
       />
 
       <label htmlFor="image">Image:</label>
-      <input
-        type="file"
-        id="image"
-        onChange={(e) => setJournalData({ ...journalData, image: e.target.files?.[0] })}
-      />
+      <input type="file" id="image" onChange={handleImageChange} />
 
       <button onClick={handleAdd}>Add Trade</button>
 
@@ -155,9 +197,8 @@ const JournalPage = () => {
               )
             )}
 
-
             <button onClick={() => handleUpdate(journal)}>Update</button>
-            <button onClick={() => handleDelete(journal.id || 0)} >Delete</button>
+            <button onClick={() => handleDelete(journal.id)}>Delete</button>
           </div>
         ))
       ) : (

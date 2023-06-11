@@ -7,8 +7,8 @@ const Login = () => {
   const dispatch = useAppDispatch();
   const logged = useAppSelector(selectLogged);
   const userId = useAppSelector(selectUserId);
-  const [username, setusername] = useState('');
-  const [password, setpassword] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const [isPopupVisible, setIsPopupVisible] = useState(false);
@@ -46,48 +46,66 @@ const Login = () => {
   };
 
   return (
-    <div>
-      {logged ? (
-        <>
-          <button onClick={handleLogout}>Logout</button>
-          {isPopupVisible && (
-            <div className="popup">
-              <p>{successMessage}</p>
-              <button onClick={closePopup}>Close</button>
-            </div>
-          )}
-          {userId && <p>User ID: {userId}</p>}
-        </>
-      ) : (
-        <>
-          <h1>Log-in Please</h1>
-          User name:
-          <input
-            type="text"
-            placeholder="Enter username"
-            value={username}
-            onChange={(e) => setusername(e.target.value)}
-          />
+    <div className="container">
+      <div className="row justify-content-center">
+        <div className="col-lg-6 col-md-8">
+          <div className="card mt-5">
+            <div className="card-body">
+              {logged ? (
+                <>
+                  <button className="btn btn-primary float-end" onClick={handleLogout}>Logout</button>
+                  {isPopupVisible && (
+                    <div className="alert alert-success mt-3" role="alert">
+                      <p>{successMessage}</p>
+                      <button className="btn btn-secondary" onClick={closePopup}>Close</button>
+                    </div>
+                  )}
+                  {userId && <p>User ID: {userId}</p>}
+                </>
+              ) : (
+                <>
+                  <h1 className="card-title text-center mb-4">Log In</h1>
+                  <div className="mb-3">
+                    <label htmlFor="username" className="form-label">Username:</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="username"
+                      placeholder="Enter your username"
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
+                    />
+                  </div>
 
-          Password:
-          <input
-            type="password"
-            placeholder="Enter password"
-            value={password}
-            onChange={(e) => setpassword(e.target.value)}
-          />
-          <button onClick={handleLogin}>Login</button>
-          {isPopupVisible && (
-            <div className="popup">
-              <p>{errorMessage}</p>
-              <button onClick={closePopup}>Close</button>
+                  <div className="mb-3">
+                    <label htmlFor="password" className="form-label">Password:</label>
+                    <input
+                      type="password"
+                      className="form-control"
+                      id="password"
+                      placeholder="Enter your password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                  </div>
+
+                  <button className="btn btn-primary w-100" onClick={handleLogin}>Log In</button>
+                  {isPopupVisible && (
+                    <div className="alert alert-danger mt-3" role="alert">
+                      <p>{errorMessage}</p>
+                      <button className="btn btn-secondary" onClick={closePopup}>Close</button>
+                    </div>
+                  )}
+
+                  <div className="text-center mt-4">
+                    <ResetPassword />
+                  </div>
+                </>
+              )}
             </div>
-          )}
-          <br />
-          <br />
-          <ResetPassword></ResetPassword>
-        </>
-      )}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

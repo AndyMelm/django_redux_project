@@ -3,6 +3,8 @@ import counterReducer from '../features/counter/counterSlice';
 import loginReducer from '../features/login/loginSlice';
 import registerReducer from '../features/register/RegisterSlice';
 import journalReducer from '../features/journal/journalSlice';
+import showdataReducer from '../features/showdata/showdataSlice';
+import stockdataReducer from '../features/stockdata/stockdataSlice';
 
 
 
@@ -12,6 +14,8 @@ export const store = configureStore({
     login: loginReducer,
     register: registerReducer,
     journal: journalReducer, 
+    showdata:showdataReducer,
+    stockdata:stockdataReducer,
   },
 });
 

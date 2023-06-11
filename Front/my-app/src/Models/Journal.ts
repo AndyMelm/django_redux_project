@@ -7,4 +7,6 @@ export interface Journal {
   description: string;
   image?: File | null;
   user?: number;
+  quantity: number;
+  winorlose:string;
 }

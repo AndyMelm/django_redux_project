@@ -40,13 +40,6 @@ def register(request):
         return Response({'message': 'An error occurred during registration.', 'error': str(e)}, status=500)
 
 
-# def upload_image(request):
-#     file = request.FILES.get('image')
-#     if file:
-#         # Handle the file upload logic here (e.g., saving the file to the appropriate location)
-#         return Response({'message': 'Image uploaded successfully.'}, status=status.HTTP_200_OK)
-#     else:
-#         return Response({'message': 'No image file provided.'}, status=status.HTTP_400_BAD_REQUEST)
 
 
 # @permission_classes([IsAuthenticated])
@@ -81,15 +74,7 @@ class JournalView(APIView):
         my_model.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-    # @staticmethod
-    # def upload_image(request):
-    #     file = request.FILES.get('image')
-    #     if file:
-    #         # Handle the file upload logic here (e.g., saving the file to the appropriate location)
-    #         return Response({'message': 'Image uploaded successfully.'}, status=status.HTTP_200_OK)
-    #     else:
-    #         return Response({'message': 'No image file provided.'}, status=status.HTTP_400_BAD_REQUEST)
-
+   
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def get_user_id(request):

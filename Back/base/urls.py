@@ -21,7 +21,6 @@ urlpatterns = [
     path('journal/<pk>/', views.JournalView.as_view()),
     path('get_user_id/', views.get_user_id),
 
-    # path('upload_image/', views.upload_image),
     
     
 ]

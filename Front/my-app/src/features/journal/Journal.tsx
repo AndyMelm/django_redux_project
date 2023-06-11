@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { getAllJournals, createJournalEntry, updateJournalEntry, deleteJournalEntry, selectJournals } from './journalSlice';
 import { Journal } from '../../Models/Journal';
-import {selectUserId} from '../login/loginSlice'
+import { selectUserId } from '../login/loginSlice'
 
 const JournalPage = () => {
   const dispatch = useAppDispatch();
   const journals = useAppSelector(selectJournals);
   const userid = useAppSelector(selectUserId)
   const [journalData, setJournalData] = useState<Partial<Journal>>({});
-  const { strategy, description, buyprice, sellprice, position, image, user } = journalData;
+  const { strategy, description, buyprice, sellprice, position, image, user, quantity, winorlose } = journalData;
 
   useEffect(() => {
     dispatch(getAllJournals());
@@ -23,7 +23,10 @@ const JournalPage = () => {
       position: position || '',
       description: description || '',
       image: image || null,
-      user: userid || 0
+      user: userid || 0,
+      quantity: quantity || 0,
+      winorlose: winorlose || ''
+
     };
 
     if (image instanceof File) {
@@ -44,7 +47,9 @@ const JournalPage = () => {
       position: position || journal.position,
       description: description || journal.description,
       image: image || journal.image,
-      user: userid|| journal.user,
+      user: userid || journal.user,
+      quantity: quantity || journal.quantity,
+      winorlose: winorlose || journal.winorlose
     };
 
     dispatch(updateJournalEntry(updatedJournal));
@@ -90,6 +95,22 @@ const JournalPage = () => {
         onChange={(e) => setJournalData({ ...journalData, sellprice: +e.target.value })}
       />
 
+      <label htmlFor="quantity">Quantity:</label>
+      <input
+        type="number"
+        id="quantity"
+        value={quantity || ''}
+        onChange={(e) => setJournalData({ ...journalData, quantity: +e.target.value })}
+      />
+
+      <label htmlFor="winorlose">Win or Lose:</label>
+      <select id="winorlose" value={winorlose || ''} onChange={(e) => setJournalData({ ...journalData, winorlose: e.target.value })}>
+        <option value="">Select Win or Lose</option>
+        <option value="Win">Win</option>
+        <option value="Lose">Lose</option>
+      </select>
+
+
       <label htmlFor="description">Description:</label>
       <input
         type="text"
@@ -117,12 +138,23 @@ const JournalPage = () => {
             <p>Description: {journal.description}</p>
             <p>Buy Price: {journal.buyprice}</p>
             <p>Sell Price: {journal.sellprice}</p>
+            <p>Quantity: {journal.quantity}</p>
+            <p>Win or Lose: {journal.winorlose}</p>
 
             {journal.position === 'Long' ? (
-              <p>Profit/Loss: {journal.sellprice - journal.buyprice}</p>
+              journal.winorlose === 'Win' ? (
+                <p>Profit/Loss: {journal.quantity * (journal.sellprice - journal.buyprice)}</p>
+              ) : (
+                <p>Profit/Loss: {journal.quantity * (journal.buyprice - journal.sellprice)}</p>
+              )
             ) : (
-              <p>Profit/Loss: {Math.abs(journal.sellprice - journal.buyprice)}</p>
+              journal.winorlose === 'Win' ? (
+                <p>Profit/Loss: {journal.quantity * Math.abs(journal.sellprice - journal.buyprice)}</p>
+              ) : (
+                <p>Profit/Loss: {journal.quantity * (journal.sellprice - journal.buyprice)}</p>
+              )
             )}
+
 
             <button onClick={() => handleUpdate(journal)}>Update</button>
             <button onClick={() => handleDelete(journal.id || 0)} >Delete</button>

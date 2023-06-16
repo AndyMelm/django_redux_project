@@ -57,7 +57,7 @@ const Login = () => {
                   {isPopupVisible && (
                     <div className="alert alert-success mt-3" role="alert">
                       <p>{successMessage}</p>
-                      <button className="btn btn-secondary" onClick={closePopup}>Close</button>
+                      <button className="btn btn-secondary btn-success" onClick={closePopup}>Close</button>
                     </div>
                   )}
                   {userId && <p>User ID: {userId}</p>}
@@ -89,11 +89,11 @@ const Login = () => {
                     />
                   </div>
 
-                  <button className="btn btn-primary w-100" onClick={handleLogin}>Log In</button>
+                  <button className="btn btn-primary" onClick={handleLogin}>Log In</button>
                   {isPopupVisible && (
                     <div className="alert alert-danger mt-3" role="alert">
                       <p>{errorMessage}</p>
-                      <button className="btn btn-secondary" onClick={closePopup}>Close</button>
+                      <button className="btn btn-secondary btn-danger" onClick={closePopup}>Close</button>
                     </div>
                   )}
 

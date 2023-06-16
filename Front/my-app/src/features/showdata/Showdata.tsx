@@ -93,7 +93,7 @@ const JournalData: React.FC = () => {
 
   return (
     <div className="container">
-      <h1>Journal Trading Data</h1>
+      <h1>Your Journal Trading Data</h1>
       <hr />
 
       <div className="row">
@@ -122,29 +122,30 @@ const JournalData: React.FC = () => {
         </div>
 
         <div className="col-md-6">
-          <div className="card mb-4">
-            <div className="card-body">
-              <h2 className="card-title">Profit by Strategy</h2>
-              <ResponsiveContainer width="100%" height={300}>
-                <BarChart data={barChartData}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="strategy" />
-                  <YAxis />
-                  <Tooltip />
-                  <Legend />
-                  <Bar dataKey="profit" fill="#2adb3b" />
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
-        </div>
+  <div className="card mb-4">
+    <div className="card-body">
+      <h2 className="card-title">Profit by Strategy</h2>
+      <ResponsiveContainer width="100%" height={300}>
+        <BarChart data={barChartData}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="strategy" label="" hide />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Bar dataKey="profit" fill="#2adb3b" />
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
+  </div>
+</div>
+
       </div>
 
       <div className="row">
         <div className="col-md-6">
           <div className="card mb-4">
             <div className="card-body">
-              <h2 className="card-title">Profit over Period</h2>
+              <h2 className="card-title">Profit over Trades</h2>
               <ResponsiveContainer width="100%" height={300}>
                 <LineChart data={lineChartData}>
                   <CartesianGrid strokeDasharray="3 3" />

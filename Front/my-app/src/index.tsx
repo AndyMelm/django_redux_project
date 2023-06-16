@@ -11,7 +11,7 @@ import Register from './features/register/Register';
 import HomePage from './features/homepage/HomePage';
 import Journal from './features/journal/Journal';
 import JournalData from './features/showdata/Showdata';
-import StockData from './features/stockdata/Stockdata';
+import Tradingview from './features/tradingview/Tradingview';
 
 
 const container = document.getElementById('root')!;
@@ -27,7 +27,7 @@ root.render(
             <Route path="/register" element={<Register />} />
             <Route path="/journal" element={<Journal />} />
             <Route path="/journaldata" element={<JournalData />} />
-            <Route path="/stockdata" element={<StockData />} />
+            <Route path="/marketdata" element={<Tradingview />} />
           </Route>
         </Routes>
       </BrowserRouter>

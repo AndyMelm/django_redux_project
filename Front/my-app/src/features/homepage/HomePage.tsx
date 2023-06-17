@@ -1,15 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { selectLogged, logout } from '../login/loginSlice';
+import { selectLogged, logout, selectToken } from '../login/loginSlice';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 
 const HomePage = () => {
   const dispatch = useAppDispatch();
   const logged = useAppSelector(selectLogged);
+  const token = useAppSelector(selectToken);
 
   const handleLogout = () => {
     dispatch(logout());
   };
+
+  const getTokenFromSessionStorage = () => {
+    const storedToken = sessionStorage.getItem('token');
+    return storedToken;
+  };
+
+  const userHasToken = getTokenFromSessionStorage() !== null;
 
   return (
     <div>
@@ -20,7 +28,7 @@ const HomePage = () => {
           </Link>
           <div className="collapse navbar-collapse">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              {!logged && (
+              {!userHasToken && (
                 <>
                   <li className="nav-item">
                     <Link className="nav-link text-white" to="/login">
@@ -34,7 +42,7 @@ const HomePage = () => {
                   </li>
                 </>
               )}
-              {logged && (
+              {userHasToken && (
                 <>
                   <li className="nav-item">
                     <Link className="nav-link text-white" to="/journal">
@@ -54,7 +62,7 @@ const HomePage = () => {
                 </>
               )}
             </ul>
-            {logged && (
+            {userHasToken && (
               <button className="btn btn-secondary btn-danger" onClick={handleLogout}>
                 Logout
               </button>

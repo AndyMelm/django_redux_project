@@ -1,13 +1,19 @@
 import React, { useEffect, useState, ChangeEvent } from 'react';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
-import { getAllJournals, createJournalEntry, updateJournalEntry, deleteJournalEntry, selectJournals } from './journalSlice';
-import { selectUserId } from '../login/loginSlice';
+import { getAllJournals, createJournalEntry, updateJournalEntry, deleteJournalEntry, selectJournals, selectViewedData, updateViewJournal } from './journalSlice';
+import { selectUserId , } from '../login/loginSlice';
 import { Form, Button, Row, Col, InputGroup, Container, Card, Modal } from 'react-bootstrap';
+import ViewandUpdate from './VIewandUpdate';
+
 
 const JournalPage = () => {
   const dispatch = useAppDispatch();
   const journals = useAppSelector(selectJournals);
   const userid = useAppSelector(selectUserId);
+  const viewjournal = useAppSelector(selectJournals);
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const [journalData, setJournalData] = useState({
     strategy: '',
@@ -21,6 +27,7 @@ const JournalPage = () => {
     winorlose: '',
     showAddForm: false,
   });
+  
 
   useEffect(() => {
     console.log(journals);
@@ -68,8 +75,7 @@ const JournalPage = () => {
       showAddForm: false,
     });
   };
-
-  const handleUpdate = (journal: {
+  const handleView = (journal: {
     id: any;
     strategy: any;
     buyprice: any;
@@ -81,33 +87,65 @@ const JournalPage = () => {
     quantity: any;
     winorlose: any;
   }) => {
-    const updatedJournal = {
-      id: journal.id,
-      strategy: journalData.strategy || journal.strategy,
-      buyprice: journalData.buyprice || journal.buyprice,
-      sellprice: journalData.sellprice || journal.sellprice,
-      position: journalData.position || journal.position,
-      description: journalData.description || journal.description,
-      image: journalData.image || journal.image,
-      user: userid || journal.user,
-      quantity: journalData.quantity || journal.quantity,
-      winorlose: journalData.winorlose || journal.winorlose,
-    };
-
-    dispatch(updateJournalEntry(updatedJournal));
     setJournalData({
-      strategy: '',
-      description: '',
-      buyprice: '',
-      sellprice: '',
-      position: '',
-      image: null,
-      user: 0,
-      quantity: '',
-      winorlose: '',
+      ...journalData,
+      strategy: journal.strategy,
+      buyprice: journal.buyprice,
+      sellprice: journal.sellprice,
+      position: journal.position,
+      description: journal.description,
+      image: journal.image,
+      user: journal.user,
+      quantity: journal.quantity,
+      winorlose: journal.winorlose,
       showAddForm: false,
     });
+  
+    console.log(journal); // Log the updated journal object to the console
+    scrollToTop();
+    dispatch(updateViewJournal(journal));
+  
   };
+//  const handleUpdate = (journal: {
+//   id: any;
+//   strategy: any;
+//   buyprice: any;
+//   sellprice: any;
+//   position: any;
+//   description: any;
+//   image: any;
+//   user: any;
+//   quantity: any;
+//   winorlose: any;
+// }) => {
+//   const updatedJournal = {
+//     id: journal.id,
+//     strategy: journalData.strategy || journal.strategy,
+//     buyprice: journalData.buyprice || journal.buyprice,
+//     sellprice: journalData.sellprice || journal.sellprice,
+//     position: journalData.position || journal.position,
+//     description: journalData.description || journal.description,
+//     image: journalData.image === null ? null : journalData.image || journal.image,
+//     user: userid || journal.user,
+//     quantity: journalData.quantity || journal.quantity,
+//     winorlose: journalData.winorlose || journal.winorlose,
+//   };
+
+//   dispatch(updateJournalEntry(updatedJournal));
+//   setJournalData({
+//     strategy: '',
+//     description: '',
+//     buyprice: '',
+//     sellprice: '',
+//     position: '',
+//     image: null,
+//     user: 0,
+//     quantity: '',
+//     winorlose: '',
+//     showAddForm: false,
+//   });
+// };
+
 
   const handleDelete = (id: number) => {
     dispatch(deleteJournalEntry(id));
@@ -122,6 +160,8 @@ const JournalPage = () => {
   const toggleAddForm = () => {
     setJournalData({ ...journalData, showAddForm: !journalData.showAddForm });
   };
+
+ 
 
   const handleCloseForm = () => {
     setJournalData({
@@ -140,6 +180,7 @@ const JournalPage = () => {
 
   return (
     <div>
+      <ViewandUpdate></ViewandUpdate>
       <h1>Journal</h1>
       <div>
         <h3>Add Your New Trade</h3>
@@ -272,32 +313,34 @@ const JournalPage = () => {
               <Col key={journal.id} md={4} className="mb-4">
                 <Card>
                   <Card.Body>
-                    <Card.Text>Position: {journal.position}</Card.Text>
-                    <Card.Text>Strategy: {journal.strategy}</Card.Text>
-                    <Card.Text>Description: {journal.description}</Card.Text>
-                    <Card.Text>Buy Price: {journal.buyprice}</Card.Text>
-                    <Card.Text>Sell Price: {journal.sellprice}</Card.Text>
-                    <Card.Text>Quantity: {journal.quantity}</Card.Text>
-                    <Card.Text>Win or Lose: {journal.winorlose}</Card.Text>
-
-                    {journal.image && <Card.Img variant="top" src={`http://127.0.0.1:8000${journal.image}`} alt="Trade" />}
+                    <Card.Text><strong>Position:</strong> {journal.position}</Card.Text>
+                    <Card.Text><strong>Strategy:</strong> {journal.strategy}</Card.Text>
+                    <Card.Text><strong>Description:</strong> {journal.description}</Card.Text>
+                    <Card.Text><strong>Buy Price:</strong> {journal.buyprice}</Card.Text>
+                    <Card.Text><strong>Sell Price:</strong> {journal.sellprice}</Card.Text>
+                    <Card.Text><strong>Quantity:</strong> {journal.quantity}</Card.Text>
+                    <Card.Text><strong>Win or Lose:</strong> {journal.winorlose}</Card.Text>
 
                     {journal.position === 'Long' ? (
                       journal.winorlose === 'Win' ? (
-                        <Card.Text>Profit/Loss: {journal.quantity * (journal.sellprice - journal.buyprice)}</Card.Text>
+                        <Card.Text><strong>Profit/Loss:</strong> {journal.quantity * (journal.sellprice - journal.buyprice)}</Card.Text>
                       ) : (
-                        <Card.Text>Profit/Loss: {journal.quantity * (journal.buyprice - journal.sellprice)}</Card.Text>
+                        <Card.Text><strong>Profit/Loss:</strong> {journal.quantity * (journal.buyprice - journal.sellprice)}</Card.Text>
                       )
                     ) : (
                       journal.winorlose === 'Win' ? (
-                        <Card.Text>Profit/Loss: {journal.quantity * Math.abs(journal.sellprice - journal.buyprice)}</Card.Text>
+                        <Card.Text><strong>Profit/Loss:</strong> {journal.quantity * Math.abs(journal.sellprice - journal.buyprice)}</Card.Text>
                       ) : (
-                        <Card.Text>Profit/Loss: {journal.quantity * (journal.sellprice - journal.buyprice)}</Card.Text>
+                        <Card.Text><strong>Profit/Loss:</strong> {journal.quantity * (journal.sellprice - journal.buyprice)}</Card.Text>
                       )
                     )}
 
-                    <Button variant="primary" onClick={() => handleUpdate(journal)}>
-                      Update
+                    {journal.image && <Card.Img variant="top" src={`http://127.0.0.1:8000${journal.image}`} alt="Trade" />} 
+
+                    
+                    <br /><br />
+                    <Button variant="primary" style={{ backgroundColor: 'green' }} onClick={() => handleView(journal)}>
+                      View
                     </Button>
                     <Button variant="danger" onClick={() => handleDelete(journal.id)}>
                       Delete

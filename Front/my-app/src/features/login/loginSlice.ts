@@ -44,6 +44,7 @@ export const loginSlice = createSlice({
       state.token = '';
       state.userId = null;
       sessionStorage.clear();
+      window.location.href = 'http://localhost:3000/';
     },
   },
   extraReducers: (builder) => {
@@ -77,4 +78,5 @@ export const loginSlice = createSlice({
 export const { logout } = loginSlice.actions;
 export const selectLogged = (state: RootState) => state.login.logged;
 export const selectUserId = (state: RootState) => state.login.userId;
+export const selectToken = (state: RootState) => state.login.token;
 export default loginSlice.reducer;

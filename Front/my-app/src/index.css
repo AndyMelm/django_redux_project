@@ -11,3 +11,27 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.responsive-image {
+  max-width: 100%;
+  height: auto;
+}
+
+
+.selected-trade {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  strong {
+    font-weight: bold;
+  }
+}
+
+.card-text strong {
+  font-weight: bold;
+}
+
+.border-custom {
+  border: 2px solid red; /* Change the color and thickness as desired */
+  padding: 10px; /* Optional: Add padding around the content */
+}

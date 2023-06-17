@@ -25,10 +25,13 @@ const Login = () => {
       .then(() => {
         setSuccessMessage('Successfully logged in');
         setIsPopupVisible(true);
+        window.location.href = 'http://localhost:3000/';
+
       })
       .catch((error) => {
         setErrorMessage(error.message);
         setIsPopupVisible(true);
+        
       });
   };
 

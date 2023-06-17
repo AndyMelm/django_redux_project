@@ -30,7 +30,7 @@ export const getUserIdAsync = createAsyncThunk(
   'login/getUserId',
   async (token: string) => {
     const userId = await getUserId(token);
-    console.log(userId);
+    console.log("slice",userId);
     return userId;
   }
 );

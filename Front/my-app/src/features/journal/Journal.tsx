@@ -10,6 +10,8 @@ const JournalPage = () => {
   const dispatch = useAppDispatch();
   const journals = useAppSelector(selectJournals);
   const userid = useAppSelector(selectUserId);
+  console.log('User ID:', userid);
+  
   const viewjournal = useAppSelector(selectJournals);
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -22,7 +24,7 @@ const JournalPage = () => {
     sellprice: '',
     position: '',
     image: null as File | null,
-    user: 0,
+    user: userid,
     quantity: '',
     winorlose: '',
     showAddForm: false,
@@ -32,6 +34,7 @@ const JournalPage = () => {
   useEffect(() => {
     console.log(journals);
     dispatch(getAllJournals());
+    console.log("user" ,userid)
   }, [dispatch]);
 
   const handleAdd = () => {
@@ -47,6 +50,15 @@ const JournalPage = () => {
       alert('Please fill in all the required fields.');
       return;
     }
+    console.log('strategy:', journalData.strategy);
+    console.log('description:', journalData.description);
+    console.log('buyprice:', journalData.buyprice);
+    console.log('sellprice:', journalData.sellprice);
+    console.log('position:', journalData.position);
+    console.log('image:', journalData.image);
+    console.log('user:', String(userid));
+    console.log('quantity:', journalData.quantity);
+    console.log('winorlose:', journalData.winorlose);
 
     const formData = new FormData();
     formData.append('strategy', journalData.strategy);
@@ -61,7 +73,10 @@ const JournalPage = () => {
     formData.append('quantity', String(journalData.quantity));
     formData.append('winorlose', journalData.winorlose);
 
+    console.log('Form Data:', formData); 
+
     dispatch(createJournalEntry(formData));
+    console.log(formData)
     setJournalData({
       strategy: '',
       description: '',
@@ -69,7 +84,7 @@ const JournalPage = () => {
       sellprice: '',
       position: '',
       image: null,
-      user: 0,
+      user:userid,
       quantity: '',
       winorlose: '',
       showAddForm: false,
@@ -171,7 +186,7 @@ const JournalPage = () => {
       sellprice: '',
       position: '',
       image: null,
-      user: 0,
+      user: userid,
       quantity: '',
       winorlose: '',
       showAddForm: false,

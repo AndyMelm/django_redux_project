@@ -27,6 +27,7 @@ export function getUserId(token: string) {
       .get('http://127.0.0.1:8000/get_user_id/', config)
       .then((response) => {
         const userId = response.data.user_id;
+        console.log("login api", userId)
         resolve(userId);
       })
       .catch((error: AxiosError) => {

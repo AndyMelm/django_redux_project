@@ -1,29 +1,47 @@
 import React, { useEffect, useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
-import { selectViewedData, closeViewedData } from './journalSlice';
+import { selectViewedData, closeViewedData, updateJournalEntry } from './journalSlice';
 import { Button, Form, InputGroup } from 'react-bootstrap';
+import { selectUserId , } from '../login/loginSlice';
 
 const ViewandUpdate = () => {
   const dispatch = useAppDispatch();
   const viewedData = useAppSelector(selectViewedData);
+  const userid = useAppSelector(selectUserId);
+  const [showForm, setShowForm] = useState(false);
   const [updatedData, setUpdatedData] = useState({
     strategy: '',
-    position: '',
+    description: '',
     buyprice: '',
     sellprice: '',
+    position: '',
+    image: null as File | null,
+    user: userid,
     quantity: '',
     winorlose: '',
-    description: '',
+    showAddForm: false,
   });
-  const [showForm, setShowForm] = useState(false);
+  
 
   const handleViewinviewandupdate = (viewedData: any) => {
     console.log(viewedData); // Log the data to the console
   };
 
   const handleUpdate = () => {
-    // Perform the update action with the updatedData
-    console.log(updatedData);
+    const updatedEntry = {
+      id: viewedData.id,
+      strategy: updatedData.strategy,
+      description: updatedData.description,
+      buyprice: updatedData.buyprice,
+      sellprice: updatedData.sellprice,
+      position: updatedData.position,
+      image: updatedData.image,
+      user: userid,
+      quantity: updatedData.quantity,
+      winorlose: updatedData.winorlose,
+    };
+    console.log(updatedEntry)
+    dispatch(updateJournalEntry(updatedEntry));
   };
 
   useEffect(() => {

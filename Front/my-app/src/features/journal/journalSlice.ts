@@ -24,10 +24,17 @@ export const createJournalEntry = createAsyncThunk('journal/createEntry', async 
   return newEntry;
 });
 
-export const updateJournalEntry = createAsyncThunk('journal/updateEntry', async (entry: any) => {
-  const updatedEntry = await updateEntry(entry);
-  return updatedEntry;
-});
+
+export const updateJournalEntry = createAsyncThunk(
+  'journal/updateEntry',
+  async (updatedFields: any) => {
+    const { id } = updatedFields; // Destructure the id from updatedFields
+    const updatedEntry = await updateEntry(id, updatedFields);
+    return updatedEntry;
+  }
+);
+
+
 
 
 export const deleteJournalEntry = createAsyncThunk('journal/deleteEntry', async (entryId: number) => {

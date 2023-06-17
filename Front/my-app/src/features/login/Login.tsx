@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { loginAsync, selectLogged, logout, getUserIdAsync, selectUserId } from './loginSlice';
 import ResetPassword from '../reset_password/Resetpassword';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const dispatch = useAppDispatch();
   const logged = useAppSelector(selectLogged);
   const userId = useAppSelector(selectUserId);
+  const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -25,7 +27,8 @@ const Login = () => {
       .then(() => {
         setSuccessMessage('Successfully logged in');
         setIsPopupVisible(true);
-        window.location.href = 'http://localhost:3000/';
+        dispatch(getUserIdAsync(sessionStorage.getItem('token') || ''));
+        
 
       })
       .catch((error) => {
@@ -46,6 +49,8 @@ const Login = () => {
     setErrorMessage('');
     setSuccessMessage('');
     setIsPopupVisible(false);
+    navigate('/')
+   
   };
 
   return (

@@ -47,7 +47,18 @@ const ViewandUpdate = () => {
   useEffect(() => {
     handleViewinviewandupdate(viewedData);
     if (viewedData) {
-      setUpdatedData(viewedData);
+      setUpdatedData({
+        strategy: viewedData.strategy,
+        description: viewedData.description,
+        buyprice: viewedData.buyprice,
+        sellprice: viewedData.sellprice,
+        position: viewedData.position,
+        image: null,
+        user: userid,
+        quantity: viewedData.quantity,
+        winorlose: viewedData.winorlose,
+        showAddForm: false,
+      });
     }
   }, [viewedData]);
 

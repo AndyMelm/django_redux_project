@@ -1,7 +1,7 @@
 import React, { useEffect, useState, ChangeEvent } from 'react';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { getAllJournals, createJournalEntry, updateJournalEntry, deleteJournalEntry, selectJournals, selectViewedData, updateViewJournal } from './journalSlice';
-import { selectUserId , } from '../login/loginSlice';
+import { selectUserId , getUserIdAsync} from '../login/loginSlice';
 import { Form, Button, Row, Col, InputGroup, Container, Card, Modal } from 'react-bootstrap';
 import ViewandUpdate from './VIewandUpdate';
 
@@ -10,6 +10,7 @@ const JournalPage = () => {
   const dispatch = useAppDispatch();
   const journals = useAppSelector(selectJournals);
   const userid = useAppSelector(selectUserId);
+  
   console.log('User ID:', userid);
   
   const viewjournal = useAppSelector(selectJournals);
@@ -34,6 +35,8 @@ const JournalPage = () => {
   useEffect(() => {
     console.log(journals);
     dispatch(getAllJournals());
+    dispatch(getUserIdAsync(sessionStorage.getItem('token') || ''));
+    
     console.log("user" ,userid)
   }, [dispatch]);
 

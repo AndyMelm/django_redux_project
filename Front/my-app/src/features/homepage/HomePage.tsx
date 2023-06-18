@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { selectLogged, logout, selectToken } from '../login/loginSlice';
+import { selectLogged, logout, selectToken} from '../login/loginSlice';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 
 const HomePage = () => {

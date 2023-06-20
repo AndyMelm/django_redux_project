@@ -87,6 +87,7 @@ const HomePage = () => {
             Close
           </button>
         </div>
+        
       )}
     </div>
   );

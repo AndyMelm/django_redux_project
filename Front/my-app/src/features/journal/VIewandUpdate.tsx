@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { selectViewedData, closeViewedData, updateJournalEntry } from './journalSlice';
 import { Button, Form, InputGroup } from 'react-bootstrap';
-import { selectUserId , } from '../login/loginSlice';
+import { selectUserId, } from '../login/loginSlice';
 
 
 const ViewandUpdate = () => {
@@ -22,8 +22,13 @@ const ViewandUpdate = () => {
     winorlose: '',
     showAddForm: false,
   });
-  
 
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      const file = e.target.files[0];
+      setUpdatedData({ ...updatedData, image: file });
+    }
+  };
   const handleViewinviewandupdate = (viewedData: any) => {
     console.log(viewedData); // Log the data to the console
   };
@@ -36,12 +41,12 @@ const ViewandUpdate = () => {
       buyprice: updatedData.buyprice,
       sellprice: updatedData.sellprice,
       position: updatedData.position,
-      image: updatedData.image,
+      image: updatedData.image, // Use the updated image directly
       user: userid,
       quantity: updatedData.quantity,
       winorlose: updatedData.winorlose,
     };
-    console.log(updatedEntry)
+    console.log(updatedEntry);
     dispatch(updateJournalEntry(updatedEntry));
   };
 
@@ -122,9 +127,9 @@ const ViewandUpdate = () => {
 
       {showForm ? (
         <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
-          <Form  className="border border-secondary rounded p-4" style={{ width: '800px' }}>
+          <Form className="border border-secondary rounded p-4" style={{ width: '800px' }}>
             <Form.Group controlId="formStrategy">
-            <Form.Label  style={{ fontSize: '16px', fontWeight: 'bold' }}>Update Form</Form.Label> <br />
+              <Form.Label style={{ fontSize: '16px', fontWeight: 'bold' }}>Update Form</Form.Label> <br />
               <Form.Label>Strategy</Form.Label>
               <Form.Control
                 type="text"
@@ -188,7 +193,11 @@ const ViewandUpdate = () => {
               />
             </Form.Group>
 
-            
+            <Form.Group controlId="formImage">
+              <Form.Label>Image</Form.Label>
+              <Form.Control type="file" onChange={handleImageChange} accept="image/*" />
+            </Form.Group>
+
 
             <Button variant="primary" onClick={handleUpdate}>
               Update

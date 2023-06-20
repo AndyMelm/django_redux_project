@@ -24,12 +24,22 @@ export function createEntry(entry: any) {
 
 export function updateEntry(id: number, updatedFields: any) {
   const url = `http://127.0.0.1:8000/journal/${id}/`;
-  return axios.put(url, updatedFields, {
+  const formData = new FormData();
+
+  // Append updated fields to the FormData object
+  for (const field in updatedFields) {
+    formData.append(field, updatedFields[field]);
+  }
+
+  return axios.put(url, formData, {
     headers: {
       Authorization: getToken(),
+      'Content-Type': 'multipart/form-data', // Set the correct content type for FormData
     },
   }).then((res) => res.data);
 }
+
+
 
 export function deleteEntry(entryId: number) {
   const url = `http://127.0.0.1:8000/journal/${entryId}/`;

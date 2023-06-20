@@ -13,8 +13,8 @@ const ViewandUpdate = () => {
   const [updatedData, setUpdatedData] = useState({
     strategy: '',
     description: '',
-    buyprice: '',
-    sellprice: '',
+    entryprice: '',
+    exitprice: '',
     position: '',
     image: null as File | null,
     user: userid,
@@ -38,8 +38,8 @@ const ViewandUpdate = () => {
       id: viewedData.id,
       strategy: updatedData.strategy,
       description: updatedData.description,
-      buyprice: updatedData.buyprice,
-      sellprice: updatedData.sellprice,
+      entryprice: updatedData.entryprice,
+      exitprice: updatedData.exitprice,
       position: updatedData.position,
       image: updatedData.image, // Use the updated image directly
       user: userid,
@@ -56,8 +56,8 @@ const ViewandUpdate = () => {
       setUpdatedData({
         strategy: viewedData.strategy,
         description: viewedData.description,
-        buyprice: viewedData.buyprice,
-        sellprice: viewedData.sellprice,
+        entryprice: viewedData.entryprice,
+        exitprice: viewedData.exitprice,
         position: viewedData.position,
         image: null,
         user: userid,
@@ -89,10 +89,10 @@ const ViewandUpdate = () => {
             <strong>Description:</strong> {viewedData.description}
           </p>
           <p>
-            <strong>Buy Price:</strong> {viewedData.buyprice}
+            <strong>Entry Price:</strong> {viewedData.entryprice}
           </p>
           <p>
-            <strong>Sell Price:</strong> {viewedData.sellprice}
+            <strong>Exit Price:</strong> {viewedData.exitprice}
           </p>
           <p>
             <strong>Quantity:</strong> {viewedData.quantity}
@@ -103,21 +103,21 @@ const ViewandUpdate = () => {
           {viewedData.position === 'Long' ? (
             viewedData.winorlose === 'Win' ? (
               <p>
-                <strong>Profit/Loss:</strong> {viewedData.quantity * (viewedData.sellprice - viewedData.buyprice)}
+                <strong>Profit/Loss:</strong> {viewedData.quantity * (viewedData.exitprice - viewedData.entryprice)}
               </p>
             ) : (
               <p>
-                <strong>Profit/Loss:</strong> {viewedData.quantity * (viewedData.buyprice - viewedData.sellprice)}
+                <strong>Profit/Loss:</strong> {viewedData.quantity * (viewedData.entryprice - viewedData.exitprice)}
               </p>
             )
           ) : (
             viewedData.winorlose === 'Win' ? (
               <p>
-                <strong>Profit/Loss:</strong> {viewedData.quantity * Math.abs(viewedData.sellprice - viewedData.buyprice)}
+                <strong>Profit/Loss:</strong> {viewedData.quantity * Math.abs(viewedData.exitprice - viewedData.entryprice)}
               </p>
             ) : (
               <p>
-                <strong>Profit/Loss:</strong> {viewedData.quantity * (viewedData.sellprice - viewedData.buyprice)}
+                <strong>Profit/Loss:</strong> {viewedData.quantity * (viewedData.exitprice - viewedData.entryprice)}
               </p>
             )
           )}
@@ -147,21 +147,21 @@ const ViewandUpdate = () => {
               />
             </Form.Group>
 
-            <Form.Group controlId="formBuyPrice">
-              <Form.Label>Buy Price</Form.Label>
+            <Form.Group controlId="formentryprice">
+              <Form.Label>Entry Price</Form.Label>
               <Form.Control
                 type="number"
-                value={updatedData.buyprice}
-                onChange={(e) => setUpdatedData({ ...updatedData, buyprice: e.target.value })}
+                value={updatedData.entryprice}
+                onChange={(e) => setUpdatedData({ ...updatedData, entryprice: e.target.value })}
               />
             </Form.Group>
 
-            <Form.Group controlId="formSellPrice">
-              <Form.Label>Sell Price</Form.Label>
+            <Form.Group controlId="formexitprice">
+              <Form.Label>Exit Price</Form.Label>
               <Form.Control
                 type="number"
-                value={updatedData.sellprice}
-                onChange={(e) => setUpdatedData({ ...updatedData, sellprice: e.target.value })}
+                value={updatedData.exitprice}
+                onChange={(e) => setUpdatedData({ ...updatedData, exitprice: e.target.value })}
               />
             </Form.Group>
 

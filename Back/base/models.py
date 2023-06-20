@@ -5,8 +5,9 @@ class Journal(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     strategy = models.CharField(max_length=50, null=True, blank=True)
-    buyprice = models.DecimalField(max_digits=20, decimal_places=2, null=True, blank=True)
-    sellprice = models.DecimalField(max_digits=20, decimal_places=2, null=True, blank=True)
+    instrument = models.CharField(max_length=50, null=True, blank=True)
+    entryprice = models.DecimalField(max_digits=20, decimal_places=2, null=True, blank=True)
+    exitprice = models.DecimalField(max_digits=20, decimal_places=2, null=True, blank=True)
     quantity = models.DecimalField(max_digits=20, decimal_places=2, null=True, blank=True)
     position = models.CharField(max_length=20, null=True, blank=True)
     winorlose = models.CharField(max_length=20, null=True, blank=True)

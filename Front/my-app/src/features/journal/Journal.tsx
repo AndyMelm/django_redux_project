@@ -21,8 +21,8 @@ const JournalPage = () => {
   const [journalData, setJournalData] = useState({
     strategy: '',
     description: '',
-    buyprice: '',
-    sellprice: '',
+    entryprice: '',
+    exitprice: '',
     position: '',
     image: null as File | null,
     user: userid,
@@ -47,8 +47,8 @@ const JournalPage = () => {
     if (
       !journalData.strategy ||
       !journalData.description ||
-      !journalData.buyprice ||
-      !journalData.sellprice ||
+      !journalData.entryprice ||
+      !journalData.exitprice ||
       !journalData.position ||
       !journalData.quantity ||
       !journalData.winorlose
@@ -58,8 +58,8 @@ const JournalPage = () => {
     }
     console.log('strategy:', journalData.strategy);
     console.log('description:', journalData.description);
-    console.log('buyprice:', journalData.buyprice);
-    console.log('sellprice:', journalData.sellprice);
+    console.log('entryprice:', journalData.entryprice);
+    console.log('exitprice:', journalData.exitprice);
     console.log('position:', journalData.position);
     console.log('image:', journalData.image);
     console.log('user:', String(userid));
@@ -69,8 +69,8 @@ const JournalPage = () => {
     const formData = new FormData();
     formData.append('strategy', journalData.strategy);
     formData.append('description', journalData.description);
-    formData.append('buyprice', String(journalData.buyprice));
-    formData.append('sellprice', String(journalData.sellprice));
+    formData.append('entryprice', String(journalData.entryprice));
+    formData.append('exitprice', String(journalData.exitprice));
     formData.append('position', journalData.position);
     if (journalData.image !== null) {
       formData.append('image', journalData.image);
@@ -86,8 +86,8 @@ const JournalPage = () => {
     setJournalData({
       strategy: '',
       description: '',
-      buyprice: '',
-      sellprice: '',
+      entryprice: '',
+      exitprice: '',
       position: '',
       image: null,
       user:userid,
@@ -99,8 +99,8 @@ const JournalPage = () => {
   const handleView = (journal: {
     id: any;
     strategy: any;
-    buyprice: any;
-    sellprice: any;
+    entryprice: any;
+    exitprice: any;
     position: any;
     description: any;
     image: any;
@@ -111,8 +111,8 @@ const JournalPage = () => {
     setJournalData({
       ...journalData,
       strategy: journal.strategy,
-      buyprice: journal.buyprice,
-      sellprice: journal.sellprice,
+      entryprice: journal.entryprice,
+      exitprice: journal.exitprice,
       position: journal.position,
       description: journal.description,
       image: journal.image,
@@ -139,7 +139,7 @@ const JournalPage = () => {
   };
 
   const toggleAddForm = () => {
-    setJournalData({ ...journalData, showAddForm: true, strategy: '', description: '', buyprice: '', sellprice: '', position: '', image: null, quantity: '', winorlose: '' });
+    setJournalData({ ...journalData, showAddForm: true, strategy: '', description: '', entryprice: '', exitprice: '', position: '', image: null, quantity: '', winorlose: '' });
   };
   
 
@@ -149,8 +149,8 @@ const JournalPage = () => {
     setJournalData({
       strategy: '',
       description: '',
-      buyprice: '',
-      sellprice: '',
+      entryprice: '',
+      exitprice: '',
       position: '',
       image: null,
       user: userid,
@@ -204,27 +204,27 @@ const JournalPage = () => {
                 </Form.Control>
               </Form.Group>
 
-              <Form.Group controlId="buyprice">
-                <Form.Label style={{ fontWeight: 'bold' }}>Buy Price:</Form.Label>
+              <Form.Group controlId="entryprice">
+                <Form.Label style={{ fontWeight: 'bold' }}>Entry Price:</Form.Label>
                 <InputGroup>
                   <InputGroup.Text>$</InputGroup.Text>
                   <Form.Control
                     type="number"
-                    value={journalData.buyprice}
-                    onChange={(e) => setJournalData({ ...journalData, buyprice: e.target.value.replace(/^0+/, '') })}
+                    value={journalData.entryprice}
+                    onChange={(e) => setJournalData({ ...journalData, entryprice: e.target.value.replace(/^0+/, '') })}
                     required
                   />
                 </InputGroup>
               </Form.Group>
 
-              <Form.Group controlId="sellprice">
-                <Form.Label style={{ fontWeight: 'bold' }}>Sell Price:</Form.Label>
+              <Form.Group controlId="exitprice">
+                <Form.Label style={{ fontWeight: 'bold' }}>Exit Price:</Form.Label>
                 <InputGroup>
                   <InputGroup.Text>$</InputGroup.Text>
                   <Form.Control
                     type="number"
-                    value={journalData.sellprice}
-                    onChange={(e) => setJournalData({ ...journalData, sellprice: e.target.value.replace(/^0+/, '') })}
+                    value={journalData.exitprice}
+                    onChange={(e) => setJournalData({ ...journalData, exitprice: e.target.value.replace(/^0+/, '') })}
                     required
                   />
                 </InputGroup>
@@ -269,12 +269,14 @@ const JournalPage = () => {
 
               <Form.Group controlId="image">
                 <Form.Label style={{ fontWeight: 'bold' }}>Image:</Form.Label>
-                <Form.Control type="file" onChange={handleImageChange} />
+                <Form.Control type="file" onChange={handleImageChange} 
+                />
               </Form.Group>
+              
               <br />
 
               <div className="d-flex justify-content-center">
-                <Button variant="primary" onClick={handleAdd} disabled={!journalData.strategy || !journalData.position || !journalData.buyprice || !journalData.sellprice || !journalData.quantity || !journalData.winorlose || !journalData.description}>
+                <Button variant="primary" onClick={handleAdd} disabled={!journalData.strategy || !journalData.position || !journalData.entryprice || !journalData.exitprice || !journalData.quantity || !journalData.winorlose || !journalData.description}>
                   Add Trade
                 </Button>
                 <Button variant="danger" onClick={handleCloseForm}>
@@ -298,22 +300,22 @@ const JournalPage = () => {
                     <Card.Text><strong>Position:</strong> {journal.position}</Card.Text>
                     <Card.Text><strong>Strategy:</strong> {journal.strategy}</Card.Text>
                     <Card.Text><strong>Description:</strong> {journal.description}</Card.Text>
-                    <Card.Text><strong>Buy Price:</strong> {journal.buyprice}</Card.Text>
-                    <Card.Text><strong>Sell Price:</strong> {journal.sellprice}</Card.Text>
+                    <Card.Text><strong>Entry Price:</strong> {journal.entryprice}</Card.Text>
+                    <Card.Text><strong>Exit Price:</strong> {journal.exitprice}</Card.Text>
                     <Card.Text><strong>Quantity:</strong> {journal.quantity}</Card.Text>
                     <Card.Text><strong>Win or Lose:</strong> {journal.winorlose}</Card.Text>
 
                     {journal.position === 'Long' ? (
                       journal.winorlose === 'Win' ? (
-                        <Card.Text><strong>Profit/Loss:</strong> {journal.quantity * (journal.sellprice - journal.buyprice)}</Card.Text>
+                        <Card.Text><strong>Profit/Loss:</strong> {journal.quantity * (journal.exitprice - journal.entryprice)}</Card.Text>
                       ) : (
-                        <Card.Text><strong>Profit/Loss:</strong> {journal.quantity * (journal.buyprice - journal.sellprice)}</Card.Text>
+                        <Card.Text><strong>Profit/Loss:</strong> {journal.quantity * (journal.entryprice - journal.exitprice)}</Card.Text>
                       )
                     ) : (
                       journal.winorlose === 'Win' ? (
-                        <Card.Text><strong>Profit/Loss:</strong> {journal.quantity * Math.abs(journal.sellprice - journal.buyprice)}</Card.Text>
+                        <Card.Text><strong>Profit/Loss:</strong> {journal.quantity * Math.abs(journal.exitprice - journal.entryprice)}</Card.Text>
                       ) : (
-                        <Card.Text><strong>Profit/Loss:</strong> {journal.quantity * (journal.sellprice - journal.buyprice)}</Card.Text>
+                        <Card.Text><strong>Profit/Loss:</strong> {journal.quantity * (journal.exitprice - journal.entryprice)}</Card.Text>
                       )
                     )}
 
@@ -334,7 +336,7 @@ const JournalPage = () => {
           </Row>
         </Container>
       ) : (
-        <p>No journal entries found.</p>
+        <p>No journal entries yet.</p>
       )}
     </div>
   );

@@ -14,10 +14,11 @@ const initialState: JournalState = {
   viewedData: null,
 };
 
-export const getAllJournals = createAsyncThunk('journal/getAll', async () => {
-  const journals = await getAll();
+export const getAllJournals = createAsyncThunk('journal/getAll', async (userid:number) => {
+  const journals = await getAll(userid);
   return journals;
 });
+
 
 export const createJournalEntry = createAsyncThunk('journal/createEntry', async (formData: any) => {
   const newEntry = await createEntry(formData);

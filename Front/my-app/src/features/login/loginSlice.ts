@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState, AppThunk } from '../../app/store';
 import { login, getUserId } from './loginAPI';
+import { useNavigate } from 'react-router-dom';
 
 export interface loginState {
   logged: boolean;
@@ -35,6 +36,12 @@ export const getUserIdAsync = createAsyncThunk(
   }
 );
 
+export const navigateToHome = () => {
+  // Handle the navigation logic here
+  window.location.href = 'http://localhost:3000/'; // Replace '/' with the path of your home page
+};
+
+
 export const loginSlice = createSlice({
   name: 'login',
   initialState,
@@ -44,7 +51,7 @@ export const loginSlice = createSlice({
       state.token = '';
       state.userId = null;
       sessionStorage.clear();
-      window.location.href = 'http://localhost:3000/';
+      
     },
   },
   extraReducers: (builder) => {
@@ -71,6 +78,8 @@ export const loginSlice = createSlice({
         // You can handle the error here
         // For example, you can set an error message in the state
         state.error = 'Failed to retrieve user ID';
+        // Dispatch the navigateToHome action to handle navigation
+        navigateToHome();
       });
   },
 });

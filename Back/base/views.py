@@ -9,6 +9,9 @@ from rest_framework.views import APIView
 from rest_framework import status
 from .serializer import JournalSerializer
 from django.contrib.auth.models import User
+from django.core.validators import validate_email
+from django.core.exceptions import ValidationError
+
 
 
 
@@ -25,31 +28,50 @@ def index(req):
 @api_view(['POST'])
 def register(request):
     try:
+        email = request.data['email']
+        username = request.data['username']
+
+        validate_email(email)  # Perform email validation
+
+        # Check if the email already exists
+        if User.objects.filter(email=email).exists():
+            return Response({'message': 'Email is already in use. Please choose a different email.'}, status=400)
+
+        # Check if the username already exists
+        if User.objects.filter(username=username).exists():
+            return Response({'message': 'Username is already taken. Please choose a different username.'}, status=400)
+
+        # Create the new user
         user = User.objects.create_user(
-            username=request.data['username'],
-            email=request.data['email'],
+            username=username,
+            email=email,
             password=request.data['password']
         )
         user.is_active = True
         user.is_staff = False
         user.save()
+
         return Response({'message': 'Registration successful. You can now login.'})
-    except IntegrityError:
-        return Response({'message': 'Username is already taken. Please choose a different username.'}, status=400)
+    except ValidationError:
+        return Response({'message': 'Invalid email address.'}, status=400)
     except Exception as e:
         return Response({'message': 'An error occurred during registration.', 'error': str(e)}, status=500)
 
 
 
 
-# @permission_classes([IsAuthenticated])
 class JournalView(APIView):
+    permission_classes = [IsAuthenticated]
+
     def get(self, request, pk=None):
+        user = request.user
         if pk is not None:
-            my_model = Journal.objects.filter(user_id=pk)
+            if user.id != int(pk):
+                return Response({'detail': 'You are not authorized to access this resource.'}, status=status.HTTP_403_FORBIDDEN)
+            my_model = Journal.objects.filter(user=user)
             serializer = JournalSerializer(my_model, many=True)
         else:
-            my_model = Journal.objects.all()
+            my_model = Journal.objects.filter(user=user)
             serializer = JournalSerializer(my_model, many=True)
         return Response(serializer.data)
 

@@ -4,6 +4,7 @@ import { selectViewedData, closeViewedData, updateJournalEntry } from './journal
 import { Button, Form, InputGroup } from 'react-bootstrap';
 import { selectUserId , } from '../login/loginSlice';
 
+
 const ViewandUpdate = () => {
   const dispatch = useAppDispatch();
   const viewedData = useAppSelector(selectViewedData);
@@ -186,6 +187,8 @@ const ViewandUpdate = () => {
                 onChange={(e) => setUpdatedData({ ...updatedData, description: e.target.value })}
               />
             </Form.Group>
+
+            
 
             <Button variant="primary" onClick={handleUpdate}>
               Update

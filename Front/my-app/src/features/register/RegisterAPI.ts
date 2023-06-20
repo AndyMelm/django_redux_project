@@ -1,5 +1,9 @@
 import axios, { AxiosError } from 'axios';
 
+interface ErrorResponse {
+  message: string;
+}
+
 export function register(user: any) {
   return new Promise<{ data: any }>((resolve, reject) => {
     axios
@@ -7,7 +11,8 @@ export function register(user: any) {
       .then(res => resolve({ data: res.data }))
       .catch((error: AxiosError) => {
         if (error.response && error.response.status === 400) {
-          reject(new Error('Username is already taken. Please choose a different username.'));
+          const errorMessage = (error.response.data as ErrorResponse).message;
+          reject(new Error(errorMessage));
         } else {
           reject(error);
         }

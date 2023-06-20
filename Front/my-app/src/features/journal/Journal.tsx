@@ -1,7 +1,7 @@
 import React, { useEffect, useState, ChangeEvent } from 'react';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { getAllJournals, createJournalEntry, updateJournalEntry, deleteJournalEntry, selectJournals, selectViewedData, updateViewJournal } from './journalSlice';
-import { selectUserId , getUserIdAsync} from '../login/loginSlice';
+import { selectUserId , getUserIdAsync, navigateToHome} from '../login/loginSlice';
 import { Form, Button, Row, Col, InputGroup, Container, Card, Modal } from 'react-bootstrap';
 import ViewandUpdate from './VIewandUpdate';
 
@@ -10,7 +10,7 @@ const JournalPage = () => {
   const dispatch = useAppDispatch();
   const journals = useAppSelector(selectJournals);
   const userid = useAppSelector(selectUserId);
-  
+
   console.log('User ID:', userid);
   
   const viewjournal = useAppSelector(selectJournals);
@@ -34,11 +34,14 @@ const JournalPage = () => {
 
   useEffect(() => {
     console.log(journals);
-    dispatch(getAllJournals());
+    if (userid !== null) {
+      dispatch(getAllJournals(userid));
+    }
     dispatch(getUserIdAsync(sessionStorage.getItem('token') || ''));
-    
-    console.log("user" ,userid)
-  }, [dispatch]);
+  
+    console.log("user", userid);
+  }, [dispatch, userid]);
+  
 
   const handleAdd = () => {
     if (
@@ -124,46 +127,6 @@ const JournalPage = () => {
     dispatch(updateViewJournal(journal));
   
   };
-//  const handleUpdate = (journal: {
-//   id: any;
-//   strategy: any;
-//   buyprice: any;
-//   sellprice: any;
-//   position: any;
-//   description: any;
-//   image: any;
-//   user: any;
-//   quantity: any;
-//   winorlose: any;
-// }) => {
-//   const updatedJournal = {
-//     id: journal.id,
-//     strategy: journalData.strategy || journal.strategy,
-//     buyprice: journalData.buyprice || journal.buyprice,
-//     sellprice: journalData.sellprice || journal.sellprice,
-//     position: journalData.position || journal.position,
-//     description: journalData.description || journal.description,
-//     image: journalData.image === null ? null : journalData.image || journal.image,
-//     user: userid || journal.user,
-//     quantity: journalData.quantity || journal.quantity,
-//     winorlose: journalData.winorlose || journal.winorlose,
-//   };
-
-//   dispatch(updateJournalEntry(updatedJournal));
-//   setJournalData({
-//     strategy: '',
-//     description: '',
-//     buyprice: '',
-//     sellprice: '',
-//     position: '',
-//     image: null,
-//     user: 0,
-//     quantity: '',
-//     winorlose: '',
-//     showAddForm: false,
-//   });
-// };
-
 
   const handleDelete = (id: number) => {
     dispatch(deleteJournalEntry(id));
@@ -176,8 +139,9 @@ const JournalPage = () => {
   };
 
   const toggleAddForm = () => {
-    setJournalData({ ...journalData, showAddForm: !journalData.showAddForm });
+    setJournalData({ ...journalData, showAddForm: true, strategy: '', description: '', buyprice: '', sellprice: '', position: '', image: null, quantity: '', winorlose: '' });
   };
+  
 
  
 

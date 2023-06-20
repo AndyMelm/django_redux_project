@@ -3,6 +3,7 @@ import { RootState, AppThunk } from '../../app/store';
 import { Journal } from '../../Models/Journal';
 import { getAlldata } from './showdataAPI';
 
+
 export interface ShowdataState {
   logged: boolean;
   journalsdata: Journal[];
@@ -13,10 +14,14 @@ const initialState: ShowdataState = {
   journalsdata: [],
 };
 
-export const getAllJournals = createAsyncThunk('journal/getAlldata', async () => {
-  const journals = await getAlldata();
-  return journals;
-});
+export const getAllJournals = createAsyncThunk(
+  'journal/getAlldata',
+  async (userId: number) => {
+    const journals = await getAlldata(userId);
+    return journals;
+  }
+);
+
 
 
 

@@ -28,7 +28,6 @@ const Login = () => {
         setSuccessMessage('Successfully logged in');
         setIsPopupVisible(true);
         dispatch(getUserIdAsync(sessionStorage.getItem('token') || ''));
-        
 
       })
       .catch((error) => {
@@ -38,18 +37,20 @@ const Login = () => {
       });
   };
 
-  const handleLogout = () => {
-    dispatch(logout());
+  
+
+  const closePopupError = () => {
     setErrorMessage('');
     setSuccessMessage('');
-    window.location.href = 'http://localhost:3000/';
+    setIsPopupVisible(false);
+   
   };
 
   const closePopup = () => {
     setErrorMessage('');
     setSuccessMessage('');
     setIsPopupVisible(false);
-    navigate('/')
+    navigate('/');
    
   };
 
@@ -61,14 +62,13 @@ const Login = () => {
             <div className="card-body">
               {logged ? (
                 <>
-                  <button className="btn btn-primary float-end" onClick={handleLogout}>Logout</button>
                   {isPopupVisible && (
                     <div className="alert alert-success mt-3" role="alert">
                       <p>{successMessage}</p>
                       <button className="btn btn-secondary btn-success" onClick={closePopup}>Close</button>
                     </div>
                   )}
-                  {userId && <p>User ID: {userId}</p>}
+                  
                 </>
               ) : (
                 <>
@@ -101,7 +101,7 @@ const Login = () => {
                   {isPopupVisible && (
                     <div className="alert alert-danger mt-3" role="alert">
                       <p>{errorMessage}</p>
-                      <button className="btn btn-secondary btn-danger" onClick={closePopup}>Close</button>
+                      <button className="btn btn-secondary btn-danger" onClick={closePopupError}>Close</button>
                     </div>
                   )}
 

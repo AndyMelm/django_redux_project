@@ -1,36 +1,43 @@
 import React, { useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
-import { registerAsync, selectError, selectMessage } from './RegisterSlice';
+import { registerAsync, selectError, selectMessages, selectRegSuccess } from './RegisterSlice';
 
 const Register = () => {
   const dispatch = useAppDispatch();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
-  const message = useAppSelector(selectMessage);
+  const messages = useAppSelector(selectMessages);
   const error = useAppSelector(selectError);
+  const regSuccess = useAppSelector(selectRegSuccess);
   const [isPopupVisible, setIsPopupVisible] = useState(false);
-  const [isUserCreated, setIsUserCreated] = useState(false);
 
   const handleRegister = () => {
     // Perform form validation
     if (!username || !password || !email) {
-      setIsPopupVisible(true);
+      alert('Please fill in all the fields.');
+      return;
+    }
+
+    // Perform email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      alert('Please enter a valid email address.');
       return;
     }
 
     // Dispatch registerAsync action
     dispatch(registerAsync({ username, password, email })).then(() => {
       setIsPopupVisible(true);
-      setIsUserCreated(true);
     });
   };
 
   const closePopup = () => {
     setIsPopupVisible(false);
-    setIsUserCreated(false);
-    // Redirect after closing the popup
-    window.location.href = 'http://localhost:3000/';
+    // Redirect after closing the popup only if registration was successful
+    if (regSuccess) {
+      window.location.href = 'http://localhost:3000/';
+    }
   };
 
   return (
@@ -80,19 +87,18 @@ const Register = () => {
                 />
               </div>
 
-              {isPopupVisible && !isUserCreated && (
-                <div className="alert alert-danger mt-3" role="alert">
-                  Please fill in all the fields.
+              <button className="btn btn-primary w-100" onClick={handleRegister}>Register</button>
+
+              {isPopupVisible && (
+                <div className={`alert ${regSuccess ? 'alert-success' : 'alert-danger'} mt-3`} role="alert">
+                  {messages.map((message, index) => (
+                    <p key={index} className={regSuccess ? 'text-success' : 'text-danger'}>{message}</p>
+                  ))}
+                  <button className={`btn ${regSuccess ? 'btn-success' : 'btn-danger'}`} onClick={closePopup}>
+                    Close
+                  </button>
                 </div>
               )}
-
-              {isPopupVisible && isUserCreated && (
-                <div className="alert alert-success mt-3" role="alert">
-                  User created. You can log in now.
-                </div>
-              )}
-
-              <button className="btn btn-primary" onClick={handleRegister}>Register</button>
 
               {isPopupVisible && <div className="overlay" onClick={closePopup} />}
             </div>

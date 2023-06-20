@@ -1,15 +1,23 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { selectLogged, logout, selectToken} from '../login/loginSlice';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { selectLogged, logout, selectToken } from '../login/loginSlice';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 
 const HomePage = () => {
   const dispatch = useAppDispatch();
   const logged = useAppSelector(selectLogged);
   const token = useAppSelector(selectToken);
+  const [isLogoutMessageVisible, setIsLogoutMessageVisible] = useState(false);
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     dispatch(logout());
+    setIsLogoutMessageVisible(true);
+  };
+
+  const closeLogoutMessage = () => {
+    setIsLogoutMessageVisible(false);
+    navigate('/');
   };
 
   const getTokenFromSessionStorage = () => {
@@ -63,13 +71,23 @@ const HomePage = () => {
               )}
             </ul>
             {userHasToken && (
-              <button className="btn btn-secondary btn-danger" onClick={handleLogout}>
-                Logout
-              </button>
+              <>
+                <button className="btn btn-secondary btn-danger" onClick={handleLogout}>
+                  Logout
+                </button>
+              </>
             )}
           </div>
         </div>
       </nav>
+      {isLogoutMessageVisible && (
+        <div className="alert alert-danger mt-3" role="alert">
+          <p>Logged out successfully.</p>
+          <button className="btn btn-secondary btn-danger" onClick={closeLogoutMessage}>
+            Close
+          </button>
+        </div>
+      )}
     </div>
   );
 };

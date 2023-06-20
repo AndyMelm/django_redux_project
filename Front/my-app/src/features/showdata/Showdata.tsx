@@ -2,17 +2,40 @@ import React, { useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { getAllJournals, selectJournalsdata } from './showdataSlice';
 import { Journal } from '../../Models/Journal';
-import { selectUserId } from '../login/loginSlice';
+import { selectUserId , getUserIdAsync, selectToken} from '../login/loginSlice';
+import { useNavigate } from 'react-router-dom';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, LineChart, Line, PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 
 const JournalData: React.FC = () => {
   const dispatch = useAppDispatch();
+  const token = useAppSelector(selectToken)
   const journals = useAppSelector(selectJournalsdata);
   const userid = useAppSelector(selectUserId);
 
   useEffect(() => {
-    dispatch(getAllJournals());
-  }, [dispatch]);
+    const getTokenFromSessionStorage = () => {
+      // Retrieve the token from session storage
+      const token = sessionStorage.getItem('token');
+      return token ? token : null;
+    };
+
+    if (userid) {
+      console.log('Dispatching getAllJournals action...');
+      dispatch(getAllJournals(userid));
+    } else {
+      const token = getTokenFromSessionStorage();
+      if (token) {
+        dispatch(getUserIdAsync(token)).then((response) => {
+          if (response.payload) {
+            console.log('Dispatching getAllJournals action...');
+            dispatch(getAllJournals(response.payload));
+          }
+        });
+      }
+      console.log('userid is null. Skipping getAllJournals dispatch.');
+    }
+  }, [dispatch, userid]);
+  
 
   // Initialize variables
   let totalWinning: number = 0;

@@ -56,16 +56,7 @@ const JournalPage = () => {
       alert('Please fill in all the required fields.');
       return;
     }
-    console.log('strategy:', journalData.strategy);
-    console.log('description:', journalData.description);
-    console.log('entryprice:', journalData.entryprice);
-    console.log('exitprice:', journalData.exitprice);
-    console.log('position:', journalData.position);
-    console.log('image:', journalData.image);
-    console.log('user:', String(userid));
-    console.log('quantity:', journalData.quantity);
-    console.log('winorlose:', journalData.winorlose);
-
+  
     const formData = new FormData();
     formData.append('strategy', journalData.strategy);
     formData.append('description', journalData.description);

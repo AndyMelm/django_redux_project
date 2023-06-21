@@ -9,6 +9,7 @@ const ViewandUpdate = () => {
   const dispatch = useAppDispatch();
   const viewedData = useAppSelector(selectViewedData);
   const userid = useAppSelector(selectUserId);
+  
   const [showForm, setShowForm] = useState(false);
   const [updatedData, setUpdatedData] = useState({
     strategy: '',
@@ -34,21 +35,26 @@ const ViewandUpdate = () => {
   };
 
   const handleUpdate = () => {
-    const updatedEntry = {
+    let updatedEntry: any = {
       id: viewedData.id,
       strategy: updatedData.strategy,
       description: updatedData.description,
       entryprice: updatedData.entryprice,
       exitprice: updatedData.exitprice,
       position: updatedData.position,
-      image: updatedData.image, // Use the updated image directly
       user: userid,
       quantity: updatedData.quantity,
       winorlose: updatedData.winorlose,
     };
+  
+    if (updatedData.image instanceof File) {
+      updatedEntry.image = updatedData.image;
+    }
+  
     console.log(updatedEntry);
     dispatch(updateJournalEntry(updatedEntry));
   };
+  
 
   useEffect(() => {
     handleViewinviewandupdate(viewedData);
@@ -59,7 +65,7 @@ const ViewandUpdate = () => {
         entryprice: viewedData.entryprice,
         exitprice: viewedData.exitprice,
         position: viewedData.position,
-        image: null,
+        image: viewedData.image,
         user: userid,
         quantity: viewedData.quantity,
         winorlose: viewedData.winorlose,

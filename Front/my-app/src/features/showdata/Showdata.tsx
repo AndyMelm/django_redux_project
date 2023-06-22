@@ -53,8 +53,8 @@ const JournalData: React.FC = () => {
     for (const journal of journals) {
       const profit =
         journal.position === 'Long'
-          ? journal.quantity * (journal.sellprice - journal.buyprice)
-          : journal.quantity * (journal.buyprice - journal.sellprice);
+          ? journal.quantity * (journal.exitprice - journal.entryprice)
+          : journal.quantity * (journal.entryprice - journal.exitprice);
 
       if (journal.winorlose === 'Win') {
         totalWinning += profit;
@@ -96,8 +96,8 @@ const JournalData: React.FC = () => {
     index,
     profit:
       journal.position === 'Long'
-        ? journal.quantity * (journal.sellprice - journal.buyprice)
-        : journal.quantity * (journal.buyprice - journal.sellprice),
+        ? journal.quantity * (journal.exitprice - journal.entryprice)
+        : journal.quantity * (journal.entryprice - journal.exitprice),
   }));
 
   // Prepare data for pie chart

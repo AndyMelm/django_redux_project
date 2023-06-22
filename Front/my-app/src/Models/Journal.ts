@@ -1,8 +1,8 @@
 export interface Journal {
   id?: number;
   strategy: string;
-  buyprice: number;
-  sellprice: number;
+  entryprice: number;
+  exitprice: number;
   position: string;
   description: string;
   image?: File | null;

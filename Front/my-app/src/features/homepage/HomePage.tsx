@@ -29,7 +29,7 @@ const HomePage = () => {
 
   return (
     <div>
-      <nav className={`navbar navbar-expand-lg navbar-primary bg-primary`}>
+      <nav className={`navbar navbar-expand-lg navbar-success bg-success`}>
         <div className="container-fluid">
           <Link className="navbar-brand text-white" to="/">
             Home

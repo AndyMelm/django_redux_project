@@ -97,7 +97,7 @@ const Login = () => {
                     />
                   </div>
 
-                  <button className="btn btn-primary" onClick={handleLogin}>Log In</button>
+                  <button className="btn btn-success" onClick={handleLogin}>Log In</button>
                   {isPopupVisible && (
                     <div className="alert alert-danger mt-3" role="alert">
                       <p>{errorMessage}</p>

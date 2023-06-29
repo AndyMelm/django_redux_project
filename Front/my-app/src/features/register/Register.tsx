@@ -87,7 +87,7 @@ const Register = () => {
                 />
               </div>
 
-              <button className="btn btn-primary w-100" onClick={handleRegister}>Register</button>
+              <button className="btn btn-success w-100" onClick={handleRegister}>Register</button>
 
               {isPopupVisible && (
                 <div className={`alert ${regSuccess ? 'alert-success' : 'alert-danger'} mt-3`} role="alert">

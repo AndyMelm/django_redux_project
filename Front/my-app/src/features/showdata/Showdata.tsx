@@ -115,7 +115,8 @@ const JournalData: React.FC = () => {
   const losingPercentage = (losingTrades / totalTrades) * 100;
 
   // Define colors for pie chart sectors
-  const pieChartColors = ['#0088FE', '#FF8042'];
+  const pieChartColors = ['#2adb3b', '#FF0000'];
+
 
   return (
     <div className="container">
@@ -128,19 +129,29 @@ const JournalData: React.FC = () => {
             <div className="card-body">
               <h2 className="card-title">Profit Summary</h2>
               <p className="card-text">
-                <strong>Total Winning:</strong> {totalWinning}
+                <strong>Total Winning:</strong>{" "}
+                <span style={{ color: "#2adb3b" }}>{totalWinning}$</span>
+              </p>
+
+              <p className="card-text">
+                <strong>Total Loss:</strong>{" "} 
+                <span style={{ color: "#FF0000" }}>-{totalLoss}$</span>
               </p>
               <p className="card-text">
-                <strong>Total Loss:</strong> {totalLoss}
+                <strong>Most Profitable Strategy:</strong> {" "} 
+                <span style={{ color: "#1839de" }}>{mostProfitableStrategy}</span>
               </p>
               <p className="card-text">
-                <strong>Most Profitable Strategy:</strong> {mostProfitableStrategy}
+                <strong>Profit for the Most Profitable Strategy:</strong> {" "} 
+                <span style={{ color: "#2adb3b" }}>{profits[mostProfitableStrategy]}$</span>
               </p>
               <p className="card-text">
-                <strong>Profit for Most Profitable Strategy:</strong> {profits[mostProfitableStrategy]}
+                <strong>Most Losing Strategy:</strong>{" "} 
+                <span style={{ color: "#1839de" }}>{mostLosingStrategy}</span>
               </p>
               <p className="card-text">
-                <strong>Most Losing Strategy:</strong> {mostLosingStrategy}
+                <strong>Loss for the Most Losing Strategy:</strong> {" "} 
+                <span style={{ color: "#FF0000" }}>{profits[mostLosingStrategy]}$</span>
               </p>
 
             </div>
@@ -157,8 +168,7 @@ const JournalData: React.FC = () => {
                   <XAxis dataKey="strategy" label="" hide />
                   <YAxis />
                   <Tooltip />
-                  <Legend />
-                  <Bar dataKey="profit">
+                  <Bar dataKey="profit" >
                     {barChartData.map((entry) => (
                       <Cell
                         key={`cell-${entry.strategy}`}
@@ -178,11 +188,11 @@ const JournalData: React.FC = () => {
         <div className="col-md-6">
           <div className="card mb-4">
             <div className="card-body">
-              <h2 className="card-title">Profit over Trades</h2>
+              <h2 className="card-title">Profit or Loss over Trades</h2>
               <ResponsiveContainer width="100%" height={300}>
                 <LineChart data={lineChartData}>
                   <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="index" label="Number of Trades" />
+                  <XAxis dataKey="index" label="" />
                   <YAxis />
                   <Tooltip />
                   <Legend />
@@ -218,13 +228,17 @@ const JournalData: React.FC = () => {
                 </PieChart>
               </ResponsiveContainer>
               <p className="card-text">
-                <strong>Total Trades:</strong> {totalTrades}
+                <strong>Total Trades:</strong> {" "} 
+                <span style={{ color: "#1839de" }}>       {totalTrades}</span>
               </p>
               <p className="card-text">
-                <strong>Winning Trades:</strong> {winningTrades} ({winningPercentage.toFixed(2)}%)
+                <strong>Winning Trades:</strong> {" "}
+                <span style={{ color: "#2adb3b" }}>{winningTrades} ({winningPercentage.toFixed(2)}%)</span>
               </p>
               <p className="card-text">
-                <strong>Losing Trades:</strong> {losingTrades} ({losingPercentage.toFixed(2)}%)
+                <strong>Losing Trades:</strong> {" "} 
+                <span style={{ color: "#FF0000" }}>- {losingTrades} ({losingPercentage.toFixed(2)}%)</span>
+                
               </p>
             </div>
           </div>

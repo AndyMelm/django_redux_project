@@ -159,7 +159,7 @@ const JournalPage = () => {
         <h3>Add Your New Trade</h3>
         {!journalData.showAddForm ? (
           <div className="d-flex justify-content-center">
-            <Button variant="primary" onClick={toggleAddForm}>
+            <Button variant="success" onClick={toggleAddForm}>
               Add Trade
             </Button>
           </div>
@@ -267,7 +267,7 @@ const JournalPage = () => {
               <br />
 
               <div className="d-flex justify-content-center">
-                <Button variant="primary" onClick={handleAdd} disabled={!journalData.strategy || !journalData.position || !journalData.entryprice || !journalData.exitprice || !journalData.quantity || !journalData.winorlose || !journalData.description}>
+                <Button variant="success" onClick={handleAdd} disabled={!journalData.strategy || !journalData.position || !journalData.entryprice || !journalData.exitprice || !journalData.quantity || !journalData.winorlose || !journalData.description}>
                   Add Trade
                 </Button>
                 <Button variant="danger" onClick={handleCloseForm}>

@@ -27,6 +27,38 @@ const Register = () => {
       return;
     }
 
+    // Perform password validation
+    if (password.length < 8) {
+      alert('Password must contain at least 8 characters.');
+      return;
+    }
+
+    const containsPersonalInfo = [
+      username.toLowerCase(),
+      email.toLowerCase(),
+    ].some(info => password.toLowerCase().includes(info));
+
+    if (containsPersonalInfo) {
+      alert('Password can\'t be too similar to your other personal information.');
+      return;
+    }
+
+    const commonPasswords = [
+      'password',
+      '123456',
+      // Add more common passwords as needed
+    ];
+
+    if (commonPasswords.includes(password.toLowerCase())) {
+      alert('Password can\'t be a commonly used password.');
+      return;
+    }
+
+    if (/^\d+$/.test(password)) {
+      alert('Password can\'t be entirely numeric.');
+      return;
+    }
+
     // Dispatch registerAsync action
     dispatch(registerAsync({ username, password, email })).then(() => {
       setIsPopupVisible(true);

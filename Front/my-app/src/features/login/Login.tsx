@@ -3,6 +3,7 @@ import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { loginAsync, selectLogged, logout, getUserIdAsync, selectUserId } from './loginSlice';
 import ResetPassword from '../reset_password/Resetpassword';
 import { useNavigate } from 'react-router-dom';
+import { TextField, Button, Alert } from '@mui/material';
 
 const Login = () => {
   const dispatch = useAppDispatch();
@@ -28,22 +29,17 @@ const Login = () => {
         setSuccessMessage('Successfully logged in');
         setIsPopupVisible(true);
         dispatch(getUserIdAsync(sessionStorage.getItem('token') || ''));
-
       })
       .catch((error) => {
         setErrorMessage(error.message);
         setIsPopupVisible(true);
-        
       });
   };
-
-  
 
   const closePopupError = () => {
     setErrorMessage('');
     setSuccessMessage('');
     setIsPopupVisible(false);
-   
   };
 
   const closePopup = () => {
@@ -51,7 +47,6 @@ const Login = () => {
     setSuccessMessage('');
     setIsPopupVisible(false);
     navigate('/');
-   
   };
 
   return (
@@ -68,43 +63,41 @@ const Login = () => {
                       <button className="btn btn-secondary btn-success" onClick={closePopup}>Close</button>
                     </div>
                   )}
-                  
                 </>
               ) : (
                 <>
                   <h1 className="card-title text-center mb-4">Log In</h1>
                   <div className="mb-3">
-                    <label htmlFor="username" className="form-label">Username:</label>
-                    <input
+                    <TextField
                       type="text"
-                      className="form-control"
-                      id="username"
+                      label="Username"
                       placeholder="Enter your username"
                       value={username}
                       onChange={(e) => setUsername(e.target.value)}
+                      fullWidth
                     />
                   </div>
-
                   <div className="mb-3">
-                    <label htmlFor="password" className="form-label">Password:</label>
-                    <input
+                    <TextField
                       type="password"
-                      className="form-control"
-                      id="password"
+                      label="Password"
                       placeholder="Enter your password"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
+                      fullWidth
                     />
                   </div>
-
-                  <button className="btn btn-success" onClick={handleLogin}>Log In</button>
+                  <Button variant="contained" color="success" onClick={handleLogin}>
+                    Log In
+                  </Button>
                   {isPopupVisible && (
                     <div className="alert alert-danger mt-3" role="alert">
                       <p>{errorMessage}</p>
-                      <button className="btn btn-secondary btn-danger" onClick={closePopupError}>Close</button>
+                      <button className="btn btn-secondary btn-danger" onClick={closePopupError}>
+                        Close
+                      </button>
                     </div>
                   )}
-
                   <div className="text-center mt-4">
                     <ResetPassword />
                   </div>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { TextField, Button } from '@mui/material';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { registerAsync, selectError, selectMessages, selectRegSuccess } from './RegisterSlice';
 
@@ -51,43 +52,40 @@ const Register = () => {
                 *Note we are not validating your email, but if you forget your password, only valid emails will receive a reset password email.
               </p>
 
-              <div className="mb-3">
-                <label htmlFor="username" className="form-label">Username:</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="username"
-                  placeholder="Enter your username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                />
-              </div>
+              <TextField
+                label="Username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                fullWidth
+                required
+              /><br /><br />
 
-              <div className="mb-3">
-                <label htmlFor="password" className="form-label">Password:</label>
-                <input
-                  type="password"
-                  className="form-control"
-                  id="password"
-                  placeholder="Enter your password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </div>
+              <TextField
+                label="Password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                fullWidth
+                required
+              /> <br /><br />
 
-              <div className="mb-3">
-                <label htmlFor="email" className="form-label">Email:</label>
-                <input
-                  type="email"
-                  className="form-control"
-                  id="email"
-                  placeholder="Enter your email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </div>
+              <TextField
+                label="Email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                fullWidth
+                required
+              /> <br /> <br />
 
-              <button className="btn btn-success w-100" onClick={handleRegister}>Register</button>
+              <Button
+                variant="contained"
+                color="success"
+                className="w-100"
+                onClick={handleRegister}
+              >
+                Register
+              </Button>
 
               {isPopupVisible && (
                 <div className={`alert ${regSuccess ? 'alert-success' : 'alert-danger'} mt-3`} role="alert">

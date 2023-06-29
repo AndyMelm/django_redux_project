@@ -48,6 +48,7 @@ const JournalData: React.FC = () => {
   let winningTrades: number = 0;
   let losingTrades: number = 0;
 
+
   if (journals.length > 0) {
     // Calculate total winnings and losses
     for (const journal of journals) {
@@ -89,6 +90,8 @@ const JournalData: React.FC = () => {
   const barChartData = Object.keys(profits).map((strategy) => ({
     strategy,
     profit: profits[strategy],
+
+
   }));
 
   // Prepare data for line chart

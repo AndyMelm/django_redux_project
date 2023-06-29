@@ -81,13 +81,23 @@ const HomePage = () => {
         </div>
       </nav>
       {isLogoutMessageVisible && (
-        <div className="alert alert-danger mt-3" role="alert">
-          <p>Logged out successfully.</p>
-          <button className="btn btn-secondary btn-danger" onClick={closeLogoutMessage}>
-            Close
-          </button>
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-lg-6 col-md-8">
+              <div className="card mt-5">
+                <div className="card-body">
+                  <div className="alert alert-danger mt-3" role="alert">
+                    <p>Logged out successfully.</p>
+                    <button className="btn btn-secondary btn-danger" onClick={closeLogoutMessage}>
+                      Close
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        
+
       )}
     </div>
   );

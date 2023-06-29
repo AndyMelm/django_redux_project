@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { getAllJournals, selectJournalsdata } from './showdataSlice';
 import { Journal } from '../../Models/Journal';
-import { selectUserId , getUserIdAsync, selectToken} from '../login/loginSlice';
+import { selectUserId, getUserIdAsync, selectToken } from '../login/loginSlice';
 import { useNavigate } from 'react-router-dom';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, LineChart, Line, PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 
@@ -35,7 +35,7 @@ const JournalData: React.FC = () => {
       console.log('userid is null. Skipping getAllJournals dispatch.');
     }
   }, [dispatch, userid]);
-  
+
 
   // Initialize variables
   let totalWinning: number = 0;
@@ -148,22 +148,29 @@ const JournalData: React.FC = () => {
         </div>
 
         <div className="col-md-6">
-  <div className="card mb-4">
-    <div className="card-body">
-      <h2 className="card-title">Profit by Strategy</h2>
-      <ResponsiveContainer width="100%" height={300}>
-        <BarChart data={barChartData}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="strategy" label="" hide />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Bar dataKey="profit" fill="#2adb3b" />
-        </BarChart>
-      </ResponsiveContainer>
-    </div>
-  </div>
-</div>
+          <div className="card mb-4">
+            <div className="card-body">
+              <h2 className="card-title">Profit or Loss by Strategy</h2>
+              <ResponsiveContainer width="100%" height={300}>
+                <BarChart data={barChartData}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="strategy" label="" hide />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <Bar dataKey="profit">
+                    {barChartData.map((entry) => (
+                      <Cell
+                        key={`cell-${entry.strategy}`}
+                        fill={entry.profit < 0 ? '#FF0000' : '#2adb3b'}
+                      />
+                    ))}
+                  </Bar>
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+        </div>
 
       </div>
 

@@ -12,7 +12,7 @@ import HomePage from './features/homepage/HomePage';
 import Journal from './features/journal/Journal';
 import JournalData from './features/showdata/Showdata';
 import Tradingview from './features/tradingview/Tradingview';
-
+import Navbar from './features/navbar/Navbar'; // Import the Navbar component
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
@@ -21,22 +21,18 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
+        <Navbar /> {/* Add the Navbar component outside the Routes */}
         <Routes>
-          <Route path="/" element={<App />} >
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/journal" element={<Journal />} />
-            <Route path="/journaldata" element={<JournalData />} />
-            <Route path="/marketdata" element={<Tradingview />} />
-          </Route>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/journal" element={<Journal />} />
+          <Route path="/journaldata" element={<JournalData />} />
+          <Route path="/marketdata" element={<Tradingview />} />
         </Routes>
       </BrowserRouter>
-
     </Provider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

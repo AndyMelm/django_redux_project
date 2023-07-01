@@ -87,9 +87,11 @@ const Login = () => {
                       fullWidth
                     />
                   </div>
-                  <Button variant="contained" color="success" onClick={handleLogin}>
-                    Log In
-                  </Button>
+                  <div className="d-flex justify-content-center">
+                    <Button variant="contained" color="success" onClick={handleLogin}>
+                      Log In
+                    </Button>
+                  </div>
                   {isPopupVisible && (
                     <div className="alert alert-danger mt-3" role="alert">
                       <p>{errorMessage}</p>

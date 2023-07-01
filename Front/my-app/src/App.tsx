@@ -6,7 +6,7 @@ import Navbar from './features/navbar/Navbar';
 function App() {
   return (
     <div className="App">
-      {/* Remove the Navbar component from here */}
+    <Navbar></Navbar>
       <Outlet />
     </div>
   );

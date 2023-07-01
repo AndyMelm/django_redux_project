@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { selectLogged, logout, selectToken } from '../login/loginSlice';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 
-
 const Navbar = () => {
   const dispatch = useAppDispatch();
   const logged = useAppSelector(selectLogged);
@@ -30,56 +29,53 @@ const Navbar = () => {
 
   return (
     <div>
-    
-      <nav className={`navbar navbar-expand-lg navbar-success bg-success`}>
+      <nav className="navbar navbar-expand-lg navbar-success bg-success">
         <div className="container-fluid">
           <Link className="navbar-brand text-white" to="/">
             Home
           </Link>
-          <div className="collapse navbar-collapse">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              {!userHasToken && (
-                <>
-                  <li className="nav-item">
-                    <Link className="nav-link text-white" to="/login">
-                      Login
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link className="nav-link text-white" to="/register">
-                      Register
-                    </Link>
-                  </li>
-                </>
-              )}
-              {userHasToken && (
-                <>
-                  <li className="nav-item">
-                    <Link className="nav-link text-white" to="/journal">
-                      Journal
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link className="nav-link text-white" to="/journaldata">
-                      Journal Data
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link className="nav-link text-white" to="/marketdata">
-                      Market Data
-                    </Link>
-                  </li>
-                </>
-              )}
-            </ul>
-            {userHasToken && (
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            {!userHasToken && (
               <>
-                <button className="btn btn-secondary btn-danger" onClick={handleLogout}>
-                  Logout
-                </button>
+                <li className="nav-item">
+                  <Link className="nav-link text-white" to="/login">
+                    Login
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link text-white" to="/register">
+                    Register
+                  </Link>
+                </li>
               </>
             )}
-          </div>
+            {userHasToken && (
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link text-white" to="/journal">
+                    Journal
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link text-white" to="/journaldata">
+                    Journal Data
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link text-white" to="/marketdata">
+                    Market Data
+                  </Link>
+                </li>
+              </>
+            )}
+          </ul>
+          {userHasToken && (
+            <>
+              <button className="btn btn-secondary btn-danger" onClick={handleLogout}>
+                Logout
+              </button>
+            </>
+          )}
         </div>
       </nav>
       {isLogoutMessageVisible && (
@@ -99,7 +95,6 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-
       )}
     </div>
   );

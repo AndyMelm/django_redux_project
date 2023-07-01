@@ -120,7 +120,7 @@ const JournalData: React.FC = () => {
 
   return (
     <div className="container">
-      <h1>Your Journal Trading Data</h1>
+      <h1>Your Trading Journal Data</h1>
       <hr />
 
       <div className="row">

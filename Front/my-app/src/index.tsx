@@ -12,6 +12,10 @@ import Journal from './features/journal/Journal';
 import JournalData from './features/showdata/Showdata';
 import Tradingview from './features/tradingview/Tradingview';
 import HomePage from './features/homepage/HomePage';
+import About from './features/footer/About';
+import Donations from './features/footer/Donations';
+import Tutorial from './features/footer/Tutorial';
+import ContactUs from './features/footer/ContactUs';
 
 
 const container = document.getElementById('root')!;
@@ -29,7 +33,10 @@ root.render(
             <Route path="/journal" element={<Journal />} />
             <Route path="/journaldata" element={<JournalData />} />
             <Route path="/marketdata" element={<Tradingview />} />
-            <Route path="/homepage" element={<HomePage />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/donations" element={<Donations />} />
+            <Route path="/tutorial" element={<Tutorial />} />
+            <Route path="/contact" element={<ContactUs />} />
           </Route>
         </Routes>
       </BrowserRouter>

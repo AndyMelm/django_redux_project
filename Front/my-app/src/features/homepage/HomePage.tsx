@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const HomePage = () => {
   return (
@@ -64,12 +65,12 @@ const HomePage = () => {
 
       </div> <br />
 
-      <footer className="bg-dark py-4 d-flex justify-content-center w-100"> {/* Use w-100 class to make the footer full-width */}
-        <div className="d-flex justify-content-center container"> {/* Use container class to center the buttons */}
-          <button className="btn btn-link text-white mx-2">About</button>
-          <button className="btn btn-link text-white mx-2">Donations</button>
-          <button className="btn btn-link text-white mx-2">Tutorial</button>
-          <button className="btn btn-link text-white mx-2">Contact Us</button>
+      <footer className="bg-dark py-4 d-flex justify-content-center w-100">
+        <div className="d-flex justify-content-center container">
+          <Link to="/about" className="btn btn-link text-white mx-2">About</Link>
+          <Link to="/donations" className="btn btn-link text-white mx-2">Donations</Link>
+          <Link to="/tutorial" className="btn btn-link text-white mx-2">Tutorial</Link>
+          <Link to="/contact" className="btn btn-link text-white mx-2">Contact Us</Link>
         </div>
       </footer>
     </div>

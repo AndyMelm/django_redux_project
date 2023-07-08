@@ -48,19 +48,19 @@ const Tradingview = () => {
   }
 
   return (
-    <div className="tradingview-widget-container" style={{ width: '90%', height: '80vh', margin: '0 auto', marginTop: '10px' }}>
+    <div className="tradingview-widget-container" style={{ width: '90%', height: '80vh', margin: '0 auto', marginTop: '10px', marginBottom:'70px' }}>
     <div id="tradingview_d82f7" style={{ width: '100%', height: '100%' }} />
-    <div className="tradingview-widget-copyright">
+    <div className="tradingview-widget-copyright"> 
       <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">
         <span className="btn btn-success btn-sm">Track all markets on TradingView</span>
       </a>
       <br />
   
       <a href="https://www.youtube.com/watch?v=TzWN7f8Khb4&ab_channel=MoneyZG" rel="noopener nofollow" target="_blank">
-        <span className="btn btn-success btn-sm">A Nice Tutorial to Learn How to Use TradingView.</span>
-      </a>
+        <span className="btn btn-success btn-sm">A Nice Tutorial to Learn How to Use TradingView.</span> 
+      </a> <br />
     </div>
-  </div>
+  </div> 
   
   );
 };

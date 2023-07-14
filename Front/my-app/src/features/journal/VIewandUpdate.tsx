@@ -9,7 +9,7 @@ const ViewandUpdate = () => {
   const dispatch = useAppDispatch();
   const viewedData = useAppSelector(selectViewedData);
   const userid = useAppSelector(selectUserId);
-  
+
   const [showForm, setShowForm] = useState(false);
   const [updatedData, setUpdatedData] = useState({
     strategy: '',
@@ -46,15 +46,15 @@ const ViewandUpdate = () => {
       quantity: updatedData.quantity,
       winorlose: updatedData.winorlose,
     };
-  
+
     if (updatedData.image instanceof File) {
       updatedEntry.image = updatedData.image;
     }
-  
+
     console.log(updatedEntry);
     dispatch(updateJournalEntry(updatedEntry));
   };
-  
+
 
   useEffect(() => {
     handleViewinviewandupdate(viewedData);
@@ -79,8 +79,8 @@ const ViewandUpdate = () => {
   }
 
   return (
-    <div>
-      <div className="selected-trade">
+    <div style={{ backgroundColor: '#DDF7E3' }}>
+      <div className="selected-trade" >
         <div className="container border-custom">
           <h3>
             <strong>Your Selected Trade</strong>
@@ -95,10 +95,10 @@ const ViewandUpdate = () => {
             <strong>Description:</strong> {viewedData.description}
           </p>
           <p>
-            <strong>Entry Price:</strong> {viewedData.entryprice}
+            <strong>Entry Price:</strong> {viewedData.entryprice}$
           </p>
           <p>
-            <strong>Exit Price:</strong> {viewedData.exitprice}
+            <strong>Exit Price:</strong> {viewedData.exitprice}$
           </p>
           <p>
             <strong>Quantity:</strong> {viewedData.quantity}
@@ -109,21 +109,21 @@ const ViewandUpdate = () => {
           {viewedData.position === 'Long' ? (
             viewedData.winorlose === 'Win' ? (
               <p>
-                <strong>Profit/Loss:</strong> {viewedData.quantity * (viewedData.exitprice - viewedData.entryprice)}
+                <strong>Profit/Loss:</strong> {viewedData.quantity * (viewedData.exitprice - viewedData.entryprice)}$
               </p>
             ) : (
               <p>
-                <strong>Profit/Loss:</strong> {viewedData.quantity * (viewedData.entryprice - viewedData.exitprice)}
+                <strong>Profit/Loss:</strong> {viewedData.quantity * (viewedData.entryprice - viewedData.exitprice)}$
               </p>
             )
           ) : (
             viewedData.winorlose === 'Win' ? (
               <p>
-                <strong>Profit/Loss:</strong> {viewedData.quantity * Math.abs(viewedData.exitprice - viewedData.entryprice)}
+                <strong>Profit/Loss:</strong> {viewedData.quantity * Math.abs(viewedData.exitprice - viewedData.entryprice)}$
               </p>
             ) : (
               <p>
-                <strong>Profit/Loss:</strong> {viewedData.quantity * (viewedData.exitprice - viewedData.entryprice)}
+                <strong>Profit/Loss:</strong> {viewedData.quantity * (viewedData.exitprice - viewedData.entryprice)}$
               </p>
             )
           )}
@@ -132,8 +132,8 @@ const ViewandUpdate = () => {
       </div>
 
       {showForm ? (
-        <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
-          <Form className="border border-secondary rounded p-4" style={{ width: '800px' }}>
+        <div className="d-flex justify-content-center align-items-center vh-100 " style={{ backgroundColor: '#DDF7E3' }}>
+          <Form className="border border-black rounded p-4" style={{ width: '800px', backgroundColor: '#C7E8CA' }}>
             <Form.Group controlId="formStrategy">
               <Form.Label style={{ fontSize: '16px', fontWeight: 'bold' }}>Update Form</Form.Label> <br />
               <Form.Label>Strategy</Form.Label>
@@ -141,6 +141,8 @@ const ViewandUpdate = () => {
                 type="text"
                 value={updatedData.strategy}
                 onChange={(e) => setUpdatedData({ ...updatedData, strategy: e.target.value })}
+                style={{ backgroundColor: '#DDF7E3', border: '1px solid black' }}
+
               />
             </Form.Group>
 
@@ -150,25 +152,34 @@ const ViewandUpdate = () => {
                 type="text"
                 value={updatedData.position}
                 onChange={(e) => setUpdatedData({ ...updatedData, position: e.target.value })}
+                style={{ backgroundColor: '#DDF7E3', border: '1px solid black' }}
               />
             </Form.Group>
 
             <Form.Group controlId="formentryprice">
               <Form.Label>Entry Price</Form.Label>
-              <Form.Control
-                type="number"
-                value={updatedData.entryprice}
-                onChange={(e) => setUpdatedData({ ...updatedData, entryprice: e.target.value })}
-              />
+              <InputGroup>
+                <InputGroup.Text style={{ backgroundColor: '#DDF7E3', border: '1px solid black', borderRight: "1" }}>$</InputGroup.Text>
+                <Form.Control
+                  type="number"
+                  value={updatedData.entryprice}
+                  onChange={(e) => setUpdatedData({ ...updatedData, entryprice: e.target.value })}
+                  style={{ backgroundColor: '#DDF7E3', border: '1px solid black' }}
+                />
+              </InputGroup>
             </Form.Group>
 
             <Form.Group controlId="formexitprice">
               <Form.Label>Exit Price</Form.Label>
-              <Form.Control
-                type="number"
-                value={updatedData.exitprice}
-                onChange={(e) => setUpdatedData({ ...updatedData, exitprice: e.target.value })}
-              />
+              <InputGroup>
+                <InputGroup.Text style={{ backgroundColor: '#DDF7E3', border: '1px solid black', borderRight: "1" }}>$</InputGroup.Text>
+                <Form.Control
+                  type="number"
+                  value={updatedData.exitprice}
+                  onChange={(e) => setUpdatedData({ ...updatedData, exitprice: e.target.value })}
+                  style={{ backgroundColor: '#DDF7E3', border: '1px solid black' }}
+                />
+              </InputGroup>
             </Form.Group>
 
             <Form.Group controlId="formQuantity">
@@ -177,6 +188,8 @@ const ViewandUpdate = () => {
                 type="number"
                 value={updatedData.quantity}
                 onChange={(e) => setUpdatedData({ ...updatedData, quantity: e.target.value })}
+                style={{ backgroundColor: '#DDF7E3', border: '1px solid black' }}
+                onWheel={(e) => e.preventDefault()}
               />
             </Form.Group>
 
@@ -186,6 +199,7 @@ const ViewandUpdate = () => {
                 type="text"
                 value={updatedData.winorlose}
                 onChange={(e) => setUpdatedData({ ...updatedData, winorlose: e.target.value })}
+                style={{ backgroundColor: '#DDF7E3', border: '1px solid black' }}
               />
             </Form.Group>
 
@@ -196,13 +210,20 @@ const ViewandUpdate = () => {
                 rows={3}
                 value={updatedData.description}
                 onChange={(e) => setUpdatedData({ ...updatedData, description: e.target.value })}
+                style={{ backgroundColor: '#DDF7E3', border: '1px solid black' }}
               />
             </Form.Group>
 
             <Form.Group controlId="formImage">
               <Form.Label>Image</Form.Label>
-              <Form.Control type="file" onChange={handleImageChange} accept="image/*" />
+              <Form.Control
+                type="file"
+                onChange={handleImageChange}
+                accept="image/*"
+                style={{ backgroundColor: '#DDF7E3', border: '1px solid black' }}
+              />
             </Form.Group>
+
 
 
             <Button variant="primary" onClick={handleUpdate}>

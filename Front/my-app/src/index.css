@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #C7E8CA;
 }
 
 code {
@@ -40,3 +41,4 @@ code {
 .d-flex.flex-wrap.justify-content-center {
   margin-top: 20px; /* Add margin to the top of the flex container */
 }
+

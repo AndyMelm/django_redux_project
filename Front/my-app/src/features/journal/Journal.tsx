@@ -165,10 +165,10 @@ const JournalPage = () => {
           </div>
 
         ) : (
-          <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
+          <div className="d-flex justify-content-center align-items-center vh-100 bg-green">
 
 
-            <Form className="border border-secondary rounded p-4" style={{ width: '800px' }}>
+            <Form className="border border-black rounded p-4" style={{ width: '800px' }}>
               <h4>Please Fill All Fields Except Image to Add a Trade</h4>
               <Form.Group controlId="strategy">
                 <Form.Label style={{ fontWeight: 'bold' }}>Strategy:</Form.Label>
@@ -177,6 +177,7 @@ const JournalPage = () => {
                   value={journalData.strategy}
                   onChange={(e) => setJournalData({ ...journalData, strategy: e.target.value })}
                   required
+                  style={{ backgroundColor: '#DDF7E3', border: '1px solid black' }}
                 />
               </Form.Group>
 
@@ -188,6 +189,7 @@ const JournalPage = () => {
                   onChange={(e) => setJournalData({ ...journalData, position: e.target.value })}
                   className="text-center"
                   required
+                  style={{ backgroundColor: '#DDF7E3', border: '1px solid black' }}
                 >
                   <option value="">Select Position</option>
                   <option value="Long">Long</option>
@@ -198,12 +200,13 @@ const JournalPage = () => {
               <Form.Group controlId="entryprice">
                 <Form.Label style={{ fontWeight: 'bold' }}>Entry Price:</Form.Label>
                 <InputGroup>
-                  <InputGroup.Text>$</InputGroup.Text>
+                <InputGroup.Text style={{ backgroundColor: '#DDF7E3', border: '1px solid black', borderRight: "1" }}>$</InputGroup.Text>
                   <Form.Control
                     type="number"
                     value={journalData.entryprice}
                     onChange={(e) => setJournalData({ ...journalData, entryprice: e.target.value.replace(/^0+/, '') })}
                     required
+                    style={{ backgroundColor: '#DDF7E3', border: '1px solid black' }}
                   />
                 </InputGroup>
               </Form.Group>
@@ -211,12 +214,13 @@ const JournalPage = () => {
               <Form.Group controlId="exitprice">
                 <Form.Label style={{ fontWeight: 'bold' }}>Exit Price:</Form.Label>
                 <InputGroup>
-                  <InputGroup.Text>$</InputGroup.Text>
+                <InputGroup.Text style={{ backgroundColor: '#DDF7E3', border: '1px solid black', borderRight: "1" }}>$</InputGroup.Text>
                   <Form.Control
                     type="number"
                     value={journalData.exitprice}
                     onChange={(e) => setJournalData({ ...journalData, exitprice: e.target.value.replace(/^0+/, '') })}
                     required
+                    style={{ backgroundColor: '#DDF7E3', border: '1px solid black' }}
                   />
                 </InputGroup>
               </Form.Group>
@@ -228,6 +232,8 @@ const JournalPage = () => {
                   value={journalData.quantity}
                   onChange={(e) => setJournalData({ ...journalData, quantity: e.target.value.replace(/^0+/, '') })}
                   required
+                  style={{ backgroundColor: '#DDF7E3', border: '1px solid black' }}
+                  onWheel={(e) => e.preventDefault()}
                 />
               </Form.Group>
 
@@ -239,6 +245,7 @@ const JournalPage = () => {
                   onChange={(e) => setJournalData({ ...journalData, winorlose: e.target.value })}
                   className="text-center"
                   required
+                  style={{ backgroundColor: '#DDF7E3', border: '1px solid black' }}
                 >
                   <option value="">Select Win or Lose</option>
                   <option value="Win">Win</option>
@@ -251,7 +258,7 @@ const JournalPage = () => {
                 <Form.Control
                   as="textarea"
                   rows={3}
-                  style={{ minHeight: '6rem' }}
+                  style={{ minHeight: '6rem' , backgroundColor: '#DDF7E3', border: '1px solid black' }}
                   value={journalData.description}
                   onChange={(e) => setJournalData({ ...journalData, description: e.target.value })}
                   required
@@ -260,7 +267,7 @@ const JournalPage = () => {
 
               <Form.Group controlId="image">
                 <Form.Label style={{ fontWeight: 'bold' }}>Image:</Form.Label>
-                <Form.Control type="file" onChange={handleImageChange} 
+                <Form.Control type="file" onChange={handleImageChange} style={{ backgroundColor: '#DDF7E3', border: '1px solid black' }}
                 />
               </Form.Group>
               
@@ -287,26 +294,26 @@ const JournalPage = () => {
             {journals.map((journal) => (
               <Col key={journal.id} md={4} className="mb-4">
                 <Card>
-                  <Card.Body>
+                  <Card.Body  style={{ backgroundColor: '#DDF7E3', border: '1px solid #000'}}>
                     <Card.Text><strong>Position:</strong> {journal.position}</Card.Text>
                     <Card.Text><strong>Strategy:</strong> {journal.strategy}</Card.Text>
                     <Card.Text><strong>Description:</strong> {journal.description}</Card.Text>
-                    <Card.Text><strong>Entry Price:</strong> {journal.entryprice}</Card.Text>
-                    <Card.Text><strong>Exit Price:</strong> {journal.exitprice}</Card.Text>
+                    <Card.Text><strong>Entry Price:</strong> {journal.entryprice}$</Card.Text>
+                    <Card.Text><strong>Exit Price:</strong> {journal.exitprice}$</Card.Text>
                     <Card.Text><strong>Quantity:</strong> {journal.quantity}</Card.Text>
                     <Card.Text><strong>Win or Lose:</strong> {journal.winorlose}</Card.Text>
 
                     {journal.position === 'Long' ? (
                       journal.winorlose === 'Win' ? (
-                        <Card.Text><strong>Profit/Loss:</strong> {journal.quantity * (journal.exitprice - journal.entryprice)}</Card.Text>
+                        <Card.Text><strong>Profit/Loss:</strong> {journal.quantity * (journal.exitprice - journal.entryprice)}$</Card.Text>
                       ) : (
-                        <Card.Text><strong>Profit/Loss:</strong> {journal.quantity * (journal.entryprice - journal.exitprice)}</Card.Text>
+                        <Card.Text><strong>Profit/Loss:</strong> {journal.quantity * (journal.entryprice - journal.exitprice)}$</Card.Text>
                       )
                     ) : (
                       journal.winorlose === 'Win' ? (
-                        <Card.Text><strong>Profit/Loss:</strong> {journal.quantity * Math.abs(journal.exitprice - journal.entryprice)}</Card.Text>
+                        <Card.Text><strong>Profit/Loss:</strong> {journal.quantity * Math.abs(journal.exitprice - journal.entryprice)}$</Card.Text>
                       ) : (
-                        <Card.Text><strong>Profit/Loss:</strong> {journal.quantity * (journal.exitprice - journal.entryprice)}</Card.Text>
+                        <Card.Text><strong>Profit/Loss:</strong> {journal.quantity * (journal.exitprice - journal.entryprice)}$</Card.Text>
                       )
                     )}
 

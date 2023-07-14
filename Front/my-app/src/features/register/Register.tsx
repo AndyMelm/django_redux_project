@@ -78,7 +78,7 @@ const Register = () => {
       <div className="row justify-content-center">
         <div className="col-lg-6 col-md-8">
           <div className="card mt-5">
-            <div className="card-body">
+            <div className="card-body" style={{ backgroundColor: '#DDF7E3', border: '1px solid #000'}}>
               <h1 className="card-title text-center mb-4">Register Form</h1>
               <p className="text-center">
                 *Note we are not validating your email, but if you forget your password, only valid emails will receive a reset password email.

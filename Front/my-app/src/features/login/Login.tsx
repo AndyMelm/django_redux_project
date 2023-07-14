@@ -50,11 +50,11 @@ const Login = () => {
   };
 
   return (
-    <div className="container">
-      <div className="row justify-content-center">
-        <div className="col-lg-6 col-md-8">
-          <div className="card mt-5">
-            <div className="card-body">
+    <div className="container" >
+      <div className="row justify-content-center"  >
+        <div className="col-lg-6 col-md-8"  >
+          <div className="card mt-5" >
+            <div className="card-body" style={{ backgroundColor: '#DDF7E3', border: '1px solid #000'}}>
               {logged ? (
                 <>
                   {isPopupVisible && (

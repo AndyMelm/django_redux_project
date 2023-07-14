@@ -147,7 +147,7 @@ const JournalData: React.FC = () => {
               </p>
               <p className="card-text">
                 <strong>Most Losing Strategy:</strong>{" "} 
-                <span style={{ color: "#1839de" }}>{mostLosingStrategy}</span>
+                <span style={{ color: "#FF0000" }}>{mostLosingStrategy}</span>
               </p>
               <p className="card-text">
                 <strong>Loss for the Most Losing Strategy:</strong> {" "} 

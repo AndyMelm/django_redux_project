@@ -201,10 +201,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # SMTP Email Configuration
 EMAIL_HOST = 'smtp.elasticemail.com'
 EMAIL_PORT = 2525
-EMAIL_HOST_USER = 'testmydjango555@gmail.com'
-EMAIL_HOST_PASSWORD = 'B4B927A12DAF135D73676454EB2A4DDD5354'
+EMAIL_HOST_USER = 'yourtradingjournal.donotreply@gmail.com'
+EMAIL_HOST_PASSWORD = '6B81A893594B14C9602C1C5934C6151486F8'
 EMAIL_USE_TLS = True  # Enable TLS encryption (optional)
-DEFAULT_FROM_EMAIL = 'testmydjango555@gmail.com'
+DEFAULT_FROM_EMAIL = 'yourtradingjournal.donotreply@gmail.com'
 
 
 CORS_ALLOW_ALL_ORIGINS = True

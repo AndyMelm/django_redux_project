@@ -23,7 +23,7 @@ const Donations = () => {
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '50vh', flexDirection: 'column' }}>
       <h2>Donations</h2>
-      <p>We are constantly upgrading and learning to build new features.<br />
+      <p>We are constantly upgrading and planning to build new features.<br />
         You can donate $5 to support the team!<br />
         We appreciate your donations!</p>
       <PayPalScriptProvider options={{

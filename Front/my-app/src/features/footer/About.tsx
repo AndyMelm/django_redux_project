@@ -40,7 +40,7 @@ const About = () => {
         Sign up now and unlock the full potential of our feature-rich trading journal. <br />
         Elevate your trading skills, make informed decisions, and achieve consistent results.
         <br /><br /> <br /> <br />
-        <strong> Created by John Bryce Student: &nbsp; </strong>
+        <strong> Created by AndyMelm: &nbsp; </strong>
 
         <a href="https://github.com/AndyMelm">
           <FontAwesomeIcon icon={faGithub} style={{ fontSize: '24px' }}/> 

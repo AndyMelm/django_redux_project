@@ -17,6 +17,9 @@ const ViewandUpdate = () => {
     entryprice: '',
     exitprice: '',
     position: '',
+    instrument: '',
+    date: '',
+    time: '',
     image: null as File | null,
     user: userid,
     quantity: '',
@@ -42,6 +45,9 @@ const ViewandUpdate = () => {
       entryprice: updatedData.entryprice,
       exitprice: updatedData.exitprice,
       position: updatedData.position,
+      instrument: updatedData.instrument,
+      date: updatedData.date,
+      time: updatedData.time,
       user: userid,
       quantity: updatedData.quantity,
       winorlose: updatedData.winorlose,
@@ -65,6 +71,9 @@ const ViewandUpdate = () => {
         entryprice: viewedData.entryprice,
         exitprice: viewedData.exitprice,
         position: viewedData.position,
+        instrument: viewedData.instrument,
+        date: viewedData.date,
+        time: viewedData.time,
         image: viewedData.image,
         user: userid,
         quantity: viewedData.quantity,
@@ -90,6 +99,15 @@ const ViewandUpdate = () => {
           </p>
           <p>
             <strong>Strategy:</strong> {viewedData.strategy}
+          </p>
+          <p>
+            <strong>Instrument:</strong> {viewedData.instrument}
+          </p>
+          <p>
+            <strong>Date:</strong> {viewedData.date}
+          </p>
+          <p>
+            <strong>Time:</strong> {viewedData.time}
           </p>
           <p>
             <strong>Description:</strong> {viewedData.description}
@@ -152,6 +170,36 @@ const ViewandUpdate = () => {
                 type="text"
                 value={updatedData.position}
                 onChange={(e) => setUpdatedData({ ...updatedData, position: e.target.value })}
+                style={{ backgroundColor: '#DDF7E3', border: '1px solid black' }}
+              />
+            </Form.Group>
+
+            <Form.Group controlId="formInstrument">
+              <Form.Label>Instrument</Form.Label>
+              <Form.Control
+                type="text"
+                value={updatedData.instrument}
+                onChange={(e) => setUpdatedData({ ...updatedData, instrument: e.target.value })}
+                style={{ backgroundColor: '#DDF7E3', border: '1px solid black' }}
+              />
+            </Form.Group>
+
+            <Form.Group controlId="formDate">
+              <Form.Label>Date</Form.Label>
+              <Form.Control
+                type="text"
+                value={updatedData.date}
+                onChange={(e) => setUpdatedData({ ...updatedData, date: e.target.value })}
+                style={{ backgroundColor: '#DDF7E3', border: '1px solid black' }}
+              />
+            </Form.Group>
+
+            <Form.Group controlId="formTime">
+              <Form.Label>Time</Form.Label>
+              <Form.Control
+                type="text"
+                value={updatedData.time}
+                onChange={(e) => setUpdatedData({ ...updatedData, time: e.target.value })}
                 style={{ backgroundColor: '#DDF7E3', border: '1px solid black' }}
               />
             </Form.Group>

@@ -125,7 +125,7 @@ const JournalData: React.FC = () => {
 
       <div className="row" >
         <div className="col-md-6" >
-          <div className="card mb-4" style={{ backgroundColor: '#DDF7E3', border: '1px solid black'}}>
+          <div className="card mb-4" style={{ backgroundColor: '#DDF7E3', border: '1px solid black' }}>
             <div className="card-body">
               <h2 className="card-title">Profit Summary</h2>
               <p className="card-text">
@@ -134,23 +134,23 @@ const JournalData: React.FC = () => {
               </p>
 
               <p className="card-text">
-                <strong>Total Loss:</strong>{" "} 
+                <strong>Total Loss:</strong>{" "}
                 <span style={{ color: "#FF0000" }}>-{totalLoss}$</span>
               </p>
               <p className="card-text">
-                <strong>Most Profitable Strategy:</strong> {" "} 
+                <strong>Most Profitable Strategy:</strong> {" "}
                 <span style={{ color: "#28a745" }}>{mostProfitableStrategy}</span>
               </p>
               <p className="card-text">
-                <strong>Profit for the Most Profitable Strategy:</strong> {" "} 
+                <strong>Profit for the Most Profitable Strategy:</strong> {" "}
                 <span style={{ color: "#28a745" }}>{profits[mostProfitableStrategy]}$</span>
               </p>
               <p className="card-text">
-                <strong>Most Losing Strategy:</strong>{" "} 
+                <strong>Most Losing Strategy:</strong>{" "}
                 <span style={{ color: "#FF0000" }}>{mostLosingStrategy}</span>
               </p>
               <p className="card-text">
-                <strong>Loss for the Most Losing Strategy:</strong> {" "} 
+                <strong>Loss for the Most Losing Strategy:</strong> {" "}
                 <span style={{ color: "#FF0000" }}>{profits[mostLosingStrategy]}$</span>
               </p>
 
@@ -159,7 +159,7 @@ const JournalData: React.FC = () => {
         </div>
 
         <div className="col-md-6">
-          <div className="card mb-4" style={{ backgroundColor: '#DDF7E3', border: '1px solid black'}}>
+          <div className="card mb-4" style={{ backgroundColor: '#DDF7E3', border: '1px solid black' }}>
             <div className="card-body">
               <h2 className="card-title">Profit or Loss by Strategy</h2>
               <ResponsiveContainer width="100%" height={300}>
@@ -186,25 +186,32 @@ const JournalData: React.FC = () => {
 
       <div className="row">
         <div className="col-md-6">
-          <div className="card mb-4" style={{ backgroundColor: '#DDF7E3', border: '1px solid black'}}>
+          <div className="card mb-4" style={{ backgroundColor: '#DDF7E3', border: '1px solid black' }}>
             <div className="card-body">
               <h2 className="card-title">Profit or Loss over Trades</h2>
               <ResponsiveContainer width="100%" height={300}>
                 <LineChart data={lineChartData}>
                   <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="index" label="" />
+                  <XAxis
+                    dataKey="index"
+                    tickFormatter={(value) => value + 1} // Add 1 to the tick value
+                    label=""
+                  />
                   <YAxis />
-                  <Tooltip />
+                  <Tooltip
+                    labelFormatter={(value) => `Trade ${value + 1}`} // Add 1 to the tooltip label value
+                  />
                   <Legend />
                   <Line type="monotone" dataKey="profit" stroke="#1839de" />
                 </LineChart>
+
               </ResponsiveContainer>
             </div>
           </div>
         </div>
 
         <div className="col-md-6">
-          <div className="card mb-4" style={{ backgroundColor: '#DDF7E3', border: '1px solid black'}}>
+          <div className="card mb-4" style={{ backgroundColor: '#DDF7E3', border: '1px solid black' }}>
             <div className="card-body">
               <h2 className="card-title">Winning & Losing Trades</h2>
               <ResponsiveContainer width="100%" height={300}>
@@ -228,7 +235,7 @@ const JournalData: React.FC = () => {
                 </PieChart>
               </ResponsiveContainer>
               <p className="card-text">
-                <strong>Total Trades:</strong> {" "} 
+                <strong>Total Trades:</strong> {" "}
                 <span style={{ color: "#1839de" }}>       {totalTrades}</span>
               </p>
               <p className="card-text">
@@ -236,9 +243,9 @@ const JournalData: React.FC = () => {
                 <span style={{ color: "#28a745" }}>{winningTrades} ({winningPercentage.toFixed(2)}%)</span>
               </p>
               <p className="card-text">
-                <strong>Losing Trades:</strong> {" "} 
+                <strong>Losing Trades:</strong> {" "}
                 <span style={{ color: "#FF0000" }}> {losingTrades} ({losingPercentage.toFixed(2)}%)</span>
-                
+
               </p>
             </div>
           </div>

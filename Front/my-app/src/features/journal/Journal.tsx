@@ -60,7 +60,7 @@ const JournalPage = () => {
       alert('Please fill in all the required fields.');
       return;
     }
-  
+
     if (
       !/^\d{2}-\d{2}-\d{4}$/.test(journalData.date) ||
       !/^\d{2}:\d{2}$/.test(journalData.time)
@@ -68,11 +68,11 @@ const JournalPage = () => {
       alert('Please enter a valid date and time format (DD-MM-YYYY HH:MM).');
       return;
     }
-  
+
     const dateParts = journalData.date.split('-');
     const formattedDate = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`;
     const formattedTime = journalData.time;
-  
+
     const formData = new FormData();
     formData.append('strategy', journalData.strategy);
     formData.append('description', journalData.description);
@@ -88,11 +88,11 @@ const JournalPage = () => {
     formData.append('user', String(userid));
     formData.append('quantity', String(journalData.quantity));
     formData.append('winorlose', journalData.winorlose);
-  
+
     console.log('Form Data:', formData);
-  
+
     dispatch(createJournalEntry(formData));
-  
+
     setJournalData({
       strategy: '',
       description: '',
@@ -109,7 +109,7 @@ const JournalPage = () => {
       showAddForm: false,
     });
   };
-  
+
   const handleView = (journal: {
     id: any;
     strategy: any;
@@ -190,7 +190,7 @@ const JournalPage = () => {
   return (
     <div>
       <ViewandUpdate></ViewandUpdate>
-      <h1 style={{marginTop: '50px'}}>Journal</h1>
+      <h1 style={{ marginTop: '50px' }}>Journal</h1>
       <div>
         <h3>Add Your New Trade</h3>
         {!journalData.showAddForm ? (
@@ -201,7 +201,7 @@ const JournalPage = () => {
           </div>
 
         ) : (
-          <div className="d-flex justify-content-center align-items-center vh-100 bg-green" style={{ marginTop: '150px'}}>
+          <div className="d-flex justify-content-center align-items-center vh-100 bg-green" style={{ marginTop: '150px' }}>
 
 
             <Form className="border border-black rounded p-4" style={{ width: '800px' }}>
@@ -249,6 +249,7 @@ const JournalPage = () => {
                   style={{ backgroundColor: '#DDF7E3', border: '1px solid black' }}
                 />
               </Form.Group>
+
 
               <Form.Group controlId="position">
                 <Form.Label style={{ fontWeight: 'bold' }}>Position:</Form.Label>
@@ -353,8 +354,8 @@ const JournalPage = () => {
             </Form>
           </div>
         )}
-      </div> 
-      <hr style={{marginTop:"120px"}} /> 
+      </div>
+      <hr style={{ marginTop: "120px" }} />
 
 
       {journals.length > 0 ? (
@@ -367,8 +368,8 @@ const JournalPage = () => {
                     <Card.Text><strong>Position:</strong> {journal.position}</Card.Text>
                     <Card.Text><strong>Strategy:</strong> {journal.strategy}</Card.Text>
                     <Card.Text><strong>Instrument:</strong> {journal.instrument}</Card.Text>
-                    <Card.Text><strong>Date:</strong> {journal.date}</Card.Text>
-                    <Card.Text><strong>Time:</strong> {journal.time}</Card.Text>
+                    <Card.Text><strong>Date:</strong> {new Date(journal.date).toLocaleDateString('en-GB').replace(/\//g, '-')}</Card.Text>
+                    <Card.Text><strong>Time:</strong> {journal.time.substring(0, 5)}</Card.Text>
                     <Card.Text><strong>Description:</strong> {journal.description}</Card.Text>
                     <Card.Text><strong>Entry Price:</strong> {journal.entryprice}$</Card.Text>
                     <Card.Text><strong>Exit Price:</strong> {journal.exitprice}$</Card.Text>

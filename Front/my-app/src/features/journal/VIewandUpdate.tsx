@@ -39,6 +39,24 @@ const ViewandUpdate = () => {
   };
 
   const handleUpdate = () => {
+    const datePattern = /^\d{2}-\d{2}-\d{4}$/; // Regex pattern for DD-MM-YYYY format
+  const timePattern = /^\d{2}:\d{2}$/; // Regex pattern for HH:MM format
+
+  // Validate date format
+  if (!datePattern.test(updatedData.date)) {
+    alert('Please enter the date in the format DD-MM-YYYY.');
+    return;
+  }
+
+  // Validate time format
+  if (!timePattern.test(updatedData.time)) {
+    alert('Please enter the time in the format HH:MM.');
+    return;
+  }
+
+  const dateParts = updatedData.date.split('-'); // Split the date string into parts
+  const formattedDate = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`; // Rearrange the parts
+  
     let updatedEntry: any = {
       id: viewedData.id,
       strategy: updatedData.strategy,
@@ -47,7 +65,7 @@ const ViewandUpdate = () => {
       exitprice: updatedData.exitprice,
       position: updatedData.position,
       instrument: updatedData.instrument,
-      date: updatedData.date,
+      date: formattedDate,
       time: updatedData.time,
       user: userid,
       quantity: updatedData.quantity,
@@ -66,24 +84,25 @@ const ViewandUpdate = () => {
   useEffect(() => {
     handleViewinviewandupdate(viewedData);
     if (viewedData) {
-      setUpdatedData({
+      setUpdatedData((prevState) => ({
+        ...prevState,
         strategy: viewedData.strategy,
         description: viewedData.description,
         entryprice: viewedData.entryprice,
         exitprice: viewedData.exitprice,
         position: viewedData.position,
         instrument: viewedData.instrument,
-        date: viewedData.date,
-        time: viewedData.time,
+        date: new Date(viewedData.date).toLocaleDateString('en-GB').replace(/\//g, '-'),
+        time: viewedData.time.substring(0, 5),
         image: viewedData.image,
         user: userid,
         quantity: viewedData.quantity,
         winorlose: viewedData.winorlose,
         showAddForm: false,
-      });
+      }));
     }
   }, [viewedData]);
-
+  
   if (!viewedData) {
     return <div></div>;
   }
@@ -105,11 +124,12 @@ const ViewandUpdate = () => {
             <strong>Instrument:</strong> {viewedData.instrument}
           </p>
           <p>
-            <strong>Date:</strong> {viewedData.date}
+            <strong>Date:</strong> {new Date(viewedData.date).toLocaleDateString('en-GB').replace(/\//g, '-')}
           </p>
           <p>
-            <strong>Time:</strong> {viewedData.time}
+            <strong>Time:</strong> {viewedData.time.substring(0, 5)}
           </p>
+
           <p>
             <strong>Description:</strong> {viewedData.description}
           </p>
@@ -271,31 +291,31 @@ const ViewandUpdate = () => {
                 accept="image/*"
                 style={{ backgroundColor: '#DDF7E3', border: '1px solid black' }}
               />
-            </Form.Group> 
+            </Form.Group>
 
 
 
             <div className="d-flex justify-content-center">
-            <Button variant="primary" onClick={handleUpdate}>
-              Update
-            </Button>
-            <Button variant="danger" onClick={() => { dispatch(closeViewedData()); setShowForm(false); }}>
-              Close
-            </Button>
-          </div>
-        </Form>
-      </div>
+              <Button variant="primary" onClick={handleUpdate}>
+                Update
+              </Button>
+              <Button variant="danger" onClick={() => { dispatch(closeViewedData()); setShowForm(false); }}>
+                Close
+              </Button>
+            </div>
+          </Form>
+        </div>
       ) : (
         <div className="d-flex justify-content-center align-items-center">
-        <Button variant="primary" onClick={() => setShowForm(true)} style={{ marginRight: '10px' }}>
-          Update Trade
-        </Button>
-        <Button variant="danger" onClick={() => { dispatch(closeViewedData()); setShowForm(false); }}>
-          Close
-        </Button>
-      </div>
-    )}
-      <hr style={{marginTop:'100px'}} /> 
+          <Button variant="primary" onClick={() => setShowForm(true)} style={{ marginRight: '10px' }}>
+            Update Trade
+          </Button>
+          <Button variant="danger" onClick={() => { dispatch(closeViewedData()); setShowForm(false); }}>
+            Close
+          </Button>
+        </div>
+      )}
+      <hr style={{ marginTop: '100px' }} />
 
     </div>
   );

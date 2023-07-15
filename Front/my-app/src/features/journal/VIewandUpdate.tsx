@@ -3,6 +3,7 @@ import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { selectViewedData, closeViewedData, updateJournalEntry } from './journalSlice';
 import { Button, Form, InputGroup } from 'react-bootstrap';
 import { selectUserId, } from '../login/loginSlice';
+import { style } from '@mui/system';
 
 
 const ViewandUpdate = () => {
@@ -150,7 +151,7 @@ const ViewandUpdate = () => {
       </div>
 
       {showForm ? (
-        <div className="d-flex justify-content-center align-items-center vh-100 " style={{ backgroundColor: '#DDF7E3' }}>
+        <div className="d-flex justify-content-center align-items-center vh-100 " style={{ backgroundColor: '#DDF7E3', marginTop: '100px' }}>
           <Form className="border border-black rounded p-4" style={{ width: '800px', backgroundColor: '#C7E8CA' }}>
             <Form.Group controlId="formStrategy">
               <Form.Label style={{ fontSize: '16px', fontWeight: 'bold' }}>Update Form</Form.Label> <br />
@@ -270,25 +271,31 @@ const ViewandUpdate = () => {
                 accept="image/*"
                 style={{ backgroundColor: '#DDF7E3', border: '1px solid black' }}
               />
-            </Form.Group>
+            </Form.Group> 
 
 
 
+            <div className="d-flex justify-content-center">
             <Button variant="primary" onClick={handleUpdate}>
               Update
             </Button>
-          </Form>
-        </div>
+            <Button variant="danger" onClick={() => { dispatch(closeViewedData()); setShowForm(false); }}>
+              Close
+            </Button>
+          </div>
+        </Form>
+      </div>
       ) : (
-        <Button variant="primary" onClick={() => setShowForm(true)}>
+        <div className="d-flex justify-content-center align-items-center">
+        <Button variant="primary" onClick={() => setShowForm(true)} style={{ marginRight: '10px' }}>
           Update Trade
         </Button>
-      )}
-
-      <Button variant="danger" onClick={() => { dispatch(closeViewedData()); setShowForm(false); }}>
-        Close
-      </Button>
-      <hr />
+        <Button variant="danger" onClick={() => { dispatch(closeViewedData()); setShowForm(false); }}>
+          Close
+        </Button>
+      </div>
+    )}
+      <hr style={{marginTop:'100px'}} /> 
 
     </div>
   );

@@ -83,7 +83,7 @@ const Navbar = () => {
           <div className="row justify-content-center">
             <div className="col-lg-6 col-md-8">
               <div className="card mt-5">
-                <div className="card-body" style={{ backgroundColor: '#dc3545'}}>
+                <div className="card-body" style={{ backgroundColor: '#FFC0CB'}}>
                   <div className="alert alert-danger mt-3" role="alert">
                     <p>Logged out successfully.</p>
                     <button className="btn btn-secondary btn-danger" onClick={closeLogoutMessage}>

@@ -23,7 +23,6 @@ export async function getUserId(token: string) {
   try {
     const response = await axios.get('http://127.0.0.1:8000/get_user_id/', config);
     const userId = response.data.user_id;
-    console.log("login api", userId);
     return userId;
   } catch (error: any) {
     throw error;

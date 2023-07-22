@@ -16,7 +16,6 @@ const JournalData: React.FC = () => {
     };
 
     if (userid) {
-      console.log('Dispatching getAllJournals action...');
       dispatch(getAllJournals(userid));
     } else {
       const token = getTokenFromSessionStorage();

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
-import { loginAsync, selectLogged, getUserIdAsync, selectUserId } from './loginSlice';
+import { loginAsync, selectLogged, getUserIdAsync} from './loginSlice';
 import ResetPassword from '../reset_password/Resetpassword';
 import { useNavigate } from 'react-router-dom';
 import { TextField, Button } from '@mui/material';
@@ -8,7 +8,6 @@ import { TextField, Button } from '@mui/material';
 const Login = () => {
   const dispatch = useAppDispatch();
   const logged = useAppSelector(selectLogged);
-  const userId = useAppSelector(selectUserId);
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');

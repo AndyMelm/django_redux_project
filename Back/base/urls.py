@@ -6,7 +6,6 @@ from django.contrib.auth.views import (
     PasswordResetConfirmView,
     PasswordResetCompleteView,
 )
-from django.views.generic.base import RedirectView
 from . import views
 
 urlpatterns = [

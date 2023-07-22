@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { TextField, Button } from '@mui/material';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
-import { registerAsync, selectError, selectMessages, selectRegSuccess } from './RegisterSlice';
+import { registerAsync, selectMessages, selectRegSuccess } from './RegisterSlice';
 
 const Register = () => {
   const dispatch = useAppDispatch();
@@ -9,7 +9,6 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const messages = useAppSelector(selectMessages);
-  const error = useAppSelector(selectError);
   const regSuccess = useAppSelector(selectRegSuccess);
   const [isPopupVisible, setIsPopupVisible] = useState(false);
 

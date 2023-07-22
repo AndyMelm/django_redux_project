@@ -1,6 +1,5 @@
 // src/features/contactUs/ContactUs.test.tsx
 
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import ContactUs from './ContactUs';
 

@@ -20,9 +20,7 @@ const initialState: loginState = {
 export const loginAsync = createAsyncThunk(
   'login/login',
   async (user1: any) => {
-    console.log(user1);
     const response = await login(user1);
-    console.log(response)
     return response.data;
   }
 );
@@ -31,7 +29,6 @@ export const getUserIdAsync = createAsyncThunk(
   'login/getUserId',
   async (token: string) => {
     const userId = await getUserId(token);
-    console.log("slice", userId);
     return userId;
   }
 );
@@ -60,7 +57,6 @@ export const loginSlice = createSlice({
           state.logged = true;
           state.token = action.payload.access;
           sessionStorage.setItem('token', state.token);
-          console.log(sessionStorage.getItem('token'))
         }
       })
       .addCase(loginAsync.rejected, (state, action) => {

@@ -10,7 +10,6 @@ const ViewandUpdate = () => {
   const dispatch = useAppDispatch();
   const viewedData = useAppSelector(selectViewedData);
   const userid = useAppSelector(selectUserId);
-
   const [showForm, setShowForm] = useState(false);
   const [updatedData, setUpdatedData] = useState({
     strategy: '',
@@ -75,7 +74,6 @@ const ViewandUpdate = () => {
       updatedEntry.image = updatedData.image;
     }
 
-    console.log(updatedEntry);
     dispatch(updateJournalEntry(updatedEntry));
   };
 
@@ -100,7 +98,7 @@ const ViewandUpdate = () => {
         showAddForm: false,
       }));
     }
-  }, [viewedData]);
+  }, [viewedData, userid]);
 
   if (!viewedData) {
     return <div></div>;

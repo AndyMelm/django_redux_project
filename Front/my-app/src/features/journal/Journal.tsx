@@ -1,8 +1,8 @@
-import React, { useEffect, useState, ChangeEvent } from 'react';
+import { useEffect, useState, ChangeEvent } from 'react';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
-import { getAllJournals, createJournalEntry, updateJournalEntry, deleteJournalEntry, selectJournals, selectViewedData, updateViewJournal } from './journalSlice';
-import { selectUserId, getUserIdAsync, navigateToHome } from '../login/loginSlice';
-import { Form, Button, Row, Col, InputGroup, Container, Card, Modal } from 'react-bootstrap';
+import { getAllJournals, createJournalEntry, deleteJournalEntry, selectJournals, updateViewJournal } from './journalSlice';
+import { selectUserId, getUserIdAsync } from '../login/loginSlice';
+import { Form, Button, Row, Col, InputGroup, Container, Card} from 'react-bootstrap';
 import ViewandUpdate from './VIewandUpdate';
 
 
@@ -11,9 +11,6 @@ const JournalPage = () => {
   const journals = useAppSelector(selectJournals);
   const userid = useAppSelector(selectUserId);
 
-
-
-  const viewjournal = useAppSelector(selectJournals);
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -36,13 +33,11 @@ const JournalPage = () => {
 
 
   useEffect(() => {
-    console.log(journals);
     if (userid !== null) {
       dispatch(getAllJournals(userid));
     }
     dispatch(getUserIdAsync(sessionStorage.getItem('token') || ''));
 
-    console.log("user", userid);
   }, [dispatch, userid]);
 
 
@@ -89,7 +84,6 @@ const JournalPage = () => {
     formData.append('quantity', String(journalData.quantity));
     formData.append('winorlose', journalData.winorlose);
 
-    console.log('Form Data:', formData);
 
     dispatch(createJournalEntry(formData));
 
@@ -142,7 +136,6 @@ const JournalPage = () => {
       showAddForm: false,
     });
 
-    console.log(journal); // Log the updated journal object to the console
     scrollToTop();
     dispatch(updateViewJournal(journal));
 
@@ -150,7 +143,6 @@ const JournalPage = () => {
 
   const handleDelete = (id: number) => {
     dispatch(deleteJournalEntry(id));
-    console.log(id);
   };
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {

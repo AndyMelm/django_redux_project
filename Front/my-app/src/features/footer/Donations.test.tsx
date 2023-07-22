@@ -1,6 +1,5 @@
 // src/features/footer/Donations.test.tsx
 
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Donations from './Donations';
 

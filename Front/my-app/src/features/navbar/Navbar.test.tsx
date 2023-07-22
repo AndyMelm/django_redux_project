@@ -1,6 +1,6 @@
 // src/features/navbar/Navbar.test.tsx
 
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import Navbar from './Navbar';
 import { Provider } from 'react-redux';

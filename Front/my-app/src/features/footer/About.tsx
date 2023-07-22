@@ -6,10 +6,8 @@ const About = () => {
   return (
     <div>
       <br />
-
+      <h4>Welcome to Your Trading Journal</h4>
       <p>
-        <h4>Welcome to Your Trading Journal</h4>
-
         At Your Trading Journal,
         we provide traders with a powerful tool to easily journal their trades and track their performance.
         Keeping a journal of your trades is essential for traders who want to improve their skills, <br />
@@ -43,11 +41,11 @@ const About = () => {
         <strong> Created by AndyMelm: &nbsp; </strong>
 
         <a href="https://github.com/AndyMelm">
-          <FontAwesomeIcon icon={faGithub} style={{ fontSize: '24px' }}/> 
+          <FontAwesomeIcon icon={faGithub} style={{ fontSize: '24px' }} />GitHub
         </a> &nbsp; &nbsp;
 
         <a href="https://www.linkedin.com/in/andrey-melman-636b49277/">
-          <FontAwesomeIcon icon={faLinkedin} style={{ fontSize: '24px' }}/> 
+          <FontAwesomeIcon icon={faLinkedin} style={{ fontSize: '24px' }} />LinkedIn
         </a>
 
       </p>

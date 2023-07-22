@@ -18,7 +18,7 @@ const Tutorial = () => {
       <p>
         Watch the tutorial video on YouTube: &nbsp; 
         <a href="https://www.youtube.com/watch?v=your-video-id" target="_blank" rel="noopener noreferrer">
-          <FontAwesomeIcon icon={faYoutube} style={iconStyle}  />
+          <FontAwesomeIcon icon={faYoutube} style={iconStyle} data-testid="youtube-icon" />
         </a>
       </p>
     </div>

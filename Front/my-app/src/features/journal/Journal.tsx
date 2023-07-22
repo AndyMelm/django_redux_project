@@ -11,7 +11,7 @@ const JournalPage = () => {
   const journals = useAppSelector(selectJournals);
   const userid = useAppSelector(selectUserId);
 
-  console.log('User ID:', userid);
+
 
   const viewjournal = useAppSelector(selectJournals);
   const scrollToTop = () => {

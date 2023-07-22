@@ -16,7 +16,7 @@ const Tutorial = () => {
         Follow along with the instructions in the video to make the most out of the features and functionalities.
       </p>
       <p>
-        Watch the tutorial video on YouTube: &nbsp; 
+        Watch the tutorial video on YouTube: &nbsp;
         <a href="https://www.youtube.com/watch?v=your-video-id" target="_blank" rel="noopener noreferrer">
           <FontAwesomeIcon icon={faYoutube} style={iconStyle} data-testid="youtube-icon" />
         </a>

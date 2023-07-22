@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { selectLogged, logout, selectToken } from '../login/loginSlice';
-import { useAppSelector, useAppDispatch } from '../../app/hooks';
+import { logout } from '../login/loginSlice';
+import { useAppDispatch } from '../../app/hooks';
 
 const Navbar = () => {
   const dispatch = useAppDispatch();
-  const logged = useAppSelector(selectLogged);
-  const token = useAppSelector(selectToken);
   const [isLogoutMessageVisible, setIsLogoutMessageVisible] = useState(false);
   const navigate = useNavigate();
 
@@ -83,7 +81,7 @@ const Navbar = () => {
           <div className="row justify-content-center">
             <div className="col-lg-6 col-md-8">
               <div className="card mt-5">
-                <div className="card-body" style={{ backgroundColor: '#FFC0CB'}}>
+                <div className="card-body" style={{ backgroundColor: '#FFC0CB' }}>
                   <div className="alert alert-danger mt-3" role="alert">
                     <p>Logged out successfully.</p>
                     <button className="btn btn-secondary btn-danger" onClick={closeLogoutMessage}>

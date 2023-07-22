@@ -1,5 +1,5 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState, AppThunk } from '../../app/store';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { RootState } from '../../app/store';
 import { Journal } from '../../Models/Journal';
 import { getAlldata } from './showdataAPI';
 
@@ -39,7 +39,7 @@ export const showdataSlice = createSlice({
       .addCase(getAllJournals.fulfilled, (state, action) => {
         state.journalsdata = action.payload;
       })
-  
+
   },
 });
 export const { logout } = showdataSlice.actions;

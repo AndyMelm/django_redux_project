@@ -3,7 +3,7 @@ import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { selectViewedData, closeViewedData, updateJournalEntry } from './journalSlice';
 import { Button, Form, InputGroup } from 'react-bootstrap';
 import { selectUserId, } from '../login/loginSlice';
-import { style } from '@mui/system';
+
 
 
 const ViewandUpdate = () => {
@@ -35,28 +35,27 @@ const ViewandUpdate = () => {
     }
   };
   const handleViewinviewandupdate = (viewedData: any) => {
-    console.log(viewedData); // Log the data to the console
   };
 
   const handleUpdate = () => {
     const datePattern = /^\d{2}-\d{2}-\d{4}$/; // Regex pattern for DD-MM-YYYY format
-  const timePattern = /^\d{2}:\d{2}$/; // Regex pattern for HH:MM format
+    const timePattern = /^\d{2}:\d{2}$/; // Regex pattern for HH:MM format
 
-  // Validate date format
-  if (!datePattern.test(updatedData.date)) {
-    alert('Please enter the date in the format DD-MM-YYYY.');
-    return;
-  }
+    // Validate date format
+    if (!datePattern.test(updatedData.date)) {
+      alert('Please enter the date in the format DD-MM-YYYY.');
+      return;
+    }
 
-  // Validate time format
-  if (!timePattern.test(updatedData.time)) {
-    alert('Please enter the time in the format HH:MM.');
-    return;
-  }
+    // Validate time format
+    if (!timePattern.test(updatedData.time)) {
+      alert('Please enter the time in the format HH:MM.');
+      return;
+    }
 
-  const dateParts = updatedData.date.split('-'); // Split the date string into parts
-  const formattedDate = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`; // Rearrange the parts
-  
+    const dateParts = updatedData.date.split('-'); // Split the date string into parts
+    const formattedDate = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`; // Rearrange the parts
+
     let updatedEntry: any = {
       id: viewedData.id,
       strategy: updatedData.strategy,
@@ -102,7 +101,7 @@ const ViewandUpdate = () => {
       }));
     }
   }, [viewedData]);
-  
+
   if (!viewedData) {
     return <div></div>;
   }

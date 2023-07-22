@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
-import { loginAsync, selectLogged, logout, getUserIdAsync, selectUserId } from './loginSlice';
+import { loginAsync, selectLogged, getUserIdAsync, selectUserId } from './loginSlice';
 import ResetPassword from '../reset_password/Resetpassword';
 import { useNavigate } from 'react-router-dom';
-import { TextField, Button, Alert } from '@mui/material';
+import { TextField, Button } from '@mui/material';
 
 const Login = () => {
   const dispatch = useAppDispatch();
@@ -54,7 +54,7 @@ const Login = () => {
       <div className="row justify-content-center"  >
         <div className="col-lg-6 col-md-8"  >
           <div className="card mt-5" >
-            <div className="card-body" style={{ backgroundColor: '#DDF7E3', border: '1px solid #000'}}>
+            <div className="card-body" style={{ backgroundColor: '#DDF7E3', border: '1px solid #000' }}>
               {logged ? (
                 <>
                   {isPopupVisible && (

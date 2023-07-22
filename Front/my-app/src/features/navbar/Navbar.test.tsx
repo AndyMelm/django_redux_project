@@ -1,6 +1,5 @@
 // src/features/navbar/Navbar.test.tsx
 
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import Navbar from './Navbar';
@@ -36,11 +35,9 @@ describe('Navbar component', () => {
     }));
 
     const store = mockStore({
-      // Mock the Redux store state here if needed
     });
 
     render(
-      // Wrap the Navbar component with the Provider and MemoryRouter
       <Provider store={store}>
         <MemoryRouter>
           <Navbar />

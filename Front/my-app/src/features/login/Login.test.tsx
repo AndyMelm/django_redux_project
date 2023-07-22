@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { store } from '../../app/store';
-import { MemoryRouter } from 'react-router-dom'; // Import the MemoryRouter
+import { MemoryRouter } from 'react-router-dom';
 import Login from './Login';
 
 jest.mock('axios', () => ({
@@ -11,7 +11,7 @@ jest.mock('axios', () => ({
 
 test('renders the Login component', () => {
   render(
-    // Wrap the Login component with a MemoryRouter
+   
     <MemoryRouter>
       <Provider store={store}>
         <Login />

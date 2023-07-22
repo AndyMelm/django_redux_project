@@ -14,7 +14,7 @@ const initialState: JournalState = {
   viewedData: null,
 };
 
-export const getAllJournals = createAsyncThunk('journal/getAll', async (userid:number) => {
+export const getAllJournals = createAsyncThunk('journal/getAll', async (userid: number) => {
   const journals = await getAll(userid);
   return journals;
 });
@@ -63,9 +63,9 @@ export const journalSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-    .addCase(updateViewJournal, (state, action) => {
-      state.viewedData = action.payload;
-    })
+      .addCase(updateViewJournal, (state, action) => {
+        state.viewedData = action.payload;
+      })
       .addCase(getAllJournals.fulfilled, (state, action) => {
         state.journals = action.payload;
       })
@@ -82,10 +82,10 @@ export const journalSlice = createSlice({
         state.journals = state.journals.filter((entry) => entry.id !== action.payload);
       });
   },
-  
+
 });
 
-export const { logout , closeViewedData } = journalSlice.actions;
+export const { logout, closeViewedData } = journalSlice.actions;
 export const selectJournals = (state: RootState) => state.journal.journals;
 export const selectViewedData = (state: RootState) => state.journal.viewedData;
 export default journalSlice.reducer;

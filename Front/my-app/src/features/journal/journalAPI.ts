@@ -26,7 +26,7 @@ export function updateEntry(id: number, updatedFields: any) {
   const url = `http://127.0.0.1:8000/journal/${id}/`;
   const formData = new FormData();
 
-  // Append updated fields to the FormData object
+
   for (const field in updatedFields) {
     formData.append(field, updatedFields[field]);
   }
@@ -34,7 +34,7 @@ export function updateEntry(id: number, updatedFields: any) {
   return axios.put(url, formData, {
     headers: {
       Authorization: getToken(),
-      'Content-Type': 'multipart/form-data', // Set the correct content type for FormData
+      'Content-Type': 'multipart/form-data',
     },
   }).then((res) => res.data);
 }

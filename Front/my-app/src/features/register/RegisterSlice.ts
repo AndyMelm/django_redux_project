@@ -1,5 +1,5 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState, AppThunk } from '../../app/store';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { RootState } from '../../app/store';
 import { register } from './RegisterAPI';
 
 export interface registerState {
@@ -7,7 +7,7 @@ export interface registerState {
     token: string;
     messages: string[];
     error: string;
-    registrationSuccess: boolean; // New state variable
+    registrationSuccess: boolean;
 }
 
 const initialState: registerState = {
@@ -15,7 +15,7 @@ const initialState: registerState = {
     token: '',
     messages: [],
     error: '',
-    registrationSuccess: false, // Initialize it to false
+    registrationSuccess: false,
 };
 
 
@@ -39,20 +39,20 @@ export const registerSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-        .addCase(registerAsync.fulfilled, (state, action) => {
-            state.messages = [action.payload.message];
-            state.error = '';
-            state.registrationSuccess = true;
-          })
-          .addCase(registerAsync.rejected, (state, action) => {
-            if (action.error.message) {
-              state.messages = [action.error.message];
-            } else {
-              state.messages = [];
-            }
-            state.error = 'An error occurred during registration. Please try another credential';
-            state.registrationSuccess = false; // Set it to false in case of rejection
-          });
+            .addCase(registerAsync.fulfilled, (state, action) => {
+                state.messages = [action.payload.message];
+                state.error = '';
+                state.registrationSuccess = true;
+            })
+            .addCase(registerAsync.rejected, (state, action) => {
+                if (action.error.message) {
+                    state.messages = [action.error.message];
+                } else {
+                    state.messages = [];
+                }
+                state.error = 'An error occurred during registration. Please try another credential';
+                state.registrationSuccess = false; 
+            });
     },
 });
 

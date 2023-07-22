@@ -1,7 +1,7 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState, AppThunk } from '../../app/store';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { RootState } from '../../app/store';
 import { login, getUserId } from './loginAPI';
-import { useNavigate } from 'react-router-dom';
+
 
 export interface loginState {
   logged: boolean;
@@ -31,14 +31,13 @@ export const getUserIdAsync = createAsyncThunk(
   'login/getUserId',
   async (token: string) => {
     const userId = await getUserId(token);
-    console.log("slice",userId);
+    console.log("slice", userId);
     return userId;
   }
 );
 
 export const navigateToHome = () => {
-  // Handle the navigation logic here
-  window.location.href = 'http://localhost:3000/'; // Replace '/' with the path of your home page
+  window.location.href = 'http://localhost:3000/';
 };
 
 
@@ -51,7 +50,7 @@ export const loginSlice = createSlice({
       state.token = '';
       state.userId = null;
       sessionStorage.clear();
-      
+
     },
   },
   extraReducers: (builder) => {
@@ -66,8 +65,6 @@ export const loginSlice = createSlice({
       })
       .addCase(loginAsync.rejected, (state, action) => {
         console.error('Login failed:', action.error.message);
-        // You can handle the error here
-        // For example, you can set an error message in the state
         state.error = 'Incorrect username or password';
       })
       .addCase(getUserIdAsync.fulfilled, (state, action) => {
@@ -75,10 +72,7 @@ export const loginSlice = createSlice({
       })
       .addCase(getUserIdAsync.rejected, (state, action) => {
         console.error('Failed to get user ID:', action.error.message);
-        // You can handle the error here
-        // For example, you can set an error message in the state
         state.error = 'Failed to retrieve user ID';
-        // Dispatch the navigateToHome action to handle navigation
         navigateToHome();
       });
   },

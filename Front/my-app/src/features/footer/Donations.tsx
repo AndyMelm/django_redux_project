@@ -7,7 +7,7 @@ const Donations = () => {
       purchase_units: [
         {
           amount: {
-            value: "5.00", // Replace with your desired default donation amount
+            value: "5.00",
           },
         },
       ],
@@ -23,9 +23,11 @@ const Donations = () => {
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '50vh', flexDirection: 'column' }}>
       <h2 data-testid="donations-title">Donations</h2>
+
       <p>We are constantly upgrading and planning to build new features.<br />
         You can donate $5 to support the team!<br />
         We appreciate your donations!</p>
+        
       <PayPalScriptProvider options={{
         clientId: "AQ9fxDAyVLo657VegI0KXi8AiX8ru71b_jgxWIe0QYdSGB5xAKOrYAY7ihKBteS3BamzYQCPkMfrHVYl",
         disableFunding: 'card', // Disable credit card option

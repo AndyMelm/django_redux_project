@@ -1,6 +1,5 @@
 // src/features/tradingview/Tradingview.test.tsx
 
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Tradingview from './Tradingview';
 

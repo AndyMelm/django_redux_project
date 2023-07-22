@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { render } from '@testing-library/react';
-import { Provider } from 'react-redux'; // Import the Provider from react-redux
+import { Provider } from 'react-redux';
 import JournalPage from './Journal';
 import { store } from '../../app/store';
 
@@ -17,5 +17,5 @@ test('renders the Journal component', () => {
       <JournalPage />
     </Provider>
   );
-  // Your test assertions go here
+
 });

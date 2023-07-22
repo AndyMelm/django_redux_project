@@ -1,11 +1,11 @@
-import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+
+import { render} from '@testing-library/react';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import { MemoryRouter } from 'react-router-dom';
 import Register from './Register';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { registerAsync } from './RegisterSlice'; // Provide the correct relative import path here
+import { useAppSelector } from '../../app/hooks';
+
 
 // Mock the axios module
 jest.mock('axios', () => ({

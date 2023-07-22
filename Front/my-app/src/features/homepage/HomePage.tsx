@@ -1,5 +1,4 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+
 
 const HomePage = () => {
   return (
@@ -16,15 +15,15 @@ const HomePage = () => {
         <div className="d-flex flex-column align-items-center border-custom p-3">
           <img
             className="img-fluid"
-            src="http://127.0.0.1:8000/images/journal_images/first.png"
+            src="http://127.0.0.1:8000/images/journal_images/01.png"
             alt="Charts"
           />
-         
+
         </div>
 
         {/* Container for the second image + text section */}
         <div className="d-flex flex-column align-items-center mx-5 border-custom p-3">
-        <div className="text-center">
+          <div className="text-center">
             <p style={{ fontWeight: 'bold', whiteSpace: 'pre-wrap' }}>
               Our app provides powerful analytical tools and insightful statistics to help you gain a deeper understanding of your trading performance. Visualize your trades with interactive charts, track your profitability over time, and identify patterns and trends in your trading behavior. Analyze your wins and losses, evaluate your risk management strategies, and make data-driven decisions to optimize your trading approach.
             </p>
@@ -35,12 +34,12 @@ const HomePage = () => {
             src="http://127.0.0.1:8000/images/journal_images/second.png"
             alt="Trading Data"
           />
-           
+
         </div>
 
         {/* Container for the third image + text section */}
         <div className="d-flex flex-column align-items-center mx-5 border-custom p-3">
-        <div className="text-center">
+          <div className="text-center">
             <p style={{ fontWeight: 'bold', whiteSpace: 'pre-wrap' }}>
               We have seamlessly integrated TradingView charts into our app, eliminating the need to switch browser tabs or open external applications.
               With this innovative feature, you can effortlessly view and analyze TradingView charts within our platform,
@@ -53,7 +52,7 @@ const HomePage = () => {
             src="http://127.0.0.1:8000/images/journal_images/third.png"
             alt="Charts"
           />
-          
+
         </div>
       </div>
 

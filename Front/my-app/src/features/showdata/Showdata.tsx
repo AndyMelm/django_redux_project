@@ -1,20 +1,16 @@
 import React, { useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { getAllJournals, selectJournalsdata } from './showdataSlice';
-import { Journal } from '../../Models/Journal';
-import { selectUserId, getUserIdAsync, selectToken } from '../login/loginSlice';
-import { useNavigate } from 'react-router-dom';
+import { selectUserId, getUserIdAsync } from '../login/loginSlice';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, LineChart, Line, PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 
 const JournalData: React.FC = () => {
   const dispatch = useAppDispatch();
-  const token = useAppSelector(selectToken)
   const journals = useAppSelector(selectJournalsdata);
   const userid = useAppSelector(selectUserId);
 
   useEffect(() => {
     const getTokenFromSessionStorage = () => {
-      // Retrieve the token from session storage
       const token = sessionStorage.getItem('token');
       return token ? token : null;
     };
@@ -27,12 +23,10 @@ const JournalData: React.FC = () => {
       if (token) {
         dispatch(getUserIdAsync(token)).then((response) => {
           if (response.payload) {
-            console.log('Dispatching getAllJournals action...');
             dispatch(getAllJournals(response.payload));
           }
         });
       }
-      console.log('userid is null. Skipping getAllJournals dispatch.');
     }
   }, [dispatch, userid]);
 
@@ -194,12 +188,12 @@ const JournalData: React.FC = () => {
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis
                     dataKey="index"
-                    tickFormatter={(value) => value + 1} // Add 1 to the tick value
+                    tickFormatter={(value) => value + 1}
                     label=""
                   />
                   <YAxis />
                   <Tooltip
-                    labelFormatter={(value) => `Trade ${value + 1}`} // Add 1 to the tooltip label value
+                    labelFormatter={(value) => `Trade ${value + 1}`}
                   />
                   <Legend />
                   <Line type="monotone" dataKey="profit" stroke="#1839de" />

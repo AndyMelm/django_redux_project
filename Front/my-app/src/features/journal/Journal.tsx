@@ -2,7 +2,9 @@ import { useEffect, useState, ChangeEvent } from 'react';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { getAllJournals, createJournalEntry, deleteJournalEntry, selectJournals, updateViewJournal } from './journalSlice';
 import { selectUserId, getUserIdAsync } from '../login/loginSlice';
-import { Form, Button, Row, Col, InputGroup, Container, Card} from 'react-bootstrap';
+import { Form, Button, Row, Col, InputGroup, Container, Card } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 import ViewandUpdate from './VIewandUpdate';
 
 
@@ -199,7 +201,12 @@ const JournalPage = () => {
             <Form className="border border-black rounded p-4" style={{ width: '800px' }}>
               <h4>Please Fill All Fields Except Image to Add a Trade</h4>
               <Form.Group controlId="strategy">
-                <Form.Label style={{ fontWeight: 'bold' }}>Strategy:</Form.Label>
+                <Form.Label style={{ fontWeight: 'bold' }}>
+                  Strategy{' '}
+                  <span style={{ cursor: 'pointer', textDecoration: 'underline' }}>
+                    <FontAwesomeIcon icon={faQuestionCircle} title="Please enter the Strategy you used in this Trade" />
+                  </span>
+                  </Form.Label>
                 <Form.Control
                   type="text"
                   value={journalData.strategy}
@@ -210,7 +217,12 @@ const JournalPage = () => {
               </Form.Group>
 
               <Form.Group controlId="instrument">
-                <Form.Label style={{ fontWeight: 'bold' }}>Instrument:</Form.Label>
+                <Form.Label style={{ fontWeight: 'bold' }}>
+                  Instrument{' '}
+                  <span style={{ cursor: 'pointer', textDecoration: 'underline' }}>
+                    <FontAwesomeIcon icon={faQuestionCircle} title="Please enter the Stock, Contract, Currency Pair, or Coin (Crypto)." />
+                  </span>
+                </Form.Label>
                 <Form.Control
                   type="text"
                   value={journalData.instrument}
@@ -221,7 +233,12 @@ const JournalPage = () => {
               </Form.Group>
 
               <Form.Group controlId="date">
-                <Form.Label style={{ fontWeight: 'bold' }}>Date:</Form.Label>
+                <Form.Label style={{ fontWeight: 'bold' }}>
+                  Date{' '}
+                  <span style={{ cursor: 'pointer', textDecoration: 'underline' }}>
+                    <FontAwesomeIcon icon={faQuestionCircle} title="Please enter the date when the trade was executed in the format DD-MM-YYYY." />
+                  </span>
+                </Form.Label>
                 <Form.Control
                   type="text"
                   value={journalData.date}
@@ -232,7 +249,12 @@ const JournalPage = () => {
               </Form.Group>
 
               <Form.Group controlId="time">
-                <Form.Label style={{ fontWeight: 'bold' }}>Time:</Form.Label>
+                <Form.Label style={{ fontWeight: 'bold' }}>
+                  Time{' '}
+                  <span style={{ cursor: 'pointer', textDecoration: 'underline' }}>
+                    <FontAwesomeIcon icon={faQuestionCircle} title="Please enter the time when the trade was executed in the format HH:MM." />
+                  </span>
+                </Form.Label>
                 <Form.Control
                   type="text"
                   value={journalData.time}
@@ -243,8 +265,14 @@ const JournalPage = () => {
               </Form.Group>
 
 
+
               <Form.Group controlId="position">
-                <Form.Label style={{ fontWeight: 'bold' }}>Position:</Form.Label>
+                <Form.Label style={{ fontWeight: 'bold' }}>
+                  Position{' '}
+                  <span style={{ cursor: 'pointer', textDecoration: 'underline' }}>
+                    <FontAwesomeIcon icon={faQuestionCircle} title="Please choose direction of the position - Long or Short" />
+                  </span>
+                  </Form.Label>
                 <Form.Control
                   as="select"
                   value={journalData.position}
@@ -260,7 +288,12 @@ const JournalPage = () => {
               </Form.Group>
 
               <Form.Group controlId="entryprice">
-                <Form.Label style={{ fontWeight: 'bold' }}>Entry Price:</Form.Label>
+                <Form.Label style={{ fontWeight: 'bold' }}>
+                  Entry Price{' '}
+                  <span style={{ cursor: 'pointer', textDecoration: 'underline' }}>
+                    <FontAwesomeIcon icon={faQuestionCircle} title="Please provide your entry price for this position" />
+                  </span>
+                  </Form.Label>
                 <InputGroup>
                   <InputGroup.Text style={{ backgroundColor: '#DDF7E3', border: '1px solid black', borderRight: "1" }}>$</InputGroup.Text>
                   <Form.Control
@@ -274,7 +307,12 @@ const JournalPage = () => {
               </Form.Group>
 
               <Form.Group controlId="exitprice">
-                <Form.Label style={{ fontWeight: 'bold' }}>Exit Price:</Form.Label>
+                <Form.Label style={{ fontWeight: 'bold' }}>
+                  Exit Price{' '}
+                  <span style={{ cursor: 'pointer', textDecoration: 'underline' }}>
+                    <FontAwesomeIcon icon={faQuestionCircle} title="Please provide your exit price for this position" />
+                  </span>
+                  </Form.Label>
                 <InputGroup>
                   <InputGroup.Text style={{ backgroundColor: '#DDF7E3', border: '1px solid black', borderRight: "1" }}>$</InputGroup.Text>
                   <Form.Control
@@ -288,7 +326,12 @@ const JournalPage = () => {
               </Form.Group>
 
               <Form.Group controlId="quantity">
-                <Form.Label style={{ fontWeight: 'bold' }}>Quantity:</Form.Label>
+                <Form.Label style={{ fontWeight: 'bold' }}>
+                  Quantity{' '}
+                  <span style={{ cursor: 'pointer', textDecoration: 'underline' }}>
+                    <FontAwesomeIcon icon={faQuestionCircle} title="Please provide number of stocks or contracts used in this position" />
+                  </span>
+                  </Form.Label>
                 <Form.Control
                   type="number"
                   value={journalData.quantity}
@@ -300,7 +343,12 @@ const JournalPage = () => {
               </Form.Group>
 
               <Form.Group controlId="winorlose">
-                <Form.Label style={{ fontWeight: 'bold' }}>Win or Lose:</Form.Label>
+                <Form.Label style={{ fontWeight: 'bold' }}>
+                  Win or Lose{' '}
+                  <span style={{ cursor: 'pointer', textDecoration: 'underline' }}>
+                    <FontAwesomeIcon icon={faQuestionCircle} title="Please choose the outcome of the position - Win or Lose" />
+                  </span>
+                  </Form.Label>
                 <Form.Control
                   as="select"
                   value={journalData.winorlose}
@@ -316,7 +364,13 @@ const JournalPage = () => {
               </Form.Group>
 
               <Form.Group controlId="description">
-                <Form.Label style={{ fontWeight: 'bold' }}>Description:</Form.Label>
+                <Form.Label style={{ fontWeight: 'bold' }}>
+                  Description{' '}
+                  <span style={{ cursor: 'pointer', textDecoration: 'underline' }}>
+                    <FontAwesomeIcon icon={faQuestionCircle} title="Please add more information about your Trade, like description, 
+                    thoughts or any other relevant details you'd like to include." />
+                  </span>
+                  </Form.Label>
                 <Form.Control
                   as="textarea"
                   rows={3}
@@ -328,7 +382,13 @@ const JournalPage = () => {
               </Form.Group>
 
               <Form.Group controlId="image">
-                <Form.Label style={{ fontWeight: 'bold' }}>Image:</Form.Label>
+                <Form.Label style={{ fontWeight: 'bold' }}>
+                  Image{' '}
+                  <span style={{ cursor: 'pointer', textDecoration: 'underline' }}>
+                    <FontAwesomeIcon icon={faQuestionCircle} title="Please consider adding an image of this trade for reference, 
+                    although it is not mandatory." />
+                  </span>
+                  </Form.Label>
                 <Form.Control type="file" onChange={handleImageChange} style={{ backgroundColor: '#DDF7E3', border: '1px solid black' }}
                 />
               </Form.Group>

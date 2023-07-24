@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { selectViewedData, closeViewedData, updateJournalEntry } from './journalSlice';
 import { Button, Form, InputGroup } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 import { selectUserId, } from '../login/loginSlice';
 
 
@@ -172,7 +174,12 @@ const ViewandUpdate = () => {
           <Form className="border border-black rounded p-4" style={{ width: '800px', backgroundColor: '#C7E8CA' }}>
             <Form.Group controlId="formStrategy">
               <Form.Label style={{ fontSize: '16px', fontWeight: 'bold' }}>Update Form</Form.Label> <br />
-              <Form.Label>Strategy</Form.Label>
+              <Form.Label>
+                Strategy{' '}
+                <span style={{ cursor: 'pointer', textDecoration: 'underline' }}>
+                    <FontAwesomeIcon icon={faQuestionCircle} title="You can Update the Strategy you used in this Trade" />
+                  </span>
+                </Form.Label>
               <Form.Control
                 type="text"
                 value={updatedData.strategy}
@@ -183,7 +190,11 @@ const ViewandUpdate = () => {
             </Form.Group>
 
             <Form.Group controlId="formPosition">
-              <Form.Label>Position</Form.Label>
+              <Form.Label> Position{' '}
+                  <span style={{ cursor: 'pointer', textDecoration: 'underline' }}>
+                    <FontAwesomeIcon icon={faQuestionCircle} title="You can Update the direction of the position - Long or Short" />
+                  </span>
+                  </Form.Label>
               <Form.Control
                 type="text"
                 value={updatedData.position}
@@ -193,7 +204,11 @@ const ViewandUpdate = () => {
             </Form.Group>
 
             <Form.Group controlId="formInstrument">
-              <Form.Label>Instrument</Form.Label>
+              <Form.Label>Instrument{' '}
+                  <span style={{ cursor: 'pointer', textDecoration: 'underline' }}>
+                    <FontAwesomeIcon icon={faQuestionCircle} title="You can Update your Financial Instrument." />
+                  </span>
+                  </Form.Label>
               <Form.Control
                 type="text"
                 value={updatedData.instrument}
@@ -203,7 +218,12 @@ const ViewandUpdate = () => {
             </Form.Group>
 
             <Form.Group controlId="formDate">
-              <Form.Label>Date</Form.Label>
+              <Form.Label> Date{' '}
+                  <span style={{ cursor: 'pointer', textDecoration: 'underline' }}>
+                    <FontAwesomeIcon icon={faQuestionCircle} title="You can Update the date when the trade was executed
+                     in the format DD-MM-YYYY." />
+                  </span>
+                  </Form.Label>
               <Form.Control
                 type="text"
                 value={updatedData.date}
@@ -213,7 +233,12 @@ const ViewandUpdate = () => {
             </Form.Group>
 
             <Form.Group controlId="formTime">
-              <Form.Label>Time</Form.Label>
+              <Form.Label> Time{' '}
+                  <span style={{ cursor: 'pointer', textDecoration: 'underline' }}>
+                    <FontAwesomeIcon icon={faQuestionCircle} title="You can Update the time when the trade was executed 
+                    in the format HH:MM." />
+                  </span>
+                  </Form.Label>
               <Form.Control
                 type="text"
                 value={updatedData.time}
@@ -223,7 +248,11 @@ const ViewandUpdate = () => {
             </Form.Group>
 
             <Form.Group controlId="formentryprice">
-              <Form.Label>Entry Price</Form.Label>
+              <Form.Label>Entry Price{' '}
+                  <span style={{ cursor: 'pointer', textDecoration: 'underline' }}>
+                    <FontAwesomeIcon icon={faQuestionCircle} title="You can Update your entry price for this position" />
+                  </span>
+                  </Form.Label>
               <InputGroup>
                 <InputGroup.Text style={{ backgroundColor: '#DDF7E3', border: '1px solid black', borderRight: "1" }}>$</InputGroup.Text>
                 <Form.Control
@@ -236,7 +265,11 @@ const ViewandUpdate = () => {
             </Form.Group>
 
             <Form.Group controlId="formexitprice">
-              <Form.Label>Exit Price</Form.Label>
+              <Form.Label> Exit Price{' '}
+                  <span style={{ cursor: 'pointer', textDecoration: 'underline' }}>
+                    <FontAwesomeIcon icon={faQuestionCircle} title="You can Update your exit price for this position" />
+                  </span>
+                  </Form.Label>
               <InputGroup>
                 <InputGroup.Text style={{ backgroundColor: '#DDF7E3', border: '1px solid black', borderRight: "1" }}>$</InputGroup.Text>
                 <Form.Control
@@ -249,7 +282,12 @@ const ViewandUpdate = () => {
             </Form.Group>
 
             <Form.Group controlId="formQuantity">
-              <Form.Label>Quantity</Form.Label>
+              <Form.Label>Quantity{' '}
+                  <span style={{ cursor: 'pointer', textDecoration: 'underline' }}>
+                    <FontAwesomeIcon icon={faQuestionCircle} title="You can Update the number of stocks or contracts used 
+                    in this position" />
+                  </span>
+                  </Form.Label>
               <Form.Control
                 type="number"
                 value={updatedData.quantity}
@@ -260,7 +298,11 @@ const ViewandUpdate = () => {
             </Form.Group>
 
             <Form.Group controlId="formWinLose">
-              <Form.Label>Win or Lose</Form.Label>
+              <Form.Label>Win or Lose{' '}
+                  <span style={{ cursor: 'pointer', textDecoration: 'underline' }}>
+                    <FontAwesomeIcon icon={faQuestionCircle} title="You can Update the outcome of the position - Win or Lose" />
+                  </span>
+                  </Form.Label>
               <Form.Control
                 type="text"
                 value={updatedData.winorlose}
@@ -270,7 +312,12 @@ const ViewandUpdate = () => {
             </Form.Group>
 
             <Form.Group controlId="formDescription">
-              <Form.Label>Description</Form.Label>
+              <Form.Label>Description{' '}
+                  <span style={{ cursor: 'pointer', textDecoration: 'underline' }}>
+                    <FontAwesomeIcon icon={faQuestionCircle} title="You can Update the information about your Trade, like description, 
+                    thoughts or any other relevant details you'd like to change." />
+                  </span>
+                  </Form.Label>
               <Form.Control
                 as="textarea"
                 rows={3}
@@ -281,7 +328,12 @@ const ViewandUpdate = () => {
             </Form.Group>
 
             <Form.Group controlId="formImage">
-              <Form.Label>Image</Form.Label>
+              <Form.Label>
+                Image{' '}
+                <span style={{ cursor: 'pointer', textDecoration: 'underline' }}>
+                    <FontAwesomeIcon icon={faQuestionCircle} title="You can Update the Image of a trade." />
+                  </span>
+              </Form.Label>
               <Form.Control
                 type="file"
                 onChange={handleImageChange}

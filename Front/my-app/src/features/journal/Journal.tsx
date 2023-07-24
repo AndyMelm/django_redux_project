@@ -206,7 +206,7 @@ const JournalPage = () => {
                   <span style={{ cursor: 'pointer', textDecoration: 'underline' }}>
                     <FontAwesomeIcon icon={faQuestionCircle} title="Please enter the Strategy you used in this Trade" />
                   </span>
-                  </Form.Label>
+                </Form.Label>
                 <Form.Control
                   type="text"
                   value={journalData.strategy}
@@ -272,7 +272,7 @@ const JournalPage = () => {
                   <span style={{ cursor: 'pointer', textDecoration: 'underline' }}>
                     <FontAwesomeIcon icon={faQuestionCircle} title="Please choose direction of the position - Long or Short" />
                   </span>
-                  </Form.Label>
+                </Form.Label>
                 <Form.Control
                   as="select"
                   value={journalData.position}
@@ -293,7 +293,7 @@ const JournalPage = () => {
                   <span style={{ cursor: 'pointer', textDecoration: 'underline' }}>
                     <FontAwesomeIcon icon={faQuestionCircle} title="Please provide your entry price for this position" />
                   </span>
-                  </Form.Label>
+                </Form.Label>
                 <InputGroup>
                   <InputGroup.Text style={{ backgroundColor: '#DDF7E3', border: '1px solid black', borderRight: "1" }}>$</InputGroup.Text>
                   <Form.Control
@@ -312,7 +312,7 @@ const JournalPage = () => {
                   <span style={{ cursor: 'pointer', textDecoration: 'underline' }}>
                     <FontAwesomeIcon icon={faQuestionCircle} title="Please provide your exit price for this position" />
                   </span>
-                  </Form.Label>
+                </Form.Label>
                 <InputGroup>
                   <InputGroup.Text style={{ backgroundColor: '#DDF7E3', border: '1px solid black', borderRight: "1" }}>$</InputGroup.Text>
                   <Form.Control
@@ -331,7 +331,7 @@ const JournalPage = () => {
                   <span style={{ cursor: 'pointer', textDecoration: 'underline' }}>
                     <FontAwesomeIcon icon={faQuestionCircle} title="Please provide number of stocks or contracts used in this position" />
                   </span>
-                  </Form.Label>
+                </Form.Label>
                 <Form.Control
                   type="number"
                   value={journalData.quantity}
@@ -348,7 +348,7 @@ const JournalPage = () => {
                   <span style={{ cursor: 'pointer', textDecoration: 'underline' }}>
                     <FontAwesomeIcon icon={faQuestionCircle} title="Please choose the outcome of the position - Win or Lose" />
                   </span>
-                  </Form.Label>
+                </Form.Label>
                 <Form.Control
                   as="select"
                   value={journalData.winorlose}
@@ -370,7 +370,7 @@ const JournalPage = () => {
                     <FontAwesomeIcon icon={faQuestionCircle} title="Please add more information about your Trade, like description, 
                     thoughts or any other relevant details you'd like to include." />
                   </span>
-                  </Form.Label>
+                </Form.Label>
                 <Form.Control
                   as="textarea"
                   rows={3}
@@ -388,7 +388,7 @@ const JournalPage = () => {
                     <FontAwesomeIcon icon={faQuestionCircle} title="Please consider adding an image of this trade for reference, 
                     although it is not mandatory." />
                   </span>
-                  </Form.Label>
+                </Form.Label>
                 <Form.Control type="file" onChange={handleImageChange} style={{ backgroundColor: '#DDF7E3', border: '1px solid black' }}
                 />
               </Form.Group>
@@ -427,20 +427,14 @@ const JournalPage = () => {
                     <Card.Text><strong>Exit Price:</strong> {journal.exitprice}$</Card.Text>
                     <Card.Text><strong>Quantity:</strong> {journal.quantity}</Card.Text>
                     <Card.Text><strong>Win or Lose:</strong> {journal.winorlose}</Card.Text>
+                    <Card.Text>
+                      <strong>Profit/Loss:</strong>{' '}
+                      {`${(journal.position === 'Long' ?
+                        (journal.winorlose === 'Win' ? 1 : -1) : 
+                        (journal.winorlose === 'Win' ? 1 : -1)) * journal.quantity * Math.abs(journal.exitprice - journal.entryprice)}$`}
 
-                    {journal.position === 'Long' ? (
-                      journal.winorlose === 'Win' ? (
-                        <Card.Text><strong>Profit/Loss:</strong> {journal.quantity * (journal.exitprice - journal.entryprice)}$</Card.Text>
-                      ) : (
-                        <Card.Text><strong>Profit/Loss:</strong> {journal.quantity * (journal.entryprice - journal.exitprice)}$</Card.Text>
-                      )
-                    ) : (
-                      journal.winorlose === 'Win' ? (
-                        <Card.Text><strong>Profit/Loss:</strong> {journal.quantity * Math.abs(journal.exitprice - journal.entryprice)}$</Card.Text>
-                      ) : (
-                        <Card.Text><strong>Profit/Loss:</strong> {journal.quantity * (journal.exitprice - journal.entryprice)}$</Card.Text>
-                      )
-                    )}
+
+                    </Card.Text>
 
                     {journal.image && <Card.Img variant="top" src={`http://127.0.0.1:8000${journal.image}`} alt="Trade" />}
 

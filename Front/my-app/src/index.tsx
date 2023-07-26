@@ -16,6 +16,7 @@ import About from './features/footer/About';
 import Donations from './features/footer/Donations';
 import Tutorial from './features/footer/Tutorial';
 import ContactUs from './features/footer/ContactUs';
+import CryptoUSDConverter from './features/cryptoUSDconverter/CryptoUSDConverter';
 
 
 const container = document.getElementById('root')!;
@@ -33,6 +34,7 @@ root.render(
             <Route path="/journal" element={<Journal />} />
             <Route path="/journaldata" element={<JournalData />} />
             <Route path="/marketdata" element={<Tradingview />} />
+            <Route path="/cryptousdconvert" element={<CryptoUSDConverter />} />
             <Route path="/about" element={<About />} />
             <Route path="/donations" element={<Donations />} />
             <Route path="/tutorial" element={<Tutorial />} />

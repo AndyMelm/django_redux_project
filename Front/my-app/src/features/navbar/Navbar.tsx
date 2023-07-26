@@ -64,6 +64,11 @@ const Navbar = () => {
                     Market Data
                   </Link>
                 </li>
+                <li className="nav-item">
+                  <Link className="nav-link text-white" to="/cryptousdconvert">
+                    Crypto to USD Calculator
+                  </Link>
+                </li>
               </>
             )}
           </ul>

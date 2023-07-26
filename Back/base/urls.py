@@ -19,5 +19,6 @@ urlpatterns = [
     path('journal/', views.JournalView.as_view()),
     path('journal/<pk>/', views.JournalView.as_view()),
     path('get_user_id/', views.get_user_id),
+    path('get_crypto_price/', views.get_crypto_price, name='get_crypto_price'),
     
 ]

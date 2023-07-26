@@ -15,7 +15,7 @@ const HomePage = () => {
         <div className="d-flex flex-column align-items-center border-custom p-3">
           <img
             className="img-fluid"
-            src="http://127.0.0.1:8000/images/journal_images/01.png"
+            src="http://127.0.0.1:8000/images/journal_images/first.png"
             alt="Charts"
           />
 

@@ -9,6 +9,8 @@ from .serializer import JournalSerializer
 from django.contrib.auth.models import User
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
+import requests
+from django.http import JsonResponse
 
 
 @api_view(["GET"])
@@ -104,3 +106,33 @@ class JournalView(APIView):
 def get_user_id(request):
     user_id = request.user.id
     return Response({"user_id": user_id})
+
+
+
+@api_view(["GET"])
+def get_crypto_price(request):
+    if request.method == 'GET':
+        crypto_symbol = request.GET.get('crypto_symbol', '').strip().upper()
+        if not crypto_symbol:
+            return JsonResponse({'error': 'Please provide a valid cryptocurrency symbol.'}, status=400)
+
+        # Replace 'YOUR_API_KEY' with your actual CoinMarketCap API key
+        api_key = 'b099cef2-f070-4c6d-99f8-9617db15c45c'
+        url = f'https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol={crypto_symbol}&convert=USD'
+
+        headers = {
+            'X-CMC_PRO_API_KEY': api_key,
+        }
+
+        try:
+            response = requests.get(url, headers=headers)
+            data = response.json()
+            if 'data' in data and crypto_symbol in data['data']:
+                crypto_price = data['data'][crypto_symbol]['quote']['USD']['price']
+                return JsonResponse({'price': crypto_price})
+            else:
+                return JsonResponse({'error': 'Cryptocurrency not found.'}, status=404)
+        except requests.RequestException:
+            return JsonResponse({'error': 'Failed to fetch cryptocurrency data. Please try again later.'}, status=500)
+
+    return JsonResponse({'error': 'Invalid request method.'}, status=400)

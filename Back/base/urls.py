@@ -9,7 +9,6 @@ from django.contrib.auth.views import (
 from . import views
 
 urlpatterns = [
-    path('', views.index),
     path("login/", TokenObtainPairView.as_view()),
     path("reset_password/", PasswordResetView.as_view(template_name="password_reset.html"), name="reset_password"),
     path("reset_password_sent/", PasswordResetDoneView.as_view(template_name="password_reset_sent.html"),name="password_reset_done"),

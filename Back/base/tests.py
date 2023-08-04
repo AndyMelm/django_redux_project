@@ -7,6 +7,9 @@ from .models import Journal
 
 class RegisterViewTestCase(TestCase):
     def test_successful_registration(self):
+        """
+        Test successful user registration.
+        """
         client = APIClient()
         data = {
             "username": "testuser",
@@ -18,6 +21,9 @@ class RegisterViewTestCase(TestCase):
         self.assertEqual(User.objects.count(), 1)
 
     def test_registration_with_existing_email(self):
+        """
+        Test registration with an existing email, which should fail.
+        """
         client = APIClient()
         data = {
             "username": "existinguser",
@@ -31,6 +37,9 @@ class RegisterViewTestCase(TestCase):
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
     def test_registration_with_invalid_email(self):
+        """
+        Test registration with an invalid email format, which should fail.
+        """
         client = APIClient()
         data = {
             "username": "invaliduser",
@@ -51,6 +60,9 @@ class JournalModelTestCase(TestCase):
         )
 
     def test_journal_model_str(self):
+        """
+        Test the __str__ method of the Journal model.
+        """
         journal = Journal.objects.get(strategy="Test Strategy")
         self.assertEqual(str(journal), "Test Strategy")
 
@@ -64,15 +76,24 @@ class JournalViewTestCase(TestCase):
         self.client.force_authenticate(user=self.user)
 
     def test_journal_list_authenticated(self):
+        """
+        Test authenticated access to the journal list view.
+        """
         response = self.client.get("/journal/")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_journal_list_unauthenticated(self):
+        """
+        Test unauthenticated access to the journal list view.
+        """
         self.client.logout()
         response = self.client.get("/journal/")
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_journal_detail_authenticated(self):
+        """
+        Test authenticated access to a specific journal entry.
+        """
         journal = Journal.objects.create(
             user=self.user, strategy="Test Strategy", instrument="Test Instrument"
         )
@@ -80,6 +101,9 @@ class JournalViewTestCase(TestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_journal_detail_unauthenticated(self):
+        """
+        Test unauthenticated access to a specific journal entry.
+        """
         self.client.logout()
         journal = Journal.objects.create(
             user=self.user, strategy="Test Strategy", instrument="Test Instrument"

@@ -14,14 +14,23 @@ from django.http import JsonResponse
 from decouple import config
 
 
-
-@api_view(["GET"])
-def index(req):
-    return Response("Welcome to Home Page")
-
-
 @api_view(["POST"])
 def register(request):
+    """
+    Register a new user.
+
+    This view allows users to register with their email, username, and password.
+
+    Parameters:
+        request (Request): The HTTP request object.
+
+    Returns:
+        Response: The response object with the registration status and a success message.
+
+    Raises:
+        ValidationError: If the email address is invalid.
+        Exception: If an error occurs during the registration process.
+    """
     try:
         email = request.data["email"]
         username = request.data["username"]
@@ -106,38 +115,66 @@ class JournalView(APIView):
 @api_view(["GET"])
 @permission_classes([IsAuthenticated])
 def get_user_id(request):
+    """
+    Get the user ID of the currently authenticated user.
+
+    This view returns the user ID of the user making the request.
+
+    Parameters:
+        request (Request): The HTTP request object.
+
+    Returns:
+        Response: The response object with the user ID.
+    """
     user_id = request.user.id
     return Response({"user_id": user_id})
-
 
 
 @api_view(["GET"])
 @permission_classes([IsAuthenticated])
 def get_crypto_price(request):
-    if request.method == 'GET':
-        crypto_symbol = request.GET.get('crypto_symbol', '').strip().upper()
-        if not crypto_symbol:
-            return JsonResponse({'error': 'Please provide a valid cryptocurrency symbol.'}, status=400)
+    """
+    Get the price of a cryptocurrency.
 
-        api_key = config('api_key_converter')
-        url = f'https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol={crypto_symbol}&convert=USD'
+    This view allows users to get the price of a specific cryptocurrency by providing its symbol.
+
+    Parameters:
+        request (Request): The HTTP request object.
+
+    Returns:
+        JsonResponse: The JSON response with the price of the cryptocurrency.
+
+    Raises:
+        requests.RequestException: If there's an error fetching cryptocurrency data.
+    """
+    if request.method == "GET":
+        crypto_symbol = request.GET.get("crypto_symbol", "").strip().upper()
+        if not crypto_symbol:
+            return JsonResponse(
+                {"error": "Please provide a valid cryptocurrency symbol."}, status=400
+            )
+
+        api_key = config("api_key_converter")
+        url = f"https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol={crypto_symbol}&convert=USD"
 
         headers = {
-            'X-CMC_PRO_API_KEY': api_key,
+            "X-CMC_PRO_API_KEY": api_key,
         }
 
         try:
             response = requests.get(url, headers=headers)
             data = response.json()
-            if 'data' in data and crypto_symbol in data['data']:
-                crypto_price = data['data'][crypto_symbol]['quote']['USD']['price']
-                return JsonResponse({'price': crypto_price})
+            if "data" in data and crypto_symbol in data["data"]:
+                crypto_price = data["data"][crypto_symbol]["quote"]["USD"]["price"]
+                return JsonResponse({"price": crypto_price})
             else:
-                return JsonResponse({'error': 'Cryptocurrency not found.'}, status=404)
+                return JsonResponse({"error": "Cryptocurrency not found."}, status=404)
         except requests.RequestException:
-            return JsonResponse({'error': 'Failed to fetch cryptocurrency data. Please try again later.'}, status=500)
+            return JsonResponse(
+                {
+                    "error": "Failed to fetch cryptocurrency data. Please try again later."
+                },
+                status=500,
+            )
 
-    return JsonResponse({'error': 'Invalid request method.'}, status=400)
-
-
-
+    return JsonResponse({"error": "Invalid request method."}, status=400)

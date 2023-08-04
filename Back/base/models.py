@@ -2,6 +2,26 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Journal(models.Model):
+    """
+    Represents a trading journal entry.
+
+    Fields:
+        user (ForeignKey): The user who created the journal entry.
+        strategy (CharField): The trading strategy used.
+        instrument (CharField): The trading instrument used.
+        date (DateField): The date of the journal entry.
+        time (TimeField): The time of the journal entry.
+        entryprice (DecimalField): The entry price of the trade.
+        exitprice (DecimalField): The exit price of the trade.
+        quantity (DecimalField): The quantity of the trade.
+        position (CharField): The trading position (e.g., Long, Short).
+        winorlose (CharField): Whether the trade was a win or a loss.
+        description (TextField): Additional notes or description for the trade.
+        image (FileField): An optional image related to the trade.
+
+    Methods:
+        __str__: Returns the strategy as the string representation of the journal entry.
+    """
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     strategy = models.CharField(max_length=50, null=True, blank=True)

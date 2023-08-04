@@ -11,6 +11,7 @@ from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
 import requests
 from django.http import JsonResponse
+from decouple import config
 
 
 
@@ -118,7 +119,7 @@ def get_crypto_price(request):
         if not crypto_symbol:
             return JsonResponse({'error': 'Please provide a valid cryptocurrency symbol.'}, status=400)
 
-        api_key = 'b099cef2-f070-4c6d-99f8-9617db15c45c'
+        api_key = config('api_key_converter')
         url = f'https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol={crypto_symbol}&convert=USD'
 
         headers = {

@@ -3,21 +3,44 @@ import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../login/loginSlice';
 import { useAppDispatch } from '../../app/hooks';
 
+/**
+ * Component for displaying the navigation bar with links and logout functionality.
+ *
+ * The navigation bar changes its content based on whether the user is logged in or not.
+ * When the user is logged in, it shows links to different sections like Journal, Journal Data,
+ * Market Charts, and Crypto USD Convertor. When the user is not logged in, it shows links to
+ * Login and Register pages.
+ *
+ * @component
+ */
 const Navbar = () => {
   const dispatch = useAppDispatch();
   const [isLogoutMessageVisible, setIsLogoutMessageVisible] = useState(false);
   const navigate = useNavigate();
 
+  /**
+   * Handles the logout action.
+   * Dispatches the logout action to clear the user's token from the Redux store and sets
+   * the `isLogoutMessageVisible` state to true to display a success message.
+   */
   const handleLogout = () => {
     dispatch(logout());
     setIsLogoutMessageVisible(true);
   };
 
+  /**
+   * Closes the logout success message and navigates to the home page.
+   */
   const closeLogoutMessage = () => {
     setIsLogoutMessageVisible(false);
     navigate('/');
   };
 
+  /**
+   * Retrieves the user token from the session storage.
+   *
+   * @returns {string | null} The user token if it exists in the session storage, null otherwise.
+   */
   const getTokenFromSessionStorage = () => {
     const storedToken = sessionStorage.getItem('token');
     return storedToken;

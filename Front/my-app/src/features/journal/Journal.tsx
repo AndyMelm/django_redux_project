@@ -7,16 +7,22 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 import ViewandUpdate from './VIewandUpdate';
 
-
+/**
+ * Component for displaying the Journal page with trade entries and an add form.
+ *
+ * @component
+ */
 const JournalPage = () => {
   const dispatch = useAppDispatch();
   const journals = useAppSelector(selectJournals);
   const userid = useAppSelector(selectUserId);
 
+  // Function to scroll to the top of the page
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  // State to store form data for adding a new trade entry
   const [journalData, setJournalData] = useState({
     strategy: '',
     description: '',
@@ -33,7 +39,7 @@ const JournalPage = () => {
     showAddForm: false,
   });
 
-
+  // Fetch all journal entries for the current user on component mount
   useEffect(() => {
     if (userid !== null) {
       dispatch(getAllJournals(userid));
@@ -42,8 +48,9 @@ const JournalPage = () => {
 
   }, [dispatch, userid]);
 
-
+  // Function to handle adding a new trade entry
   const handleAdd = () => {
+    // Validate form fields
     if (
       !journalData.strategy ||
       !journalData.description ||
@@ -57,7 +64,7 @@ const JournalPage = () => {
       alert('Please fill in all the required fields.');
       return;
     }
-
+    // Validate date and time format
     if (
       !/^\d{2}-\d{2}-\d{4}$/.test(journalData.date) ||
       !/^\d{2}:\d{2}$/.test(journalData.time)
@@ -66,10 +73,11 @@ const JournalPage = () => {
       return;
     }
 
+    // Format date and time
     const dateParts = journalData.date.split('-');
     const formattedDate = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`;
     const formattedTime = journalData.time;
-
+    // Create form data and append data
     const formData = new FormData();
     formData.append('strategy', journalData.strategy);
     formData.append('description', journalData.description);
@@ -86,9 +94,10 @@ const JournalPage = () => {
     formData.append('quantity', String(journalData.quantity));
     formData.append('winorlose', journalData.winorlose);
 
-
+    // Dispatch action to create the journal entry
     dispatch(createJournalEntry(formData));
 
+    // Reset form data
     setJournalData({
       strategy: '',
       description: '',
@@ -106,6 +115,7 @@ const JournalPage = () => {
     });
   };
 
+  // Function to handle viewing a trade entry
   const handleView = (journal: {
     id: any;
     strategy: any;
@@ -121,6 +131,7 @@ const JournalPage = () => {
     quantity: any;
     winorlose: any;
   }) => {
+    // Set the state with data of the selected journal entry
     setJournalData({
       ...journalData,
       strategy: journal.strategy,
@@ -138,20 +149,25 @@ const JournalPage = () => {
       showAddForm: false,
     });
 
+    // Scroll to the top of the page
     scrollToTop();
+    // Dispatch action to update the view journal entry
     dispatch(updateViewJournal(journal));
-
   };
 
+  // Function to handle deleting a trade entry
   const handleDelete = (id: number) => {
+    // Dispatch action to delete the journal entry with the given id
     dispatch(deleteJournalEntry(id));
   };
 
+  // Function to handle image change for the add form
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0] || null;
     setJournalData({ ...journalData, image: file });
   };
 
+  // Function to toggle the visibility of the add form
   const toggleAddForm = () => {
     setJournalData({
       ...journalData, showAddForm: true, strategy: '', description: '',
@@ -161,8 +177,7 @@ const JournalPage = () => {
   };
 
 
-
-
+  // Function to handle closing the add form
   const handleCloseForm = () => {
     setJournalData({
       strategy: '',
@@ -183,12 +198,14 @@ const JournalPage = () => {
 
   return (
     <div>
+      {/* Include the ViewandUpdate component */}
       <ViewandUpdate></ViewandUpdate>
       <h1 style={{ marginTop: '50px' }}>Journal</h1>
       <div>
         <h3>Add Your New Trade</h3>
         {!journalData.showAddForm ? (
           <div className="d-flex justify-content-center">
+            {/* Show the add form */}
             <Button variant="success" onClick={toggleAddForm}>
               Add Trade
             </Button>
@@ -197,7 +214,7 @@ const JournalPage = () => {
         ) : (
           <div className="d-flex justify-content-center align-items-center vh-100 bg-green" style={{ marginTop: '150px' }}>
 
-
+            {/* Form fields and controls */}
             <Form className="border border-black rounded p-4" style={{ width: '800px' }}>
               <h4>Please Fill All Fields Except Image to Add a Trade</h4>
               <Form.Group controlId="strategy">
@@ -263,8 +280,6 @@ const JournalPage = () => {
                   style={{ backgroundColor: '#DDF7E3', border: '1px solid black' }}
                 />
               </Form.Group>
-
-
 
               <Form.Group controlId="position">
                 <Form.Label style={{ fontWeight: 'bold' }}>
@@ -409,7 +424,7 @@ const JournalPage = () => {
       </div>
       <hr style={{ marginTop: "120px" }} />
 
-
+      {/* Display existing journal entries */}
       {journals.length > 0 ? (
         <Container>
           <Row>
@@ -430,7 +445,7 @@ const JournalPage = () => {
                     <Card.Text>
                       <strong>Profit/Loss:</strong>{' '}
                       {`${(journal.position === 'Long' ?
-                        (journal.winorlose === 'Win' ? 1 : -1) : 
+                        (journal.winorlose === 'Win' ? 1 : -1) :
                         (journal.winorlose === 'Win' ? 1 : -1)) * journal.quantity * Math.abs(journal.exitprice - journal.entryprice)}$`}
 
 

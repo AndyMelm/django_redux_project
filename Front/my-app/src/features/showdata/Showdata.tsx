@@ -4,6 +4,11 @@ import { getAllJournals, selectJournalsdata } from './showdataSlice';
 import { selectUserId, getUserIdAsync } from '../login/loginSlice';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, LineChart, Line, PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 
+/**
+ * Component to display the journal data.
+ * @component
+ * @returns {JSX.Element} The JSX element representing the JournalData component.
+ */
 const JournalData: React.FC = () => {
   const dispatch = useAppDispatch();
   const journals = useAppSelector(selectJournalsdata);
@@ -118,6 +123,7 @@ const JournalData: React.FC = () => {
 
       <div className="row" >
         <div className="col-md-6" >
+          {/* Profit Summary Card */}
           <div className="card mb-4" style={{ backgroundColor: '#DDF7E3', border: '1px solid black' }}>
             <div className="card-body">
               <h2 className="card-title">Profit Summary</h2>
@@ -154,6 +160,7 @@ const JournalData: React.FC = () => {
         <div className="col-md-6">
           <div className="card mb-4" style={{ backgroundColor: '#DDF7E3', border: '1px solid black' }}>
             <div className="card-body">
+              {/* Bar Chart */}
               <h2 className="card-title">Profit or Loss by Strategy</h2>
               <ResponsiveContainer width="100%" height={300}>
                 <BarChart data={barChartData}>
@@ -181,6 +188,7 @@ const JournalData: React.FC = () => {
         <div className="col-md-6">
           <div className="card mb-4" style={{ backgroundColor: '#DDF7E3', border: '1px solid black' }}>
             <div className="card-body">
+              {/* Line Chart */}
               <h2 className="card-title">Profit or Loss over Trades</h2>
               <ResponsiveContainer width="100%" height={300}>
                 <LineChart data={lineChartData}>
@@ -206,6 +214,7 @@ const JournalData: React.FC = () => {
         <div className="col-md-6">
           <div className="card mb-4" style={{ backgroundColor: '#DDF7E3', border: '1px solid black' }}>
             <div className="card-body">
+              {/* Pie Chart */}
               <h2 className="card-title">Winning & Losing Trades</h2>
               <ResponsiveContainer width="100%" height={300}>
                 <PieChart>

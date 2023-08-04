@@ -1,5 +1,13 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
+/**
+ * Component for displaying a TradingView chart.
+ *
+ * The component dynamically loads the TradingView script and creates a widget
+ * to display a stock chart with specific settings.
+ *
+ * @component
+ */
 const Tradingview = () => {
   const onLoadScriptRef = useRef<() => void>();
 
@@ -27,6 +35,9 @@ const Tradingview = () => {
     };
   }, []);
 
+  /**
+   * Function to create the TradingView widget with specified settings.
+   */
   function createWidget() {
     if (document.getElementById('tradingview_d82f7') && (window as any).TradingView) {
       new (window as any).TradingView.widget({

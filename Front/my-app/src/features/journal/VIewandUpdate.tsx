@@ -6,14 +6,22 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 import { selectUserId, } from '../login/loginSlice';
 
-
-
+/**
+ * Component for displaying the selected trade entry and updating its information.
+ *
+ * This component fetches the selected trade entry from the Redux store using the `useAppSelector` hook.
+ * It allows the user to update the trade information and dispatches the `updateJournalEntry` action
+ * to update the trade entry in the backend server.
+ *
+ * @component
+ */
 const ViewandUpdate = () => {
   const dispatch = useAppDispatch();
   const viewedData = useAppSelector(selectViewedData);
   const userid = useAppSelector(selectUserId);
   const [showForm, setShowForm] = useState(false);
   const [updatedData, setUpdatedData] = useState({
+    // State for form inputs
     strategy: '',
     description: '',
     entryprice: '',
@@ -29,15 +37,19 @@ const ViewandUpdate = () => {
     showAddForm: false,
   });
 
+  // Handle image change when user selects an image
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
       setUpdatedData({ ...updatedData, image: file });
     }
   };
+
+  // Handle view in view and update
   const handleViewinviewandupdate = (viewedData: any) => {
   };
 
+  // Handle the update button click
   const handleUpdate = () => {
     const datePattern = /^\d{2}-\d{2}-\d{4}$/; // Regex pattern for DD-MM-YYYY format
     const timePattern = /^\d{2}:\d{2}$/; // Regex pattern for HH:MM format
@@ -79,7 +91,7 @@ const ViewandUpdate = () => {
     dispatch(updateJournalEntry(updatedEntry));
   };
 
-
+  // Effect to set the form data when viewedData changes
   useEffect(() => {
     handleViewinviewandupdate(viewedData);
     if (viewedData) {
@@ -109,6 +121,7 @@ const ViewandUpdate = () => {
   return (
     <div style={{ backgroundColor: '#DDF7E3' }}>
       <div className="selected-trade" >
+         {/* Show the selected Trade*/}
         <div className="container border-custom">
           <h3>
             <strong>Your Selected Trade</strong>
@@ -144,6 +157,7 @@ const ViewandUpdate = () => {
           <p>
             <strong>Win or Lose:</strong> {viewedData.winorlose}
           </p>
+           {/* Calculation of the profit or loss */}
           {viewedData.position === 'Long' ? (
             viewedData.winorlose === 'Win' ? (
               <p>
@@ -168,9 +182,10 @@ const ViewandUpdate = () => {
         </div>
         {viewedData.image && <img className="responsive-image" src={`http://127.0.0.1:8000${viewedData.image}`} alt="Trade" />}
       </div>
-
+      {/* Show the update form */}
       {showForm ? (
         <div className="d-flex justify-content-center align-items-center vh-100 " style={{ backgroundColor: '#DDF7E3', marginTop: '100px' }}>
+          {/* Form fields and controls */}
           <Form className="border border-black rounded p-4" style={{ width: '800px', backgroundColor: '#C7E8CA' }}>
             <Form.Group controlId="formStrategy">
               <Form.Label style={{ fontSize: '16px', fontWeight: 'bold' }}>Update Form</Form.Label> <br />
@@ -196,8 +211,8 @@ const ViewandUpdate = () => {
                 </span>
               </Form.Label>
               <Form.Control
-                as="select" 
-                value={updatedData.position} 
+                as="select"
+                value={updatedData.position}
                 onChange={(e) => setUpdatedData({ ...updatedData, position: e.target.value })}
                 style={{ backgroundColor: '#DDF7E3', border: '1px solid black' }}
               >
@@ -308,8 +323,8 @@ const ViewandUpdate = () => {
                 </span>
               </Form.Label>
               <Form.Control
-                as="select" 
-                value={updatedData.winorlose} 
+                as="select"
+                value={updatedData.winorlose}
                 onChange={(e) => setUpdatedData({ ...updatedData, winorlose: e.target.value })}
                 style={{ backgroundColor: '#DDF7E3', border: '1px solid black' }}
               >

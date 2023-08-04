@@ -3,6 +3,11 @@ import { TextField, Button } from '@mui/material';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { registerAsync, selectMessages, selectRegSuccess } from './RegisterSlice';
 
+/**
+ * Represents the Register component.
+ * @function
+ * @returns {JSX.Element} JSX component for registration form.
+ */
 const Register = () => {
   const dispatch = useAppDispatch();
   const [username, setUsername] = useState('');
@@ -12,6 +17,10 @@ const Register = () => {
   const regSuccess = useAppSelector(selectRegSuccess);
   const [isPopupVisible, setIsPopupVisible] = useState(false);
 
+  /**
+   * Handles the registration process.
+   * @function
+   */
   const handleRegister = () => {
     // Perform form validation
     if (!username || !password || !email) {
@@ -59,12 +68,15 @@ const Register = () => {
       return;
     }
 
-
+    // Dispatch the registration async thunk
     dispatch(registerAsync({ username, password, email })).then(() => {
       setIsPopupVisible(true);
     });
   };
 
+  /**
+   * Closes the success/error popup.
+   */
   const closePopup = () => {
     setIsPopupVisible(false);
     if (regSuccess) {

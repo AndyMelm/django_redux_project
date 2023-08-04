@@ -3,6 +3,12 @@ import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+/**
+ * Component for displaying contact information and links to contact the website owners.
+ * Provides options to contact via email, GitHub, and LinkedIn.
+ *
+ * @component
+ */
 const ContactUs = () => {
   const emailAddress = 'andrey.melman93@gmail.com';
 

@@ -1,6 +1,13 @@
-import React, { useState, ChangeEvent, FormEvent } from 'react';
+import { useState, ChangeEvent, FormEvent } from 'react';
 import { Container, TextField, Button } from '@mui/material';
 import { getCryptoPrice } from './CryptoUSDConverterAPI';
+
+/**
+ * Component for converting cryptocurrency to USD.
+ * Allows the user to enter a cryptocurrency symbol and quantity to get its price in USD.
+ *
+ * @component
+ */
 
 const CryptoUSDConverter = () => {
   const [cryptoSymbol, setCryptoSymbol] = useState('');
@@ -9,15 +16,30 @@ const CryptoUSDConverter = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
+  /**
+   * Handles changes in the cryptocurrency symbol input field.
+   *
+   * @param {ChangeEvent<HTMLInputElement>} event - The input change event.
+   */
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     setCryptoSymbol(event.target.value.toUpperCase());
     setCryptoPrice(''); // Clear the cryptoPrice state when the coin symbol changes
   };
 
+  /**
+   * Handles changes in the quantity input field.
+   *
+   * @param {ChangeEvent<HTMLInputElement>} event - The input change event.
+   */
   const handleQuantityChange = (event: ChangeEvent<HTMLInputElement>) => {
     setQuantity(event.target.value);
   };
 
+  /**
+   * Handles form submission to get the cryptocurrency price in USD.
+   *
+   * @param {FormEvent<HTMLFormElement>} event - The form submit event.
+   */
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 

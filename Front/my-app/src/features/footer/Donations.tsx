@@ -1,7 +1,21 @@
 
 import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
 
+/**
+ * Component for accepting donations through PayPal.
+ * Allows users to donate $5 to support the team.
+ * Displays a PayPal button for donation processing.
+ *
+ * @component
+ */
 const Donations = () => {
+   /**
+   * Creates a PayPal order with the donation amount.
+   *
+   * @param {Object} data - The data object provided by PayPal.
+   * @param {Object} actions - The actions object provided by PayPal.
+   * @returns {Promise} - A Promise containing the PayPal order details.
+   */
   const createOrder = (data: any, actions: any) => {
     return actions.order.create({
       purchase_units: [
@@ -14,6 +28,14 @@ const Donations = () => {
     });
   };
 
+  /**
+   * Handles the approval of the PayPal payment.
+   * Displays an alert indicating successful donation.
+   *
+   * @param {Object} data - The data object provided by PayPal.
+   * @param {Object} actions - The actions object provided by PayPal.
+   * @returns {Promise} - A Promise indicating the completion of the capture.
+   */
   const handleApprove = (data: any, actions: any) => {
     return actions.order.capture().then(() => {
       alert('Thank you for your donation! Your payment was successful.');

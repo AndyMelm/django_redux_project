@@ -2,6 +2,12 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 
+/**
+ * Component for displaying information about the trading journal application.
+ * Provides an overview of the features and benefits of using the app.
+ *
+ * @component
+ */
 const About = () => {
   return (
     <div>

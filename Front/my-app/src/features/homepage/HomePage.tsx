@@ -1,5 +1,9 @@
 
-
+/**
+ * Component for displaying the homepage content with image sections and descriptions.
+ *
+ * @component
+ */
 const HomePage = () => {
   return (
     <div className="flex-grow-1 d-flex flex-column justify-content-center align-items-center">

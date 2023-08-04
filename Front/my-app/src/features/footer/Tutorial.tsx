@@ -2,6 +2,11 @@
 import { faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+/**
+ * Component for displaying the tutorial section with a video tutorial link.
+ *
+ * @component
+ */
 const Tutorial = () => {
   const iconStyle = {
     fontSize: '30px',

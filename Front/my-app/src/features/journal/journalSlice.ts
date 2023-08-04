@@ -2,30 +2,33 @@ import { createAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
 import { getAll, createEntry, updateEntry, deleteEntry } from './journalAPI';
 
+// Interface for the JournalState
 export interface JournalState {
   logged: boolean;
   journals: any[];
   viewedData: any | null;
 }
 
+// Initial state for the JournalState
 const initialState: JournalState = {
   logged: false,
   journals: [],
   viewedData: null,
 };
 
+// Create an async thunk to get all journals for a user
 export const getAllJournals = createAsyncThunk('journal/getAll', async (userid: number) => {
   const journals = await getAll(userid);
   return journals;
 });
 
-
+// Create an async thunk to create a new journal entry
 export const createJournalEntry = createAsyncThunk('journal/createEntry', async (formData: any) => {
   const newEntry = await createEntry(formData);
   return newEntry;
 });
 
-
+// Create an async thunk to update an existing journal entry
 export const updateJournalEntry = createAsyncThunk(
   'journal/updateEntry',
   async (updatedFields: any) => {
@@ -35,17 +38,16 @@ export const updateJournalEntry = createAsyncThunk(
   }
 );
 
-
-
-
+// Create an async thunk to delete a journal entry
 export const deleteJournalEntry = createAsyncThunk('journal/deleteEntry', async (entryId: number) => {
   await deleteEntry(entryId);
   return entryId;
 });
 
+// Create a plain action to update the viewed journal entry data
 export const updateViewJournal = createAction<any>('journal/updateViewJournal');
 
-
+// Create the journalSlice using createSlice from Redux Toolkit
 export const journalSlice = createSlice({
   name: 'journal',
   initialState,
@@ -61,6 +63,7 @@ export const journalSlice = createSlice({
       state.viewedData = null;
     },
   },
+  // Define extra reducers to handle the async thunks' fulfilled actions
   extraReducers: (builder) => {
     builder
       .addCase(updateViewJournal, (state, action) => {
@@ -85,7 +88,10 @@ export const journalSlice = createSlice({
 
 });
 
+// Export actions and selectors from the slice
 export const { logout, closeViewedData } = journalSlice.actions;
 export const selectJournals = (state: RootState) => state.journal.journals;
 export const selectViewedData = (state: RootState) => state.journal.viewedData;
+
+// Export the reducer
 export default journalSlice.reducer;

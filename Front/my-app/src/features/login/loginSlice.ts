@@ -2,7 +2,9 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
 import { login, getUserId } from './loginAPI';
 
-
+/**
+ * Represents the state of the login slice.
+ */
 export interface loginState {
   logged: boolean;
   token: string;
@@ -10,6 +12,9 @@ export interface loginState {
   error: string;
 }
 
+/**
+ * Initial state of the login slice.
+ */
 const initialState: loginState = {
   logged: false,
   token: '',
@@ -17,6 +22,12 @@ const initialState: loginState = {
   error: '',
 };
 
+/**
+ * An asynchronous thunk action to perform the login operation.
+ * @function
+ * @param {any} user1 - The login credentials of the user.
+ * @returns {Promise<any>} The response data from the login API.
+ */
 export const loginAsync = createAsyncThunk(
   'login/login',
   async (user1: any) => {
@@ -25,6 +36,12 @@ export const loginAsync = createAsyncThunk(
   }
 );
 
+/**
+ * An asynchronous thunk action to retrieve the user ID using the provided token.
+ * @function
+ * @param {string} token - The authentication token of the logged-in user.
+ * @returns {Promise<number | null>} The user ID, if available.
+ */
 export const getUserIdAsync = createAsyncThunk(
   'login/getUserId',
   async (token: string) => {
@@ -33,15 +50,25 @@ export const getUserIdAsync = createAsyncThunk(
   }
 );
 
+/**
+ * Function to navigate to the home page.
+ */
 export const navigateToHome = () => {
   window.location.href = 'http://localhost:3000/';
 };
 
-
+/**
+ * The login slice with the associated reducers and extra reducers.
+ */
 export const loginSlice = createSlice({
   name: 'login',
   initialState,
   reducers: {
+    /**
+     * Reducer function to handle logout action.
+     * @function
+     * @param {loginState} state - The current login state.
+     */
     logout: (state) => {
       state.logged = false;
       state.token = '';
@@ -75,7 +102,23 @@ export const loginSlice = createSlice({
 });
 
 export const { logout } = loginSlice.actions;
+
+/**
+ * Selector function to get the logged-in status from the login state.
+ */
 export const selectLogged = (state: RootState) => state.login.logged;
+
+/**
+ * Selector function to get the user ID from the login state.
+ */
 export const selectUserId = (state: RootState) => state.login.userId;
+
+/**
+ * Selector function to get the authentication token from the login state.
+ */
 export const selectToken = (state: RootState) => state.login.token;
+
+/**
+ * Default reducer for the login slice.
+ */
 export default loginSlice.reducer;

@@ -1,6 +1,11 @@
 
 import { Link } from 'react-router-dom'
 
+/**
+ * Component for displaying the footer with navigation links.
+ *
+ * @component
+ */
 const Footer = () => {
   return (
     <div>

@@ -5,11 +5,17 @@ import { getCryptoPrice } from './CryptoUSDConverterAPI';
 const CryptoUSDConverter = () => {
   const [cryptoSymbol, setCryptoSymbol] = useState('');
   const [cryptoPrice, setCryptoPrice] = useState('');
+  const [quantity, setQuantity] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     setCryptoSymbol(event.target.value.toUpperCase());
+    setCryptoPrice(''); // Clear the cryptoPrice state when the coin symbol changes
+  };
+
+  const handleQuantityChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setQuantity(event.target.value);
   };
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -28,8 +34,14 @@ const CryptoUSDConverter = () => {
     }
   };
 
+  // Calculate the total value of the coins
+  const totalPrice = parseFloat(quantity) * parseFloat(cryptoPrice);
+
   return (
     <Container maxWidth="sm" style={{ marginTop: '50px' }}>
+      <p style={{ fontWeight: 'bold', marginBottom: '10px' }}>
+        You can enter a coin symbol here to convert it to USD:
+      </p> <br />
       <form onSubmit={handleSubmit}>
         <TextField
           label="Enter Cryptocurrency Symbol"
@@ -38,6 +50,16 @@ const CryptoUSDConverter = () => {
           onChange={handleInputChange}
           fullWidth
           size="small"
+        />
+        <TextField
+          label="Enter Quantity"
+          type="number"
+          variant="outlined"
+          value={quantity}
+          onChange={handleQuantityChange}
+          fullWidth
+          size="small"
+          style={{ marginTop: '10px' }}
         />
         <Button
           type="submit"
@@ -51,9 +73,16 @@ const CryptoUSDConverter = () => {
       {loading && <p>Loading...</p>}
       {error && <p style={{ color: 'red', marginTop: '10px' }}>{error}</p>}
       {cryptoPrice && (
-        <p style={{ marginTop: '20px' }}>
-          <strong>Price in USD: ${cryptoPrice}</strong>
-        </p>
+        <>
+          <p style={{ marginTop: '20px' }}>
+            <strong>Price in USD: ${cryptoPrice}</strong>
+          </p>
+          {quantity && !isNaN(totalPrice) && (
+            <p style={{ marginTop: '10px' }}>
+              <strong>Total Value (USD) for {quantity} {cryptoSymbol}: ${totalPrice.toFixed(2)}</strong>
+            </p>
+          )}
+        </>
       )}
     </Container>
   );

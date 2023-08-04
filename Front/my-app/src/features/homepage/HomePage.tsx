@@ -52,8 +52,28 @@ const HomePage = () => {
             src="http://127.0.0.1:8000/images/journal_images/third.png"
             alt="Charts"
           />
-
         </div>
+
+        {/* Container for the fourth image + text section */}
+        <div className="d-flex flex-column align-items-center mx-5 border-custom p-3">
+          <div className="text-center">
+            <p style={{ fontWeight: 'bold', whiteSpace: 'pre-wrap' }}>
+            With the Crypto USD Converter, you can simply enter the symbol of any cryptocurrency you wish to know the price for, 
+            and it will fetch the real-time data for you.
+            Please note that cryptocurrency prices are highly volatile and can change rapidly. 
+            The values provided by the CryptoUSDConverter are based on real-time data, 
+            but we recommend cross-referencing with other reliable sources for critical financial decisions.
+            </p>
+          </div>
+          <img
+            className="img-fluid"
+            style={{ maxWidth: '100%', margin: '10px 0' }}
+            src="http://127.0.0.1:8000/images/journal_images/converter.png"
+            alt="Charts"
+          />
+        </div>
+
+
       </div>
 
       <p className="border-custom" style={{ padding: "20px", fontWeight: 'bold' }}>

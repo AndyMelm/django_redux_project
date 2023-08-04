@@ -13,6 +13,7 @@ import requests
 from django.http import JsonResponse
 
 
+
 @api_view(["GET"])
 def index(req):
     return Response("Welcome to Home Page")
@@ -110,13 +111,13 @@ def get_user_id(request):
 
 
 @api_view(["GET"])
+# @permission_classes([IsAuthenticated])
 def get_crypto_price(request):
     if request.method == 'GET':
         crypto_symbol = request.GET.get('crypto_symbol', '').strip().upper()
         if not crypto_symbol:
             return JsonResponse({'error': 'Please provide a valid cryptocurrency symbol.'}, status=400)
 
-        # Replace 'YOUR_API_KEY' with your actual CoinMarketCap API key
         api_key = 'b099cef2-f070-4c6d-99f8-9617db15c45c'
         url = f'https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol={crypto_symbol}&convert=USD'
 
@@ -136,3 +137,6 @@ def get_crypto_price(request):
             return JsonResponse({'error': 'Failed to fetch cryptocurrency data. Please try again later.'}, status=500)
 
     return JsonResponse({'error': 'Invalid request method.'}, status=400)
+
+
+

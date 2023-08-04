@@ -61,12 +61,12 @@ const Navbar = () => {
                 </li>
                 <li className="nav-item">
                   <Link className="nav-link text-white" to="/marketdata">
-                    Market Data
+                    Market Charts
                   </Link>
                 </li>
                 <li className="nav-item">
                   <Link className="nav-link text-white" to="/cryptousdconvert">
-                    Crypto to USD Calculator
+                    Crypto USD Convertor
                   </Link>
                 </li>
               </>

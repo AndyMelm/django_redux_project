@@ -2,11 +2,19 @@ import axios from 'axios';
 
 const apiUrl = 'http://localhost:8000/get_crypto_price/';
 
+const getToken = () => {
+  const token = sessionStorage.getItem('token');
+  return token ? `Bearer ${token}` : '';
+};
+
 export const getCryptoPrice = (cryptoSymbol: string) => {
-  const requestData = { params: { crypto_symbol: cryptoSymbol } };
+  const config = {
+    params: { crypto_symbol: cryptoSymbol },
+    headers: { Authorization: getToken() },
+  };
 
   return axios
-    .get(apiUrl, requestData)
+    .get(apiUrl, config)
     .then((response) => {
       if ('price' in response.data) {
         return response.data.price;

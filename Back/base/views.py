@@ -111,7 +111,7 @@ def get_user_id(request):
 
 
 @api_view(["GET"])
-# @permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated])
 def get_crypto_price(request):
     if request.method == 'GET':
         crypto_symbol = request.GET.get('crypto_symbol', '').strip().upper()

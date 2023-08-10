@@ -191,7 +191,14 @@ LinkedIn: https://www.linkedin.com/in/andrey-melman-636b49277/
 
 For project hosting and deployment:
 
-- Render: [https://render.com/](https://render.com/)
-- Netlify: [https://www.netlify.com/](https://www.netlify.com/)
+- Render: [https://render.com/](https://render.com/) Using PostgreSQL
+- Netlify: [https://www.netlify.com/](https://www.netlify.com/) Connected to Git
+
+Admin Access:
+
+If you would like to access the project as an admin user, please use the following credentials:
+
+- Username: admin
+- Password: 1234
 
 Feel free to use the provided email or LinkedIn link to contact me.

@@ -47,4 +47,7 @@ urlpatterns = [
     
     # Endpoint to get cryptocurrency price
     path("get_crypto_price/", views.get_crypto_price),
+
+    # Handle 404 
+    path('', views.index),
 ]

@@ -12,6 +12,12 @@ from django.core.exceptions import ValidationError
 import requests
 from django.http import JsonResponse
 from decouple import config
+from django.http import HttpResponse
+
+
+
+def index(request):
+    return HttpResponse('Click to redirect to the Trading Journal: <a href="http://localhost:3000/">Click here</a>')
 
 
 @api_view(["POST"])

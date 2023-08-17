@@ -8,7 +8,7 @@ import axios from 'axios';
  */
 export async function login(user1: any) {
   try {
-    const response = await axios.post("http://127.0.0.1:8000/login/", user1);
+    const response = await axios.post("https://render-trading-journal.onrender.com/login/", user1);
     return { data: response.data };
   } catch (error: any) {
     if (error.response && (error.response.status === 401 || error.response.status === 400)) {

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // API URL for getting cryptocurrency price used in django
-const apiUrl = 'http://localhost:8000/get_crypto_price/';
+const apiUrl = 'https://render-trading-journal.onrender.com/get_crypto_price/';
 
 // Function to get the token from session storage and return it as a bearer token
 const getToken = () => {

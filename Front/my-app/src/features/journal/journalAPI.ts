@@ -13,7 +13,7 @@ const getToken = () => {
  * @returns {Promise<Array>} - A Promise that resolves with an array of journal entries if successful.
  */
 export function getAll(userId: number) {
-  const url = `http://127.0.0.1:8000/journal/${userId}/`;
+  const url = `https://render-trading-journal.onrender.com/journal/${userId}/`;
   return axios.get(url, {
     headers: {
       Authorization: getToken(),
@@ -28,7 +28,7 @@ export function getAll(userId: number) {
  * @returns {Promise<Object>} - A Promise that resolves with the newly created journal entry data if successful.
  */
 export function createEntry(entry: any) {
-  return axios.post('http://127.0.0.1:8000/journal/', entry, {
+  return axios.post('https://render-trading-journal.onrender.com/journal/', entry, {
     headers: {
       Authorization: getToken(),
     },
@@ -43,7 +43,7 @@ export function createEntry(entry: any) {
  * @returns {Promise<Object>} - A Promise that resolves with the updated journal entry data if successful.
  */
 export function updateEntry(id: number, updatedFields: any) {
-  const url = `http://127.0.0.1:8000/journal/${id}/`;
+  const url = `https://render-trading-journal.onrender.com/journal/${id}/`;
   const formData = new FormData();
 
 
@@ -66,7 +66,7 @@ export function updateEntry(id: number, updatedFields: any) {
  * @returns {Promise<void>} - A Promise that resolves if the deletion is successful.
  */
 export function deleteEntry(entryId: number) {
-  const url = `http://127.0.0.1:8000/journal/${entryId}/`;
+  const url = `https://render-trading-journal.onrender.com/journal/${entryId}/`;
   return axios.delete(url, {
     headers: {
       Authorization: getToken(),

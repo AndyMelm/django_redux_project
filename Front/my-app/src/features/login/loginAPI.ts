@@ -33,7 +33,7 @@ export async function getUserId(token: string) {
   };
 
   try {
-    const response = await axios.get('http://127.0.0.1:8000/get_user_id/', config);
+    const response = await axios.get('https://render-trading-journal.onrender.com/get_user_id/', config);
     const userId = response.data.user_id;
     return userId;
   } catch (error: any) {

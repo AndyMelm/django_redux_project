@@ -451,7 +451,7 @@ const JournalPage = () => {
 
                     </Card.Text>
 
-                    {journal.image && <Card.Img variant="top" src={`http://127.0.0.1:8000${journal.image}`} alt="Trade" />}
+                    {journal.image && <Card.Img variant="top" src={`https://render-trading-journal.onrender.com${journal.image}`} alt="Trade" />}
 
 
                     <br /><br />

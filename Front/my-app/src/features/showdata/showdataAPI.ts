@@ -8,7 +8,7 @@ import { Journal } from '../../Models/Journal';
  * @returns {Promise<Journal[]>} A promise that resolves to an array of Journal objects.
  */
 export async function getAlldata(userId: number): Promise<Journal[]> {
-  const url = `http://127.0.0.1:8000/journal/${userId}/`;
+  const url = `https://render-trading-journal.onrender.com/journal/${userId}/`;
   const token = sessionStorage.getItem('token');
   const headers = {
     Authorization: `Bearer ${token}`,

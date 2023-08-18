@@ -27,7 +27,12 @@ A web-based trading journal for stock market, futures, and crypto traders. Docum
 
 #####Backend 
 Clone the repository from GitHub:
-![iframeimae](https://carbon.now.sh/embed?bg=rgba%28188%2C210%2C205%2C1%29&t=one-dark&wt=none&l=auto&width=680&ds=false&dsyoff=20px&dsblur=68px&wc=false&wa=true&pv=56px&ph=56px&ln=false&fl=1&fm=Hack&fs=14px&lh=143%25&si=false&es=2x&wm=false&code=git%2520clone%2520https%253A%252F%252Fgithub.com%252FAndyMelm%252Fdjango_redux_project.git)
+
+```
+git clone https://github.com/AndyMelm/django_redux_project.git
+```
+
+
 <iframe
   src="https://carbon.now.sh/embed?bg=rgba%28188%2C210%2C205%2C1%29&t=one-dark&wt=none&l=auto&width=680&ds=false&dsyoff=20px&dsblur=68px&wc=false&wa=true&pv=56px&ph=56px&ln=false&fl=1&fm=Hack&fs=14px&lh=143%25&si=false&es=2x&wm=false&code=git%2520clone%2520https%253A%252F%252Fgithub.com%252FAndyMelm%252Fdjango_redux_project.git"
   style="width: 700px; height: 176px; border:0; transform: scale(1); overflow:hidden;"

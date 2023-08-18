@@ -19,7 +19,7 @@ const HomePage = () => {
         <div className="d-flex flex-column align-items-center border-custom p-3">
           <img
             className="img-fluid"
-            src="https://render-trading-journal.onrender.com/images/journal_images/first.png"
+            src="https://render-trading-journal.onrender.com/static/images/journal_images/first.png"
             alt="Charts"
           />
 
@@ -35,7 +35,7 @@ const HomePage = () => {
           <img
             className="img-fluid"
             style={{ maxWidth: '100%', margin: '10px 0' }}
-            src="https://render-trading-journal.onrender.com/images/journal_images/second.png"
+            src="https://render-trading-journal.onrender.com/static/images/journal_images/second.png"
             alt="Trading Data"
           />
 
@@ -53,7 +53,7 @@ const HomePage = () => {
           <img
             className="img-fluid"
             style={{ maxWidth: '100%', margin: '10px 0' }}
-            src="https://render-trading-journal.onrender.com/images/journal_images/third.png"
+            src="https://render-trading-journal.onrender.com/static/images/journal_images/third.png"
             alt="Charts"
           />
         </div>
@@ -72,7 +72,7 @@ const HomePage = () => {
           <img
             className="img-fluid"
             style={{ maxWidth: '100%', margin: '10px 0' }}
-            src="https://render-trading-journal.onrender.com/images/journal_images/converter.png"
+            src="https://render-trading-journal.onrender.com/static/images/journal_images/converter.png"
             alt="Charts"
           />
         </div>

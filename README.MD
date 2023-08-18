@@ -155,13 +155,13 @@ Click on the image above to watch the tutorial video on YouTube.
 
 ## Technologies
 
-* Backend:
+#### Backend:
 - Django (Python web framework)
 - Django REST framework (for building RESTful APIs)
 - SQLite (Database)
 - Django Templates (for rendering dynamic HTML content on the server-side)
 
-* Frontend:
+#### Frontend:
 - React (JavaScript library)
 - Redux (state management)
 - TypeScript 
@@ -171,11 +171,11 @@ Click on the image above to watch the tutorial video on YouTube.
 - MaterialUI (MUI)
 - Recharts (charting library for React)
 
-* Data Visualization:
+#### Data Visualization:
 - TradingView Widget (for interactive market charts)
 - Recharts (charting library for React)
 
-* API Integration:
+#### API Integration:
 - Coin Market Cap API (for fetching real-time coin prices)
 
 ## Tests

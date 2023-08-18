@@ -38,8 +38,10 @@ Navigate to the backend directory, create & activate a virtual environment:
 ```
 #backend directory
 cd django_redux_project/Back 
+
 #create virutal environment
 python -m venv venv
+
 #activate virutal environment
 venv\Scripts\activate 
 ```

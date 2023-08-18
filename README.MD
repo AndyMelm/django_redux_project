@@ -47,42 +47,63 @@ venv\Scripts\activate
 ```
 
 Install the required Python packages:
-<iframe
-  src="https://carbon.now.sh/embed?bg=rgba%28188%2C210%2C205%2C1%29&t=one-dark&wt=none&l=auto&width=680&ds=false&dsyoff=20px&dsblur=68px&wc=false&wa=true&pv=56px&ph=56px&ln=false&fl=1&fm=Hack&fs=14px&lh=143%25&si=false&es=2x&wm=false&code=pip%2520install%2520-r%2520requirements.txt%250A"
-  style="width: 450px; height: 179px; border:0; transform: scale(1); overflow:hidden;"
-  sandbox="allow-scripts allow-same-origin">
-</iframe>
+
+```
+pip install -r requirements.txt
+```
+
 
 Create ".env" file in Back directory (django_redux_project/Back) and add the following lines:
-<iframe
-  src="https://carbon.now.sh/embed?bg=rgba%28188%2C210%2C205%2C1%29&t=one-dark&wt=none&l=auto&width=680&ds=false&dsyoff=20px&dsblur=68px&wc=false&wa=true&pv=56px&ph=56px&ln=false&fl=1&fm=Hack&fs=14px&lh=143%25&si=false&es=2x&wm=false&code=%250ASECRET_KEY%2520%253D%2520%27YOUR_DJANGO_SECRET_KEY%27%250ADEBUG%2520%253D%2520True%250AEMAIL_HOST%2520%253D%2520%27smtp.elasticemail.com%27%2520%2523i%2520am%2520suing%2520elastic%2520email%252C%2520but%2520you%2520can%2520use%2520what%2520is%2520best%2520for%2520you%250AEMAIL_PORT%2520%253D%25202525%250AEMAIL_HOST_USER%2520%253D%2520%27YOUR_EMAIL_HOST_USER%27%250AEMAIL_HOST_PASSWORD%2520%253D%2520%27YOUR_EMAIL_HOST_PASSWORD%27%250AEMAIL_USE_TLS%2520%253D%2520True%250ADEFAULT_FROM_EMAIL%2520%253D%2520%27YOUR_DEFAULT_FROM_EMAI%27%250A%250A%2520%2523To%2520fetch%2520crypto%2520prices%2520i%2520am%2520using%2520Coin%2520Market%2520Cap%2520API-key%252C%2520please%2520add%2520yours.%250A%2520%2523https%253A%252F%252Fcoinmarketcap.com%252Fapi%252Fdocumentation%252Fv1%252F%2523section%252FQuick-Start-Guide%250Aapi_key_converter%2520%253D%2520%27YOUR_API_KEY%27"
-  style="width: 700px; height: 399px; border:0; transform: scale(1); overflow:hidden;"
-  sandbox="allow-scripts allow-same-origin">
-</iframe>
+
+```
+SECRET_KEY = 'YOUR_DJANGO_SECRET_KEY'
+DEBUG = True
+EMAIL_HOST = 'smtp.elasticemail.com' #i am suing elastic email, but you can use what is best for you
+EMAIL_PORT = 2525
+EMAIL_HOST_USER = 'YOUR_EMAIL_HOST_USER'
+EMAIL_HOST_PASSWORD = 'YOUR_EMAIL_HOST_PASSWORD'
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'YOUR_DEFAULT_FROM_EMAI'
+
+ #To fetch crypto prices i am using Coin Market Cap API-key, please add yours.
+ #https://coinmarketcap.com/api/documentation/v1/#section/Quick-Start-Guide
+api_key_converter = 'YOUR_API_KEY'
+```
+
 
 Create a superuser (optional - for admin access) & Run the Django development server:
-<iframe
-  src="https://carbon.now.sh/embed?bg=rgba%28188%2C210%2C205%2C1%29&t=one-dark&wt=none&l=auto&width=403&ds=false&dsyoff=20px&dsblur=68px&wc=false&wa=false&pv=56px&ph=56px&ln=false&fl=1&fm=Hack&fs=14px&lh=143%25&si=false&es=2x&wm=false&code=%2523create%2520superuser%250Apython%2520manage.py%2520createsuperuser%250A%2523run%2520the%2520server%250Apython%2520manage.py%2520runserver"
-  style="width: 403px; height: 219px; border:0; transform: scale(1); overflow:hidden;"
-  sandbox="allow-scripts allow-same-origin">
-</iframe>
+
+```
+#create superuser
+python manage.py createsuperuser
+
+#run the server
+python manage.py runserver
+```
+
 
 The backend should now be up and running on http://localhost:8000/.
 
 #### Frontend
 Open another terminal & Navigate to the frontend directory:
-<iframe
-  src="https://carbon.now.sh/embed?bg=rgba%28188%2C210%2C205%2C1%29&t=one-dark&wt=none&l=auto&width=403&ds=false&dsyoff=20px&dsblur=68px&wc=false&wa=false&pv=56px&ph=56px&ln=false&fl=1&fm=Hack&fs=14px&lh=143%25&si=false&es=2x&wm=false&code=%2523frontend%2520directory%2520-%2520Front%250A%2523frontend%2520app%2520directory%2520-%2520my-app%250Acd%2520django_redux_project%252FFront%252Fmy-app%250A"
-  style="width: 403px; height: 259px; border:0; transform: scale(1); overflow:hidden;"
-  sandbox="allow-scripts allow-same-origin">
-</iframe>
+
+```
+#frontend directory - Front
+
+#frontend app directory - my-app
+
+cd django_redux_project/Front/my-app
+```
 
 Install the dependencies and run the server:
-<iframe
-  src="https://carbon.now.sh/embed?bg=rgba%28188%2C210%2C205%2C1%29&t=one-dark&wt=none&l=auto&width=403&ds=false&dsyoff=20px&dsblur=68px&wc=false&wa=false&pv=56px&ph=56px&ln=false&fl=1&fm=Hack&fs=14px&lh=143%25&si=false&es=2x&wm=false&code=%250A%2523install%2520the%2520dependencies%250Anpm%2520i%2520%2523or%2520npm%2520install%250A%2523run%2520the%2520server%250Anpm%2520start"
-  style="width: 403px; height: 239px; border:0; transform: scale(1); overflow:hidden;"
-  sandbox="allow-scripts allow-same-origin">
-</iframe>
+
+```
+#install the dependencies
+npm i #or npm install
+
+#run the server
+npm start
+```
 
 
 ## Usage
@@ -135,45 +156,44 @@ Click on the image above to watch the tutorial video on YouTube.
 ## Technologies
 
 * Backend:
--Django (Python web framework)
--Django REST framework (for building RESTful APIs)
--SQLite (Database)
--Django Templates (for rendering dynamic HTML content on the server-side)
+- Django (Python web framework)
+- Django REST framework (for building RESTful APIs)
+- SQLite (Database)
+- Django Templates (for rendering dynamic HTML content on the server-side)
 
 * Frontend:
--React (JavaScript library)
--Redux (state management)
--TypeScript 
--HTML
--CSS
--Bootstrap 
--MaterialUI (MUI)
--Recharts (charting library for React)
+- React (JavaScript library)
+- Redux (state management)
+- TypeScript 
+- HTML
+- CSS
+- Bootstrap 
+- MaterialUI (MUI)
+- Recharts (charting library for React)
 
 * Data Visualization:
--TradingView Widget (for interactive market charts)
--Recharts (charting library for React)
+- TradingView Widget (for interactive market charts)
+- Recharts (charting library for React)
 
 * API Integration:
--Coin Market Cap API (for fetching real-time coin prices)
+- Coin Market Cap API (for fetching real-time coin prices)
 
 ## Tests
 
 #### Running Backend Tests:
 To run the backend tests locally, use the following command:
-<iframe
-  src="https://carbon.now.sh/embed?bg=rgba%28188%2C210%2C205%2C1%29&t=one-dark&wt=none&l=auto&width=403&ds=false&dsyoff=20px&dsblur=68px&wc=false&wa=false&pv=56px&ph=56px&ln=false&fl=1&fm=Hack&fs=14px&lh=143%25&si=false&es=2x&wm=false&code=python%2520manage.py%2520test%250A"
-  style="width: 403px; height: 179px; border:0; transform: scale(1); overflow:hidden;"
-  sandbox="allow-scripts allow-same-origin">
-</iframe>
+
+```
+python manage.py test
+```
 
 #### Running Frontend Tests:
 To run the frontend tests locally, use the following command:
-<iframe
-  src="https://carbon.now.sh/embed?bg=rgba%28188%2C210%2C205%2C1%29&t=one-dark&wt=none&l=auto&width=403&ds=false&dsyoff=20px&dsblur=68px&wc=false&wa=false&pv=56px&ph=56px&ln=false&fl=1&fm=Hack&fs=14px&lh=143%25&si=false&es=2x&wm=false&code=npm%2520test%250A"
-  style="width: 403px; height: 179px; border:0; transform: scale(1); overflow:hidden;"
-  sandbox="allow-scripts allow-same-origin">
-</iframe>
+
+```
+npm test
+```
+
 
 ## Contributing
 

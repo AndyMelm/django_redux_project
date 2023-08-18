@@ -191,8 +191,8 @@ LinkedIn: https://www.linkedin.com/in/andrey-melman-636b49277/
 
 For project hosting and deployment:
 
-- Render: [https://render.com/](https://render.com/) Using PostgreSQL
-- Netlify: [https://www.netlify.com/](https://www.netlify.com/) Connected to Git
+- Render: [https://render.com/](https://render-trading-journal.onrender.com/) 
+- Netlify: [https://www.netlify.com/](https://your-trading-journal.netlify.app/) 
 
 Admin Access:
 

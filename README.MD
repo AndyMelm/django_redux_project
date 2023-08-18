@@ -27,6 +27,7 @@ A web-based trading journal for stock market, futures, and crypto traders. Docum
 
 #####Backend 
 Clone the repository from GitHub:
+![iframeimae](https://carbon.now.sh/embed?bg=rgba%28188%2C210%2C205%2C1%29&t=one-dark&wt=none&l=auto&width=680&ds=false&dsyoff=20px&dsblur=68px&wc=false&wa=true&pv=56px&ph=56px&ln=false&fl=1&fm=Hack&fs=14px&lh=143%25&si=false&es=2x&wm=false&code=git%2520clone%2520https%253A%252F%252Fgithub.com%252FAndyMelm%252Fdjango_redux_project.git)
 <iframe
   src="https://carbon.now.sh/embed?bg=rgba%28188%2C210%2C205%2C1%29&t=one-dark&wt=none&l=auto&width=680&ds=false&dsyoff=20px&dsblur=68px&wc=false&wa=true&pv=56px&ph=56px&ln=false&fl=1&fm=Hack&fs=14px&lh=143%25&si=false&es=2x&wm=false&code=git%2520clone%2520https%253A%252F%252Fgithub.com%252FAndyMelm%252Fdjango_redux_project.git"
   style="width: 700px; height: 176px; border:0; transform: scale(1); overflow:hidden;"
@@ -92,23 +93,23 @@ The application will be accessible at http://localhost:3000/ in your web browser
 * Fill in the essential details, such as strategy, instrument, date, time, entry/exit prices, quantity, position, and outcome (win or loss).
 * Add additional notes or description for the trade and attach an image if relevant.
 * View or Delete existing entries.
-![login](Back\static\images\journal_images\login.jpg)
-![register](Back\static\images\journal_images\register.jpg)
-![journal](Back\static\images\journal_images\first.png)
+![login](https://render-trading-journal.onrender.com/static/images/journal_images/login.jpg)
+![register](https://render-trading-journal.onrender.com/static/images/journal_images/register.jpg)
+![journal](https://render-trading-journal.onrender.com/static/images/journal_images/first.png)
 
 #####Visualize Performance:
 * To view your trading performance, navigate to the "Journal Data" section.
 * Observe interactive charts that display your trade history, P&L (Profit & Loss), and other relevant metrics.
-![journal data](Back\static\images\journal_images\second.png)
+![journal data](https://render-trading-journal.onrender.com/static/images/journal_images/second.png)
 
 #####Access Market Charts:
 * In the "Market Charts" section, explore various charts powered by the TradingView widget.
-![market charts](Back\static\images\journal_images\tview.jpg)
+![market charts](https://render-trading-journal.onrender.com/static/images/journal_images/tview.jpg)
 
 #####Crypto USD Converter:
 * In the "Crypto USD Converter" section, enter the name and quantity of the coin you're interested in.
 * Fetch real-time coin prices using Coin Market Cap's API and stay informed about current market values.
-![converter](Back\static\images\journal_images\converter.png)
+![converter](https://render-trading-journal.onrender.com/static/images/journal_images/converter.png)
 
 ##### Watch the Tutorial Video
 

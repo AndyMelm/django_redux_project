@@ -1,7 +1,7 @@
 # Your Trading Journal
 
 
-![Banner Image](https://github.com/AndyMelm/django_redux_project/tree/main/Back/static/images/journal_images/Trading_Journal.png)
+![Banner Image](https://github.com/AndyMelm/django_redux_project/tree/main/Back/static/images/journal_images/Trading_Journal.png?raw=true)
 
 
 A web-based trading journal for stock market, futures, and crypto traders. Document your trades, visualize data with interactive charts, and stay updated with real-time coin prices using Coin Market Cap's API.

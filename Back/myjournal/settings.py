@@ -140,6 +140,7 @@ DATABASES = {
     }
 }
 
+#here you can add more databases
 
 
 # Password validation

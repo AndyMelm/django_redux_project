@@ -25,7 +25,7 @@ A web-based trading journal for stock market, futures, and crypto traders. Docum
 
 ### Setup:
 
-#####Backend 
+##### Backend 
 Clone the repository from GitHub:
 
 ```
@@ -33,19 +33,16 @@ git clone https://github.com/AndyMelm/django_redux_project.git
 ```
 
 
-<iframe
-  src="https://carbon.now.sh/embed?bg=rgba%28188%2C210%2C205%2C1%29&t=one-dark&wt=none&l=auto&width=680&ds=false&dsyoff=20px&dsblur=68px&wc=false&wa=true&pv=56px&ph=56px&ln=false&fl=1&fm=Hack&fs=14px&lh=143%25&si=false&es=2x&wm=false&code=git%2520clone%2520https%253A%252F%252Fgithub.com%252FAndyMelm%252Fdjango_redux_project.git"
-  style="width: 700px; height: 176px; border:0; transform: scale(1); overflow:hidden;"
-  sandbox="allow-scripts allow-same-origin">
-</iframe>
-
-
 Navigate to the backend directory, create & activate a virtual environment:
-<iframe
-  src="https://carbon.now.sh/embed?bg=rgba%28188%2C210%2C205%2C1%29&t=one-dark&wt=none&l=auto&width=680&ds=false&dsyoff=20px&dsblur=68px&wc=false&wa=true&pv=56px&ph=56px&ln=false&fl=1&fm=Hack&fs=14px&lh=143%25&si=false&es=2x&wm=false&code=%2523backend%2520directory%250Acd%2520django_redux_project%252FBack%2520%250A%2523create%2520virutal%2520environment%250Apython%2520-m%2520venv%2520venv%250A%2523activate%2520virutal%2520environment%250Avenv%255CScripts%255Cactivate%2520"
-  style="width: 400px; height: 259px; border:0; transform: scale(1); overflow:hidden;"
-  sandbox="allow-scripts allow-same-origin">
-</iframe>
+
+```
+#backend directory
+cd django_redux_project/Back 
+#create virutal environment
+python -m venv venv
+#activate virutal environment
+venv\Scripts\activate 
+```
 
 Install the required Python packages:
 <iframe
@@ -70,7 +67,7 @@ Create a superuser (optional - for admin access) & Run the Django development se
 
 The backend should now be up and running on http://localhost:8000/.
 
-#####Frontend
+#### Frontend
 Open another terminal & Navigate to the frontend directory:
 <iframe
   src="https://carbon.now.sh/embed?bg=rgba%28188%2C210%2C205%2C1%29&t=one-dark&wt=none&l=auto&width=403&ds=false&dsyoff=20px&dsblur=68px&wc=false&wa=false&pv=56px&ph=56px&ln=false&fl=1&fm=Hack&fs=14px&lh=143%25&si=false&es=2x&wm=false&code=%2523frontend%2520directory%2520-%2520Front%250A%2523frontend%2520app%2520directory%2520-%2520my-app%250Acd%2520django_redux_project%252FFront%252Fmy-app%250A"
@@ -92,7 +89,7 @@ After successfully installing the project and its dependencies, you can start us
 The application will be accessible at http://localhost:3000/ in your web browser.
 
 
-#####Log Trades:
+##### Log Trades:
 * On the home page, you'll be prompted to log in or sign up for an account.
 * Once logged in,navigate to the "Journal" section, click on the "Add Trade" button to add a new journal entry.
 * Fill in the essential details, such as strategy, instrument, date, time, entry/exit prices, quantity, position, and outcome (win or loss).
@@ -102,16 +99,16 @@ The application will be accessible at http://localhost:3000/ in your web browser
 ![register](https://render-trading-journal.onrender.com/static/images/journal_images/register.jpg)
 ![journal](https://render-trading-journal.onrender.com/static/images/journal_images/first.png)
 
-#####Visualize Performance:
+##### Visualize Performance:
 * To view your trading performance, navigate to the "Journal Data" section.
 * Observe interactive charts that display your trade history, P&L (Profit & Loss), and other relevant metrics.
 ![journal data](https://render-trading-journal.onrender.com/static/images/journal_images/second.png)
 
-#####Access Market Charts:
+##### Access Market Charts:
 * In the "Market Charts" section, explore various charts powered by the TradingView widget.
 ![market charts](https://render-trading-journal.onrender.com/static/images/journal_images/tview.jpg)
 
-#####Crypto USD Converter:
+##### Crypto USD Converter:
 * In the "Crypto USD Converter" section, enter the name and quantity of the coin you're interested in.
 * Fetch real-time coin prices using Coin Market Cap's API and stay informed about current market values.
 ![converter](https://render-trading-journal.onrender.com/static/images/journal_images/converter.png)
@@ -158,9 +155,9 @@ Click on the image above to watch the tutorial video on YouTube.
 * API Integration:
 -Coin Market Cap API (for fetching real-time coin prices)
 
-##Tests
+## Tests
 
-####Running Backend Tests:
+#### Running Backend Tests:
 To run the backend tests locally, use the following command:
 <iframe
   src="https://carbon.now.sh/embed?bg=rgba%28188%2C210%2C205%2C1%29&t=one-dark&wt=none&l=auto&width=403&ds=false&dsyoff=20px&dsblur=68px&wc=false&wa=false&pv=56px&ph=56px&ln=false&fl=1&fm=Hack&fs=14px&lh=143%25&si=false&es=2x&wm=false&code=python%2520manage.py%2520test%250A"
@@ -168,7 +165,7 @@ To run the backend tests locally, use the following command:
   sandbox="allow-scripts allow-same-origin">
 </iframe>
 
-####Running Frontend Tests:
+#### Running Frontend Tests:
 To run the frontend tests locally, use the following command:
 <iframe
   src="https://carbon.now.sh/embed?bg=rgba%28188%2C210%2C205%2C1%29&t=one-dark&wt=none&l=auto&width=403&ds=false&dsyoff=20px&dsblur=68px&wc=false&wa=false&pv=56px&ph=56px&ln=false&fl=1&fm=Hack&fs=14px&lh=143%25&si=false&es=2x&wm=false&code=npm%2520test%250A"
@@ -200,7 +197,7 @@ For project hosting and deployment:
 - Render: [Deployed to Render](https://render-trading-journal.onrender.com/) 
 - Netlify: [Deployed to Netlify](https://your-trading-journal.netlify.app/) 
 
-Admin Access:
+#### Admin Access:
 
 If you would like to access the project as an admin user, please use the following credentials:
 

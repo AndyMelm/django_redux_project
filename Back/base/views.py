@@ -17,7 +17,7 @@ from django.http import HttpResponse
 
 
 def index(request):
-    return HttpResponse('Click to redirect to the Trading Journal: <a href="http://localhost:3000/">Click here</a>')
+    return HttpResponse('Click to redirect to the Trading Journal: <a href="https://your-trading-journal.netlify.app/">Click here</a>')
 
 
 @api_view(["POST"])

@@ -180,7 +180,7 @@ const ViewandUpdate = () => {
             )
           )}
         </div>
-        {viewedData.image && <img className="responsive-image" src={`https://render-trading-journal.onrender.com${viewedData.image}`} alt="Trade" />}
+        {viewedData.image && <img className="responsive-image" src={`https://render-trading-journal.onrender.com/static${viewedData.image}`} alt="Trade" />}
       </div>
       {/* Show the update form */}
       {showForm ? (

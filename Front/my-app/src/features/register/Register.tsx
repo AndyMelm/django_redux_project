@@ -80,7 +80,7 @@ const Register = () => {
   const closePopup = () => {
     setIsPopupVisible(false);
     if (regSuccess) {
-      window.location.href = 'http://localhost:3000/';
+      window.location.href = 'https://your-trading-journal.netlify.app/';
     }
   };
 

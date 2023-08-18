@@ -54,7 +54,7 @@ export const getUserIdAsync = createAsyncThunk(
  * Function to navigate to the home page.
  */
 export const navigateToHome = () => {
-  window.location.href = 'http://localhost:3000/';
+  window.location.href = 'https://your-trading-journal.netlify.app/';
 };
 
 /**

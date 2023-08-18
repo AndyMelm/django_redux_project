@@ -118,23 +118,23 @@ The application will be accessible at http://localhost:3000/ in your web browser
 * Fill in the essential details, such as strategy, instrument, date, time, entry/exit prices, quantity, position, and outcome (win or loss).
 * Add additional notes or description for the trade and attach an image if relevant.
 * View or Delete existing entries.
-![login](https://render-trading-journal.onrender.com/static/images/journal_images/login.jpg)
-![register](https://render-trading-journal.onrender.com/static/images/journal_images/register.jpg)
-![journal](https://render-trading-journal.onrender.com/static/images/journal_images/first.png)
+![login](Back/static/images/journal_images/login.jpg)
+![register](Back/static/images/journal_images/register.jpg)
+![journal](Back/static/images/journal_images/first.png)
 
 ##### Visualize Performance:
 * To view your trading performance, navigate to the "Journal Data" section.
 * Observe interactive charts that display your trade history, P&L (Profit & Loss), and other relevant metrics.
-![journal data](https://render-trading-journal.onrender.com/static/images/journal_images/second.png)
+![journal data](Back/static/images/journal_images/second.png)
 
 ##### Access Market Charts:
 * In the "Market Charts" section, explore various charts powered by the TradingView widget.
-![market charts](https://render-trading-journal.onrender.com/static/images/journal_images/tview.jpg)
+![market charts](Back/static/images/journal_images/tview.jpg)
 
 ##### Crypto USD Converter:
 * In the "Crypto USD Converter" section, enter the name and quantity of the coin you're interested in.
 * Fetch real-time coin prices using Coin Market Cap's API and stay informed about current market values.
-![converter](https://render-trading-journal.onrender.com/static/images/journal_images/converter.png)
+![converter](Back/static/images/journal_images/converter.png)
 
 ##### Watch the Tutorial Video
 

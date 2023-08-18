@@ -191,8 +191,8 @@ LinkedIn: https://www.linkedin.com/in/andrey-melman-636b49277/
 
 For project hosting and deployment:
 
-- Render: [https://render.com/](https://render-trading-journal.onrender.com/) 
-- Netlify: [https://www.netlify.com/](https://your-trading-journal.netlify.app/) 
+- Render: [Deployed to Render](https://render-trading-journal.onrender.com/) 
+- Netlify: [Deployed to Netlify](https://your-trading-journal.netlify.app/) 
 
 Admin Access:
 

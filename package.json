@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "@mui/styles": "^5.13.2",
-    "@mui/system": "^5.13.6",
-    "@paypal/paypal-js": "^6.0.0"
-  }
-}

@@ -218,7 +218,8 @@ For project hosting and deployment:
 
 - Render: [Deployed to Render](https://render-trading-journal.onrender.com/) 
 - Netlify: [Deployed to Netlify](https://your-trading-journal.netlify.app/) 
-- For docker use this repo:[Docker](https://github.com/AndyMelm/project_dockerized/) 
+- For Docker use this Repo:[Docker](https://github.com/AndyMelm/project_dockerized/) 
+- Same project with MySql database: [MySql](https://github.com/AndyMelm/django_redux_project_mysql/)
 
 #### Admin Access:
 
